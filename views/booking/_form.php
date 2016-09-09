@@ -9,10 +9,19 @@ use kartik\widgets\DateTimePicker;
 use kartik\daterange\DateRangePicker;
 use kartik\widgets\Typeahead;
 
-use wbraganca\dynamicform\DynamicFormWidget;
+use yii\widgets\ListView;
+use yii\widgets\Pjax;
+
+//use wbraganca\dynamicform\DynamicFormWidget;
+//Select2::register($this);
+//DateTimePicker::register($this);
+//DateRangePicker::register($this);
+//Pjax::register($this);
 
 use yii\web\View;
-use yii\widgets\Pjax;
+
+
+
 use yii\helpers\Url;
 /*
 use kartik\widgets\FileInput;
@@ -22,20 +31,20 @@ use kartik\widgets\DatePicker;
 /* @var $this yii\web\View */
 /* @var $model suPnPsu\borrowMaterial\models\Booking */
 /* @var $form yii\widgets\ActiveForm */
-
+/*
 $js['dynamic-form'] = '
 jQuery(".dynamicform_wrapper").on("afterInsert", function(e, item) {
     jQuery(".dynamicform_wrapper .panel-title-address").each(function(index) {
-        jQuery(this).html("<span class=\"glyphicon glyphicon-triangle-right\"></span> ' . Yii::t('borrowreturn/app', 'material') . ' : " + (index + 1))
+        jQuery(this).html("<span class=\"glyphicon glyphicon-triangle-right\"></span> ' . Yii::t( 'app', 'material') . ' : " + (index + 1))
     });
 });
 
 jQuery(".dynamicform_wrapper").on("afterDelete", function(e) {
     jQuery(".dynamicform_wrapper .panel-title-address").each(function(index) {
-        jQuery(this).html("<span class=\"glyphicon glyphicon-triangle-right\"></span> ' . Yii::t('borrowreturn/app', 'material') . ' : " + (index + 1))
+        jQuery(this).html("<span class=\"glyphicon glyphicon-triangle-right\"></span> ' . Yii::t( 'app', 'material') . ' : " + (index + 1))
     });
 });
-';
+';*/
 
 
 ?>
@@ -53,7 +62,7 @@ jQuery(".dynamicform_wrapper").on("afterDelete", function(e) {
     <?php //= $form->field($model, 'entry_status')->textInput() ?>
 		<div class="col-md-1 col-md-offset-1">
 			<?php 
-			echo Html::img(Yii::getAlias('@web/media/images/PSU.png'),['width' => '75px']);
+			echo Html::img(Yii::getAlias('@web/uploads/images/PSU.png'),['width' => '75px']);
 			?>
 		</div>
 		<div class="col-md-8 text-center">
@@ -73,7 +82,7 @@ jQuery(".dynamicform_wrapper").on("afterDelete", function(e) {
             ]
         ])->widget(DatePicker::classname(), [
             'language' => 'th',
-            'options' => ['placeholder' => Yii::t('kpi/app', 'enterdate')],
+            'options' => ['placeholder' => Yii::t( 'app', 'enterdate')],
             'type' => DatePicker::TYPE_COMPONENT_APPEND,
             'pluginOptions' => [
                 'autoclose' => true,
@@ -102,7 +111,7 @@ jQuery(".dynamicform_wrapper").on("afterDelete", function(e) {
             ]
         ])->widget(Select2::classname(), [
             'data' => $belongtolist,
-            'options' => ['placeholder' => Yii::t('kpi/app', 'PleaseSelect')],
+            'options' => ['placeholder' => Yii::t( 'app', 'PleaseSelect')],
             'pluginOptions' => [
                 'allowClear' => true
             ],
@@ -142,7 +151,7 @@ jQuery(".dynamicform_wrapper").on("afterDelete", function(e) {
 				'inputTemplate' => '<div class="input-group">{input}<span class="input-group-btn"><button type="button" class="btn btn-success _belqadd" value="'.Url::to(['qaddbelongto']).'" title="add belong to" data-toggle="tooltip"><span class="glyphicon glyphicon-plus"></span></button></div>',
         ])->widget(Select2::classname(), [
             'data' => $belongtolist,
-            'options' => ['placeholder' => Yii::t('kpi/app', 'PleaseSelect')],
+            'options' => ['placeholder' => Yii::t( 'app', 'PleaseSelect')],
             'pluginOptions' => [
                 'allowClear' => true
             ],
@@ -161,7 +170,7 @@ jQuery(".dynamicform_wrapper").on("afterDelete", function(e) {
 				'inputTemplate' => '<div class="input-group">{input}<span class="input-group-btn"><button type="button" class="btn btn-success _invttqadd" value="'.Url::to(['qaddposition']).'" title="add position of belong to" data-toggle="tooltip"><span class="glyphicon glyphicon-plus"></span></button></div>',
         ])->widget(Select2::classname(), [
             'data' => $positionlist,
-            'options' => ['placeholder' => Yii::t('kpi/app', 'PleaseSelect')],
+            'options' => ['placeholder' => Yii::t( 'app', 'PleaseSelect')],
             'pluginOptions' => [
                 'allowClear' => true
             ],
@@ -181,7 +190,7 @@ jQuery(".dynamicform_wrapper").on("afterDelete", function(e) {
 		</div>
 	</div>
 	<div class="form-group">
-		<div class="col-md-6">
+		<div class="col-md-5">
 			<?= $form->field($model, 'isin_university',[
             'horizontalCssClasses' => [
                 'label' =>'col-md-4',
@@ -189,7 +198,7 @@ jQuery(".dynamicform_wrapper").on("afterDelete", function(e) {
             ]
         ])->inline()->radioList($model->isinlist) ?>
 		</div>
-		<div class="col-md-6">
+		<div class="col-md-7">
 			<?= $form->field($model, 'university_place',[
             'horizontalCssClasses' => [
                 'label' =>'col-md-3',
@@ -201,38 +210,7 @@ jQuery(".dynamicform_wrapper").on("afterDelete", function(e) {
 	<div class="padding-xxs">
 		<div class="line line-dashed"></div>	  
 	</div>
-	<?php /*
-	$data = [
-		"red" => "red",
-		"green" => "green",
-		"blue" => "blue",
-		"orange" => "orange",
-		"white" => "white",
-		"black" => "black",
-		"purple" => "purple",
-		"cyan" => "cyan",
-		"teal" => "teal"
-	];
-	echo $form->field($modelAddress, "[{$index}]material_id", [
-				'horizontalCssClasses' => [
-					 'label' =>'col-md-2',
-					 'wrapper' => 'col-md-10',
-				]
-			])->widget(Select2::classname(), [
-				'data' => $data,
-				'options' => [
-					'placeholder' => Yii::t('kpi/app', 'PleaseSelect'),
-					'multiple' => true,
-				],
-				'pluginOptions' => [
-					//'allowClear' => true,
-					'tags' => true,
-					//'maximumInputLength' => 10
-				],
-		  ]);*/
-					
-	?>
-	<?php DynamicFormWidget::begin([
+	<?php /* DynamicFormWidget::begin([
         'widgetContainer' => 'dynamicform_wrapper', // required: only alphanumeric characters plus "_" [A-Za-z0-9_]
         'widgetBody' => '.container-items', // required: css class selector
         'widgetItem' => '.item', // required: css class
@@ -253,8 +231,8 @@ jQuery(".dynamicform_wrapper").on("afterDelete", function(e) {
     ]); ?>
 	 <div class="panel panel-warning">
         <div class="panel-heading">
-            <?= Html::icon('scissors').' '.Yii::t('borrowreturn/app', 'material list') ?>
-            <button type="button" class="pull-right add-item btn btn-success btn-sm"><?= Html::icon('plus').' '.Yii::t('borrowreturn/app', 'add') ?>
+            <?= Html::icon('scissors').' '.Yii::t( 'app', 'material list') ?>
+            <button type="button" class="pull-right add-item btn btn-success btn-sm"><?= Html::icon('plus').' '.Yii::t( 'app', 'add') ?>
             </button>
             <div class="clearfix"></div>
         </div>
@@ -271,7 +249,7 @@ jQuery(".dynamicform_wrapper").on("afterDelete", function(e) {
 					<td>
 					<?php
 						// necessary for update action.
-						/**/ if (!$modelAddress->isNewRecord) {
+						if (!$modelAddress->isNewRecord) {
 							 echo Html::activeHiddenInput($modelAddress, "[{$index}]id");
 						} 
 					?>
@@ -282,11 +260,11 @@ jQuery(".dynamicform_wrapper").on("afterDelete", function(e) {
 							]
 						])->dropDownList(
                             $availmatlist,
-                            ['prompt' => 'รายการที่พร้อมยืม']); /**/
+                            ['prompt' => 'รายการที่พร้อมยืม']);
 					?>
 					</td> 
 					<td>
-					<button type="button" class="pull-right remove-item btn btn-danger btn-xs"><?= Html::icon('minus').' '.Yii::t('borrowreturn/app', 'delete') ?></button>
+					<button type="button" class="pull-right remove-item btn btn-danger btn-xs"><?= Html::icon('minus').' '.Yii::t( 'app', 'delete') ?></button>
 					</td> 
 				</tr>
 				<?php endforeach; ?>				
@@ -294,10 +272,10 @@ jQuery(".dynamicform_wrapper").on("afterDelete", function(e) {
 		</table>
 		
     </div>
-    <?php DynamicFormWidget::end(); ?>
+    <?php DynamicFormWidget::end();*/ ?>
 	 <div class="material-items">
 	 <?php
-		echo \yii\widgets\ListView::widget([
+		echo ListView::widget([
 			'dataProvider' => $dataProviderMaterial,
 			'layout' => "{pager}\n{items}\n{summary}",
 			'itemView' => '_material_list_item',
@@ -385,7 +363,7 @@ jQuery(".dynamicform_wrapper").on("afterDelete", function(e) {
         </div>
     </div>	 
 
-		<?= $form->field($model, 'sbmtcheck')->checkbox(['label' => Yii::t('borrowreturn/app', 'i have read rule')]) ?>
+		<?= $form->field($model, 'sbmtcheck')->checkbox(['label' => Yii::t( 'app', 'i have read rule')]) ?>
 
 <?php 		/* adzpire form tips
 		$form->field($model, 'wu_tel', ['enableAjaxValidation' => true])->textInput(['maxlength' => true]);
@@ -394,7 +372,7 @@ jQuery(".dynamicform_wrapper").on("afterDelete", function(e) {
 		'addon' => [
        
 'append' => !empty($model->wt_image) ? [
-			'content'=> Html::a( Html::icon('download').' '.Yii::t('kpi/app', 'download'), Url::to('@backend/web/'.$model->wt_image), ['class' => 'btn btn-success', 'target' => '_blank']), 'asButton'=>true] : false
+			'content'=> Html::a( Html::icon('download').' '.Yii::t( 'app', 'download'), Url::to('@backend/web/'.$model->wt_image), ['class' => 'btn btn-success', 'target' => '_blank']), 'asButton'=>true] : false
     ]])->widget(FileInput::classname(), [
 			//'options' => ['accept' => 'image/*'],
 			'pluginOptions' => [
@@ -408,13 +386,13 @@ jQuery(".dynamicform_wrapper").on("afterDelete", function(e) {
 		*/
  ?>   
 <div class="form-group text-center">
-        <?= Html::submitButton($model->isNewRecord ?  Html::icon('floppy-disk').' '.Yii::t('borrowreturn/app', 'Save') :  Html::icon('floppy-disk').' '.Yii::t('borrowreturn/app', 'Save'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ?  Html::icon('floppy-disk').' '.Yii::t( 'app', 'Save') :  Html::icon('floppy-disk').' '.Yii::t( 'app', 'Save'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
 		  <?php if($model->isNewRecord or $model->entry_status == 0){
-			echo Html::button( Html::icon('play').' '.Yii::t('borrowreturn/app', 'submitbooking') , ['class' => 'btn btn-danger']);
+			echo Html::button( Html::icon('play').' '.Yii::t( 'app', 'submitbooking') , ['class' => 'btn btn-danger']);
 
 		 } ?>
 		<?php if(!$model->isNewRecord){
-		 echo Html::resetButton( Html::icon('refresh').' '.Yii::t('borrowreturn/app', 'Reset') , ['class' => 'btn btn-warning']); 
+		 echo Html::resetButton( Html::icon('refresh').' '.Yii::t( 'app', 'Reset') , ['class' => 'btn btn-warning']);
 		 } ?>
 		 
 </div>

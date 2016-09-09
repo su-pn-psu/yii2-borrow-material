@@ -43,8 +43,8 @@ class MaterialSearch extends Material
     public function rules()
     {
         return [
-            [['id', 'status', 'available', 'save_by'], 'integer'],
-            [['title', 'detail'], 'safe'],
+            [['id', 'status', 'available'], 'integer'],
+            [['title'], 'safe'],
         ];
     }
 
@@ -87,11 +87,9 @@ class MaterialSearch extends Material
             'id' => $this->id,
             'status' => $this->status,
             'available' => $this->available,
-            'save_by' => $this->save_by,
         ]);
 
-        $query->andFilterWhere(['like', 'title', $this->title])
-            ->andFilterWhere(['like', 'detail', $this->detail]);
+        $query->andFilterWhere(['like', 'title', $this->title]);
 
         return $dataProvider;
     }

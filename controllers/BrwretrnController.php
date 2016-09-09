@@ -39,7 +39,12 @@ class BrwretrnController extends Controller
 
 	 public $admincontroller = [20];
 
-    public function beforeAction(){
+    public function beforeAction($action)
+    {
+        if (!parent::beforeAction($action)) {
+            return false;
+        }
+
         foreach($this->admincontroller as $key){
             array_push(Yii::$app->controller->module->params['adminModule'],$key);
         }
@@ -61,7 +66,7 @@ class BrwretrnController extends Controller
     public function actionIndex()
     {
 		 
-		 Yii::$app->view->title = Yii::t('borrowreturn/app', 'Borrowreturns').' - '.Yii::t('itinfo/app', Yii::$app->controller->module->params['title']);
+		 Yii::$app->view->title = Yii::t('app', 'Borrowreturns').' - '.Yii::t('app', Yii::$app->controller->module->params['title']);
 		 
         $searchModel = new BorrowreturnSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
@@ -81,7 +86,7 @@ class BrwretrnController extends Controller
     {
 		 $model = $this->findModel($id);
 		 
-		 Yii::$app->view->title = Yii::t('borrowreturn/app', 'Detail').' : '.$model->booking_id.' - '.Yii::t('itinfo/app', Yii::$app->controller->module->params['title']);
+		 Yii::$app->view->title = Yii::t('app', 'Detail').' : '.$model->booking_id.' - '.Yii::t('app', Yii::$app->controller->module->params['title']);
 		 
         return $this->render('view', [
             'model' => $model,
@@ -95,7 +100,7 @@ class BrwretrnController extends Controller
      */
     public function actionCreate()
     {
-		 Yii::$app->view->title = Yii::t('borrowreturn/app', 'Create').' - '.Yii::t('itinfo/app', Yii::$app->controller->module->params['title']);
+		 Yii::$app->view->title = Yii::t('app', 'Create').' - '.Yii::t('itinfo/app', Yii::$app->controller->module->params['title']);
 		 
         $model = new Borrowreturn();
 
@@ -111,7 +116,7 @@ class BrwretrnController extends Controller
 				'type' => 'success',
 				'duration' => 4000,
 				'icon' => 'glyphicon glyphicon-ok-circle',
-				'message' => Yii::t('borrowreturn/app', 'UrDataCreated'),
+				'message' => Yii::t('app', 'UrDataCreated'),
 				]);
 			return $this->redirect(['view', 'id' => $model->booking_id]);	
 			}else{
@@ -119,7 +124,7 @@ class BrwretrnController extends Controller
 				'type' => 'danger',
 				'duration' => 4000,
 				'icon' => 'glyphicon glyphicon-remove-circle',
-				'message' => Yii::t('borrowreturn/app', 'UrDataNotCreated'),
+				'message' => Yii::t('app', 'UrDataNotCreated'),
 				]);
 			}
             return $this->redirect(['view', 'id' => $model->booking_id]);
@@ -142,7 +147,7 @@ class BrwretrnController extends Controller
     {
 		 $model = $this->findModel($id);
 		 
-		 Yii::$app->view->title = Yii::t('borrowreturn/app', 'Update {modelClass}: ', [
+		 Yii::$app->view->title = Yii::t('app', 'Update {modelClass}: ', [
     'modelClass' => 'Borrowreturn',
 ]) . $model->booking_id.' - '.Yii::t('itinfo/app', Yii::$app->controller->module->params['title']);
 		 
@@ -152,7 +157,7 @@ class BrwretrnController extends Controller
 				'type' => 'success',
 				'duration' => 4000,
 				'icon' => 'glyphicon glyphicon-ok-circle',
-				'message' => Yii::t('borrowreturn/app', 'UrDataUpdated'),
+				'message' => Yii::t('app', 'UrDataUpdated'),
 				]);
 			return $this->redirect(['view', 'id' => $model->booking_id]);	
 			}else{
@@ -160,7 +165,7 @@ class BrwretrnController extends Controller
 				'type' => 'danger',
 				'duration' => 4000,
 				'icon' => 'glyphicon glyphicon-remove-circle',
-				'message' => Yii::t('borrowreturn/app', 'UrDataNotUpdated'),
+				'message' => Yii::t('app', 'UrDataNotUpdated'),
 				]);
 			}
             return $this->redirect(['view', 'id' => $model->booking_id]);
@@ -187,7 +192,7 @@ class BrwretrnController extends Controller
 			'type' => 'success',
 			'duration' => 4000,
 			'icon' => 'glyphicon glyphicon-ok-circle',
-			'message' => Yii::t('borrowreturn/app', 'UrDataDeleted'),
+			'message' => Yii::t('app', 'UrDataDeleted'),
 		]);
 		
 
@@ -213,7 +218,7 @@ class BrwretrnController extends Controller
 	 public function actionSubmitedlist()
     {
 		 
-		 Yii::$app->view->title = Yii::t('borrowreturn/app', 'Borrowreturns').' - '.Yii::t('itinfo/app', Yii::$app->controller->module->params['title']);
+		 Yii::$app->view->title = Yii::t('app', 'Borrowreturns').' - '.Yii::t('itinfo/app', Yii::$app->controller->module->params['title']);
 		 
         $searchModel = new BookingsubmitedSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
@@ -227,7 +232,7 @@ class BrwretrnController extends Controller
 	 public function actionApprovedlist()
     {
 		 
-		 Yii::$app->view->title = Yii::t('borrowreturn/app', 'Borrowreturns').' - '.Yii::t('itinfo/app', Yii::$app->controller->module->params['title']);
+		 Yii::$app->view->title = Yii::t('app', 'Borrowreturns').' - '.Yii::t('itinfo/app', Yii::$app->controller->module->params['title']);
 		 
         $searchModel = new BookingapprovedSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
@@ -240,7 +245,7 @@ class BrwretrnController extends Controller
 	 
 	 public function actionSubmitborrow($id)
     {
-		 Yii::$app->view->title = Yii::t('borrowreturn/app', 'Create').' - '.Yii::t('itinfo/app', Yii::$app->controller->module->params['title']);
+		 Yii::$app->view->title = Yii::t('app', 'Create').' - '.Yii::t('itinfo/app', Yii::$app->controller->module->params['title']);
 		 
         $model = new Borrowreturn();
 		  
@@ -266,7 +271,7 @@ class BrwretrnController extends Controller
 				'type' => 'success',
 				'duration' => 4000,
 				'icon' => 'glyphicon glyphicon-ok-circle',
-				'message' => Yii::t('borrowreturn/app', 'UrDataCreated'),
+				'message' => Yii::t('app', 'UrDataCreated'),
 				]);
 			//return $this->redirect(['view', 'id' => $model->booking_id]);
 				return $this->redirect(['index']);				
@@ -275,7 +280,7 @@ class BrwretrnController extends Controller
 				'type' => 'danger',
 				'duration' => 4000,
 				'icon' => 'glyphicon glyphicon-remove-circle',
-				'message' => Yii::t('borrowreturn/app', 'UrDataNotCreated'),
+				'message' => Yii::t('app', 'UrDataNotCreated'),
 				]);
 			}
         }
@@ -290,7 +295,7 @@ class BrwretrnController extends Controller
 	 
 	 public function actionSubmitsend($id)
     {
-		 Yii::$app->view->title = Yii::t('borrowreturn/app', 'Create').' - '.Yii::t('itinfo/app', Yii::$app->controller->module->params['title']);
+		 Yii::$app->view->title = Yii::t('app', 'Create').' - '.Yii::t('itinfo/app', Yii::$app->controller->module->params['title']);
 		 
         $model = $this->findModel($id);
 		  
@@ -314,7 +319,7 @@ class BrwretrnController extends Controller
 				'type' => 'success',
 				'duration' => 4000,
 				'icon' => 'glyphicon glyphicon-ok-circle',
-				'message' => Yii::t('borrowreturn/app', 'UrDataCreated'),
+				'message' => Yii::t('app', 'UrDataCreated'),
 				]);
 			//return $this->redirect(['view', 'id' => $model->booking_id]);
 				return $this->redirect(['index']);				
@@ -323,7 +328,7 @@ class BrwretrnController extends Controller
 				'type' => 'danger',
 				'duration' => 4000,
 				'icon' => 'glyphicon glyphicon-remove-circle',
-				'message' => Yii::t('borrowreturn/app', 'UrDataNotCreated'),
+				'message' => Yii::t('app', 'UrDataNotCreated'),
 				]);
 			}
         }
