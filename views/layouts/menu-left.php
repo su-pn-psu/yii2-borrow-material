@@ -7,7 +7,7 @@ use yii\helpers\Html;
     <div class="row">
         <div class="col-md-3 hidden-print">
 
-            <?= Html::a('<i class="fa fa-wrench"></i> ' . Yii::t('app', 'แจ้งซ่อม'), ['/repair/default/create'], ['class' => 'btn btn-primary btn-block margin-bottom']) ?>
+            <?= Html::a(Html::icon('scissors'). Yii::t('app', 'แจ้งซ่อม'), ['/repair/default/create'], ['class' => 'btn btn-primary btn-block margin-bottom']) ?>
 
 
             <div class="box box-solid">
