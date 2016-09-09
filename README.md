@@ -1,2 +1,2 @@
-# yii2-borrow-materail (sis)
+# yii2-borrow-materail (Sis)
 ระบบยืมคืมพัสดุ
