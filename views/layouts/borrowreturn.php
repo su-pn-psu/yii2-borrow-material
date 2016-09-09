@@ -12,7 +12,7 @@ use backend\assets\AppAsset;
 use common\widgets\Alert;
 use yii\helpers\ArrayHelper;
 use kartik\widgets\Growl;
-use kartik\nav\NavX;
+//use kartik\nav\NavX;
 
 //Yii::$app->formatter->locale = 'th-TH';
 
@@ -145,8 +145,8 @@ $this->registerJs($js);
     <?php
     NavBar::begin([
         'brandLabel' => '<img class="cmmslogo" alt="Brand" src="'.Yii::getAlias('@web/media/parallax/img/commsci_logo_black.png').'">'.'<table class="navtablelogo"><tbody>
-		  <tr><td>'.Yii::t( $moduleID.'/app', 'itinfomodshort').' '.Html::icon('tree').' <code> V.'.Yii::$app->controller->module->params['ModuleVers'].'</code>'.'</td></tr>
-		  <tr style="font-size: small;"><td>'.Yii::t( $moduleID.'/app', 'itinfomod').'</td></tr>
+		  <tr><td>'.Yii::t( 'app', 'itinfomodshort').' '.Html::icon('tree').' <code> V.'.Yii::$app->controller->module->params['ModuleVers'].'</code>'.'</td></tr>
+		  <tr style="font-size: small;"><td>'.Yii::t( 'app', 'itinfomod').'</td></tr>
 		  </tbody></table>',
         'brandUrl' => Url::toRoute('/'.$moduleID),
         'innerContainerOptions' => ['class'=>'container-fluid'],
@@ -156,46 +156,46 @@ $this->registerJs($js);
     ]);
     $menuItems = [
         [
-			'label' =>  Html::Icon('check').' '.Yii::t( $moduleID.'/app', 'approvingmenu')
+			'label' =>  Html::Icon('check').' '.Yii::t( 'app', 'approvingmenu')
                         .' '.(1 ? Html::tag('span', '3', ['class' => 'badge']) : false),
 			'url' => ['#'],
 			'items' => [
-				//['label' => Html::Icon('scissors').' '.Yii::t( $moduleID.'/app', 'equipment'), 'url' => ['wru/create']],
-                ['label' => Html::Icon('scissors').' '.Yii::t( $moduleID.'/app', 'equipment')],
-                ['label' => Html::Icon('menu-right').' '.Yii::t( $moduleID.'/app', 'approving'), 'url' => ['/borrowreturn/brwretrn/submitedlist']],
-                ['label' => Html::Icon('menu-right').' '.Yii::t( $moduleID.'/app', 'delevering & returning'), 'url' => ['/borrowreturn/wru']],
+				//['label' => Html::Icon('scissors').' '.Yii::t( 'app', 'equipment'), 'url' => ['wru/create']],
+                ['label' => Html::Icon('scissors').' '.Yii::t( 'app', 'equipment')],
+                ['label' => Html::Icon('menu-right').' '.Yii::t( 'app', 'approving'), 'url' => ['/borrowreturn/brwretrn/submitedlist']],
+                ['label' => Html::Icon('menu-right').' '.Yii::t( 'app', 'delevering & returning'), 'url' => ['/borrowreturn/wru']],
                 '<li class="divider"></li>',
-                //['label' => Html::Icon('map-marker').' '.Yii::t( $moduleID.'/app', 'meetingroom'), 'url' => ['wru/create']],
-                ['label' => Html::Icon('scissors').' '.Yii::t( $moduleID.'/app', 'meetingroom')],
-                ['label' => Html::Icon('menu-right').' '.Yii::t( $moduleID.'/app', 'approving'), 'url' => ['/borrowreturn/wru/create']],
-                ['label' => Html::Icon('menu-right').' '.Yii::t( $moduleID.'/app', 'delevering & returning'), 'url' => ['/borrowreturn/wru']],
+                //['label' => Html::Icon('map-marker').' '.Yii::t( 'app', 'meetingroom'), 'url' => ['wru/create']],
+                ['label' => Html::Icon('scissors').' '.Yii::t( 'app', 'meetingroom')],
+                ['label' => Html::Icon('menu-right').' '.Yii::t( 'app', 'approving'), 'url' => ['/borrowreturn/wru/create']],
+                ['label' => Html::Icon('menu-right').' '.Yii::t( 'app', 'delevering & returning'), 'url' => ['/borrowreturn/wru']],
                 '<li class="divider"></li>',
-                //['label' => Html::Icon('transfer').' '.Yii::t( $moduleID.'/app', 'tricycle'), 'url' => ['wru/create']],
-                ['label' => Html::Icon('scissors').' '.Yii::t( $moduleID.'/app', 'tricycle')],
-                ['label' => Html::Icon('menu-right').' '.Yii::t( $moduleID.'/app', 'approving'), 'url' => ['/borrowreturn/wru/create']],
-                ['label' => Html::Icon('menu-right').' '.Yii::t( $moduleID.'/app', 'delevering & returning'), 'url' => ['/borrowreturn/wru']],
+                //['label' => Html::Icon('transfer').' '.Yii::t( 'app', 'tricycle'), 'url' => ['wru/create']],
+                ['label' => Html::Icon('scissors').' '.Yii::t( 'app', 'tricycle')],
+                ['label' => Html::Icon('menu-right').' '.Yii::t( 'app', 'approving'), 'url' => ['/borrowreturn/wru/create']],
+                ['label' => Html::Icon('menu-right').' '.Yii::t( 'app', 'delevering & returning'), 'url' => ['/borrowreturn/wru']],
                 //'<li class="divider"></li>',
             ]
 		],
         [
-			'label' => 	Html::Icon('tasks').' '.Yii::t( $moduleID.'/app', 'manage'),
+			'label' => 	Html::Icon('tasks').' '.Yii::t( 'app', 'manage'),
 			'url' => ['#'],
 			'items' => [
-				['label' => Html::Icon('user').' '.Yii::t( $moduleID.'/app', 'wasterecycleUser')],
-				['label' => Html::Icon('menu-right').' '.Yii::t( $moduleID.'/app', 'add'), 'url' => ['/borrowreturn/wru/create']],
-				['label' => Html::Icon('menu-right').' '.Yii::t( $moduleID.'/app', 'index'), 'url' => ['/borrowreturn/wru']],
+				['label' => Html::Icon('user').' '.Yii::t( 'app', 'wasterecycleUser')],
+				['label' => Html::Icon('menu-right').' '.Yii::t( 'app', 'add'), 'url' => ['/borrowreturn/wru/create']],
+				['label' => Html::Icon('menu-right').' '.Yii::t( 'app', 'index'), 'url' => ['/borrowreturn/wru']],
 				'<li class="divider"></li>',
-				['label' => Html::Icon('sort-by-alphabet').' '.Yii::t( $moduleID.'/app', 'wasterecycleType')],
-				['label' => Html::Icon('menu-right').' '.Yii::t( $moduleID.'/app', 'add'), 'url' => ['/borrowreturn/wrt/create']],
-				['label' => Html::Icon('menu-right').' '.Yii::t( $moduleID.'/app', 'index'), 'url' => ['/borrowreturn/wrt']],
+				['label' => Html::Icon('sort-by-alphabet').' '.Yii::t( 'app', 'wasterecycleType')],
+				['label' => Html::Icon('menu-right').' '.Yii::t( 'app', 'add'), 'url' => ['/borrowreturn/wrt/create']],
+				['label' => Html::Icon('menu-right').' '.Yii::t( 'app', 'index'), 'url' => ['/borrowreturn/wrt']],
 				'<li class="divider"></li>',
-				['label' => Html::Icon('play').' '.Yii::t( $moduleID.'/app', 'wasterecycleEntry')],
-				['label' => Html::Icon('menu-right').' '.Yii::t( $moduleID.'/app', 'add'), 'url' => ['/borrowreturn/wre/create']],
-				['label' => Html::Icon('menu-right').' '.Yii::t( $moduleID.'/app', 'index'), 'url' => ['/borrowreturn/wre']],
+				['label' => Html::Icon('play').' '.Yii::t( 'app', 'wasterecycleEntry')],
+				['label' => Html::Icon('menu-right').' '.Yii::t( 'app', 'add'), 'url' => ['/borrowreturn/wre/create']],
+				['label' => Html::Icon('menu-right').' '.Yii::t( 'app', 'index'), 'url' => ['/borrowreturn/wre']],
 				'<li class="divider"></li>',
-				['label' => Html::Icon('forward').' '.Yii::t( $moduleID.'/app', 'wasterecycleDetail')],
-				['label' => Html::Icon('menu-right').' '.Yii::t( $moduleID.'/app', 'add'), 'url' => ['/borrowreturn/wrd/create']],
-				['label' => Html::Icon('menu-right').' '.Yii::t( $moduleID.'/app', 'index'), 'url' => ['/borrowreturn/wrd']],
+				['label' => Html::Icon('forward').' '.Yii::t( 'app', 'wasterecycleDetail')],
+				['label' => Html::Icon('menu-right').' '.Yii::t( 'app', 'add'), 'url' => ['/borrowreturn/wrd/create']],
+				['label' => Html::Icon('menu-right').' '.Yii::t( 'app', 'index'), 'url' => ['/borrowreturn/wrd']],
 				//'<li class="divider"></li>',
 				/*['label' => 'Submenu 2',
 					'items' => [
@@ -208,30 +208,30 @@ $this->registerJs($js);
 				],*/
 			]
 		],
-        ['label' => Html::Icon('stats').' '.Yii::t( $moduleID.'/app', 'summery'), 'url' => ['default/summary']],
-		['label' => Html::Icon('question-sign').' '.Yii::t( $moduleID.'/app', 'intro'), 'url' => ['default/summary']],
+        ['label' => Html::Icon('stats').' '.Yii::t( 'app', 'summery'), 'url' => ['default/summary']],
+		['label' => Html::Icon('question-sign').' '.Yii::t( 'app', 'intro'), 'url' => ['default/summary']],
     ];
     if (Yii::$app->user->isGuest) {
-        //$menuItems[] = ['label' => Yii::t( $moduleID.'/app', 'Signup'), 'url' => ['/site/signup']];
-        $menuItems[] = ['label' => Html::Icon('log-in').' '.Yii::t( $moduleID.'/app', 'Login'), 'url' => ['/site/login']];
+        //$menuItems[] = ['label' => Yii::t( 'app', 'Signup'), 'url' => ['/site/signup']];
+        $menuItems[] = ['label' => Html::Icon('log-in').' '.Yii::t( 'app', 'Login'), 'url' => ['/site/login']];
     } else {
         /*$menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(
-                Html::Icon('log-out').' '.Yii::t( $moduleID.'/app', 'Logout').' (' . Yii::$app->user->identity->username . ')',
+                Html::Icon('log-out').' '.Yii::t( 'app', 'Logout').' (' . Yii::$app->user->identity->username . ')',
                 ['class' => 'btn btn-link']
             )
             . Html::endForm()
             . '</li>';*/
         $menuItems[] = [
-            'label' => Html::Icon('qrcode').' '.Yii::t( $moduleID.'/app', 'login as').' (' . Yii::$app->user->identity->username . ')',
+            'label' => Html::Icon('qrcode').' '.Yii::t( 'app', 'login as').' (' . Yii::$app->user->identity->username . ')',
             'url' => ['/site/login'],
             'items' => [
-                ['label' => Html::Icon('user').' '.Yii::t( $moduleID.'/app', 'userprofile'), 'url' => ['wru/create']],
+                ['label' => Html::Icon('user').' '.Yii::t( 'app', 'userprofile'), 'url' => ['wru/create']],
                 '<li>'
                 . Html::beginForm(['/site/logout'], 'post')
                 . Html::submitButton(
-                    Html::Icon('log-out').' '.Yii::t( $moduleID.'/app', 'Logout'),
+                    Html::Icon('log-out').' '.Yii::t( 'app', 'Logout'),
                     ['class' => 'btn btn-link']
                 )
                 . Html::endForm()
@@ -239,11 +239,11 @@ $this->registerJs($js);
             ]
         ];
     }
-    echo NavX::widget([
-        'options' => ['class' => 'navbar-nav navbar-left'],
-        'encodeLabels' => false,
-		'items' => $menuItems,
-    ]);
+//    echo NavX::widget([
+//        'options' => ['class' => 'navbar-nav navbar-left'],
+//        'encodeLabels' => false,
+//		'items' => $menuItems,
+//    ]);
     NavBar::end();
     ?>
 
@@ -293,10 +293,10 @@ $this->registerJs($js);
 
 		<div class="row">
 			<div class="col-md-3 hidden-print">
-                <?= Html::a(Html::icon('tag').' '.Yii::t( $moduleID.'/app', 'data'), ['/repair/default/create'], ['class' => 'btn btn-success btn-block margin-bottom']) ?>
-                <?= Html::a(Html::icon('scissors').' '.Yii::t( $moduleID.'/app', 'eqbookshort'), ['/borrowreturn/booking'], ['class' => 'btn btn-primary btn-block']) ?>
-                <?= Html::a(Html::icon('map-marker').' '.Yii::t( $moduleID.'/app', 'roombookshort'), ['#'], ['class' => 'btn btn-primary btn-block']) ?>
-                <?= Html::a(Html::icon('transfer').' '.Yii::t( $moduleID.'/app', 'tribookshort'), ['#'], ['class' => 'btn btn-primary btn-block margin-bottom']) ?>
+                <?= Html::a(Html::icon('tag').' '.Yii::t( 'app', 'data'), ['/repair/default/create'], ['class' => 'btn btn-success btn-block margin-bottom']) ?>
+                <?= Html::a(Html::icon('scissors').' '.Yii::t( 'app', 'eqbookshort'), ['/borrowreturn/booking'], ['class' => 'btn btn-primary btn-block']) ?>
+                <?= Html::a(Html::icon('map-marker').' '.Yii::t( 'app', 'roombookshort'), ['#'], ['class' => 'btn btn-primary btn-block']) ?>
+                <?= Html::a(Html::icon('transfer').' '.Yii::t( 'app', 'tribookshort'), ['#'], ['class' => 'btn btn-primary btn-block margin-bottom']) ?>
 
                 <?php
 					 
@@ -325,27 +325,27 @@ $this->registerJs($js);
                             //'items' => $nav->menu(4),
                             'items' => [
                                 [
-                                    'label' => Html::icon('file').' '.Yii::t( $moduleID.'/app', 'ฟอร์มที่ร่าง'),
+                                    'label' => Html::icon('file').' '.Yii::t( 'app', 'ฟอร์มที่ร่าง'),
                                     'url' => ['site/index'],
                                 ],
                                 [
-                                    'label' => Html::icon('inbox').' '.Yii::t( $moduleID.'/app', 'รายการยื่นเสนอ'),
+                                    'label' => Html::icon('inbox').' '.Yii::t( 'app', 'รายการยื่นเสนอ'),
                                     'url' => ['site/index'],
                                 ],
                                 [
-                                    'label' => Html::icon('saved').' '.Yii::t( $moduleID.'/app', 'ผลการพิจารณา'),
+                                    'label' => Html::icon('saved').' '.Yii::t( 'app', 'ผลการพิจารณา'),
                                     'url' => ['site/index'],
                                 ],
                                 [
-                                    'label' => Html::icon('export').' '.Yii::t( $moduleID.'/app', 'รายการที่ยืมอยู่'),
+                                    'label' => Html::icon('export').' '.Yii::t( 'app', 'รายการที่ยืมอยู่'),
                                     'url' => ['site/index'],
                                 ],
                                 [
-                                    'label' => Html::icon('import').' '.Yii::t( $moduleID.'/app', 'รายการที่คืน'),
+                                    'label' => Html::icon('import').' '.Yii::t( 'app', 'รายการที่คืน'),
                                     'url' => ['site/index'],
                                 ],
                                 [
-                                    'label' => Html::icon('duplicate').' '.Yii::t( $moduleID.'/app', 'รายการแจ้งยืมทั้งหมด'),
+                                    'label' => Html::icon('duplicate').' '.Yii::t( 'app', 'รายการแจ้งยืมทั้งหมด'),
                                     'url' => ['site/index'],
                                     //'linkOptions' => [...],
                                 ],
@@ -367,8 +367,8 @@ $this->registerJs($js);
 <footer class="footer">
     <div class="container">
      <p>
-		<?php echo '  '.Yii::t( $moduleID.'/app', 'footer_problem'); ?> :  <?php echo Yii::$app->formatter->asEmail(Yii::t( $moduleID.'/app', 'adminEmail'));  ?> <?php echo Yii::t( $moduleID.'/app', 'adminName'); ?></a><?php echo ' '.Yii::t( $moduleID.'/app', 'adminfooterIntercom'); ?>
-		<a href="#" data-toggle="tooltip" title="<?php echo Yii::t( $moduleID.'/app', 'responsive_web'); ?>"><img src="<?php echo Yii::getAlias('@web/media/adzpireImages/responsive-icon.png'); ?>" width="30" height="30" /></a>
+		<?php echo '  '.Yii::t( 'app', 'footer_problem'); ?> :  <?php echo Yii::$app->formatter->asEmail(Yii::t( 'app', 'adminEmail'));  ?> <?php echo Yii::t( 'app', 'adminName'); ?></a><?php echo ' '.Yii::t( 'app', 'adminfooterIntercom'); ?>
+		<a href="#" data-toggle="tooltip" title="<?php echo Yii::t( 'app', 'responsive_web'); ?>"><img src="<?php echo Yii::getAlias('@web/media/adzpireImages/responsive-icon.png'); ?>" width="30" height="30" /></a>
 		<?php //$time = time(); echo Yii::$app->formatter->asDate($time, 'long'); ?>
 		</p>
     </div>

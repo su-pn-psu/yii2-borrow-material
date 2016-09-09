@@ -18,12 +18,21 @@ class Module extends \yii\base\Module
     public function init()
     {
         parent::init();
-		
-		Yii::$app->formatter->locale = 'th_TH';
-		Yii::$app->formatter->calendar = \IntlDateFormatter::TRADITIONAL;
+
+        if (!isset(Yii::$app->i18n->translations['rbac-admin'])) {
+            Yii::$app->i18n->translations['rbac-admin'] = [
+                'class' => 'yii\i18n\PhpMessageSource',
+                'sourceLanguage' => 'en',
+                'basePath' => '@suPnPsu/borrowMaterial/messages'
+            ];
+        }
+
+
+//		Yii::$app->formatter->locale = 'th_TH';
+//		Yii::$app->formatter->calendar = \IntlDateFormatter::TRADITIONAL;
         
 		$this->params['adminModule'] = [5,18];
-		$this->layout = 'borrowreturn';
+		$this->layout = 'menu-left';
 		$this->params['ModuleVers'] = '1.0.0';
 		$this->params['title'] = 'stdunion borrow-return app';
         // custom initialization code goes here
