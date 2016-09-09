@@ -1,13 +1,13 @@
 {
-    "name": "su-pn-psu/yii2-material",
-    "description": "Material management system for Yii2.",
+    "name": "su-pn-psu/yii2-borrow-material",
+    "description": "Borrow material management system for Yii2.",
     "type": "yii2-extension",
     "keywords": ["yii2","extension"],
     "license": "GPL-3.0",
     "minimum-stability": "stable",
     "support": {
-        "source": "https://github.com/su-pn-psu/yii2-material.git",
-        "issues": "https://github.com/su-pn-psu/yii2-material/issues"
+        "source": "https://github.com/su-pn-psu/yii2-borrow-material.git",
+        "issues": "https://github.com/su-pn-psu/yii2-borrow-material/issues"
     },
     "authors": [
         {
@@ -21,7 +21,7 @@
     },
     "autoload": {
         "psr-4": {
-            "suPnPsu\\material\\": ""
+            "suPnPsu\\borrowMaterial\\": ""
         }
     }
 }
