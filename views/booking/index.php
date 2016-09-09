@@ -6,7 +6,7 @@ use yii\bootstrap\Html;
 use kartik\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel backend\modules\borrowreturn\models\BookingSearch */
+/* @var $searchModel suPnPsu\borrowMaterial\models\BookingSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->params['breadcrumbs'][] = $this->title;

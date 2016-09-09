@@ -8,7 +8,7 @@ use kartik\widgets\ActiveForm;
 use kartik\widgets\DatePicker;
 */
 /* @var $this yii\web\View */
-/* @var $model backend\modules\borrowreturn\models\StdBelongto */
+/* @var $model suPnPsu\borrowMaterial\models\StdBelongto */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 

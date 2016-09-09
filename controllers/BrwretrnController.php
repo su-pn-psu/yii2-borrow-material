@@ -1,13 +1,13 @@
 <?php
 
-namespace backend\modules\borrowreturn\controllers;
+namespace suPnPsu\borrowMaterial\controllers;
 
 use Yii;
-use backend\modules\borrowreturn\models\Borrowreturn;
-use backend\modules\borrowreturn\models\Booking;
-use backend\modules\borrowreturn\models\BorrowreturnSearch;
-use backend\modules\borrowreturn\models\BookingsubmitedSearch;
-use backend\modules\borrowreturn\models\BookingapprovedSearch;
+use suPnPsu\borrowMaterial\models\Borrowreturn;
+use suPnPsu\borrowMaterial\models\Booking;
+use suPnPsu\borrowMaterial\models\BorrowreturnSearch;
+use suPnPsu\borrowMaterial\models\BookingsubmitedSearch;
+use suPnPsu\borrowMaterial\models\BookingapprovedSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;

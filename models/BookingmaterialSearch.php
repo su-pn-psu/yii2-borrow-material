@@ -1,14 +1,14 @@
 <?php
 
-namespace backend\modules\borrowreturn\models;
+namespace suPnPsu\borrowMaterial\models;
 
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use backend\modules\borrowreturn\models\Bookingmaterial;
+use suPnPsu\borrowMaterial\models\Bookingmaterial;
 
 /**
- * BookingmaterialSearch represents the model behind the search form about `backend\modules\borrowreturn\models\Bookingmaterial`.
+ * BookingmaterialSearch represents the model behind the search form about `suPnPsu\borrowMaterial\models\Bookingmaterial`.
  */
 class BookingmaterialSearch extends Bookingmaterial
 {

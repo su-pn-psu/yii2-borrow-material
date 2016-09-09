@@ -1,6 +1,6 @@
 <?php
 
-namespace backend\modules\borrowreturn\models;
+namespace suPnPsu\borrowMaterial\models;
 
 use Yii;
 

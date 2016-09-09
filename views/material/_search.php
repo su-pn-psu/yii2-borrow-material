@@ -4,7 +4,7 @@ use yii\bootstrap\Html;
 use yii\bootstrap\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model backend\modules\borrowreturn\models\MaterialSearch */
+/* @var $model suPnPsu\borrowMaterial\models\MaterialSearch */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 

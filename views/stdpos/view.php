@@ -4,7 +4,7 @@ use yii\bootstrap\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model backend\modules\borrowreturn\models\StdPosition */
+/* @var $model suPnPsu\borrowMaterial\models\StdPosition */
 
 $this->params['breadcrumbs'][] = ['label' => Yii::t('borrowreturn/app', 'Std Positions'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;

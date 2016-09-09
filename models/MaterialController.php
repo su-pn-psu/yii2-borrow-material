@@ -1,10 +1,10 @@
 <?php
 
-namespace backend\modules\borrowreturn\models;
+namespace suPnPsu\borrowMaterial\models;
 
 use Yii;
-use backend\modules\borrowreturn\models\Material;
-use backend\modules\borrowreturn\models\MaterialSearch;
+use suPnPsu\borrowMaterial\models\Material;
+use suPnPsu\borrowMaterial\models\MaterialSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;

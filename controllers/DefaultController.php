@@ -1,6 +1,6 @@
 <?php
 
-namespace backend\modules\borrowreturn\controllers;
+namespace suPnPsu\borrowMaterial\controllers;
 
 use yii\web\Controller;
 

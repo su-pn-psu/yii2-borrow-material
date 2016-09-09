@@ -1,10 +1,10 @@
 <?php
 
-namespace backend\modules\borrowreturn\controllers;
+namespace suPnPsu\borrowMaterial\controllers;
 
 use Yii;
-use backend\modules\borrowreturn\models\Bookingmaterial;
-use backend\modules\borrowreturn\models\BookingmaterialSearch;
+use suPnPsu\borrowMaterial\models\Bookingmaterial;
+use suPnPsu\borrowMaterial\models\BookingmaterialSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;

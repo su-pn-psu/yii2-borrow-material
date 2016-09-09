@@ -1,10 +1,10 @@
 <?php
 
-namespace backend\modules\borrowreturn\controllers;
+namespace suPnPsu\borrowMaterial\controllers;
 
 use Yii;
-use backend\modules\borrowreturn\models\StdPosition;
-use backend\modules\borrowreturn\models\StdPositionSearch;
+use suPnPsu\borrowMaterial\models\StdPosition;
+use suPnPsu\borrowMaterial\models\StdPositionSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;

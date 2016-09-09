@@ -3,7 +3,7 @@
 use yii\bootstrap\Html;
 
 /* @var $this yii\web\View */
-/* @var $model backend\modules\borrowreturn\models\Bookingmaterial */
+/* @var $model suPnPsu\borrowMaterial\models\Bookingmaterial */
 
 $this->params['breadcrumbs'][] = ['label' => Yii::t('borrowreturn/app', 'Bookingmaterials'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];

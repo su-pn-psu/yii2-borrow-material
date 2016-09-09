@@ -1,10 +1,10 @@
 <?php
 
-namespace backend\modules\borrowreturn\controllers;
+namespace suPnPsu\borrowMaterial\controllers;
 
 use Yii;
-use backend\modules\borrowreturn\models\StdBelongto;
-use backend\modules\borrowreturn\models\StdBelongtoSearch;
+use suPnPsu\borrowMaterial\models\StdBelongto;
+use suPnPsu\borrowMaterial\models\StdBelongtoSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;

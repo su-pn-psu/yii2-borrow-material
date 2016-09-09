@@ -1,16 +1,16 @@
 <?php
 
-namespace backend\modules\borrowreturn\controllers;
+namespace suPnPsu\borrowMaterial\controllers;
 
 use Yii;
-use backend\modules\borrowreturn\models\Booking;
-use backend\modules\borrowreturn\models\User;
-use backend\modules\borrowreturn\models\StdBelongto;
-use backend\modules\borrowreturn\models\Material;
-use backend\modules\borrowreturn\models\MaterialSearch;
-use backend\modules\borrowreturn\models\StdPosition;
-use backend\modules\borrowreturn\models\BookingSearch;
-use backend\modules\borrowreturn\models\Bookingmaterial;
+use suPnPsu\borrowMaterial\models\Booking;
+use suPnPsu\borrowMaterial\models\User;
+use suPnPsu\borrowMaterial\models\StdBelongto;
+use suPnPsu\borrowMaterial\models\Material;
+use suPnPsu\borrowMaterial\models\MaterialSearch;
+use suPnPsu\borrowMaterial\models\StdPosition;
+use suPnPsu\borrowMaterial\models\BookingSearch;
+use suPnPsu\borrowMaterial\models\Bookingmaterial;
 
 use yii\filters\VerbFilter;
 
