@@ -16,6 +16,7 @@ use mdm\admin\components\Helper;
                 <div class="box-header with-border">
                     <h3 class="box-title">
                         <?php /* =BaseStringHelper::truncate($this->title,20); */ ?>
+                        ระบบยืม-คืนพัสดุครุภัณฑ์
                     </h3>
 
                 </div>

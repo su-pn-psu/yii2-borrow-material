@@ -104,58 +104,23 @@ jQuery(".dynamicform_wrapper").on("afterDelete", function(e) {
 		<div class="col-md-6">
 		<?php Pjax::begin(['id' => 'belpjax']); ?>
 	 <?php
-        /*echo $form->field($model, 'belongto_id',[
-            'horizontalCssClasses' => [
-                'label' =>'col-md-4',
-                'wrapper' => 'col-md-8',
-            ]
-        ])->widget(Select2::classname(), [
-            'data' => $belongtolist,
-            'options' => ['placeholder' => Yii::t( 'app', 'PleaseSelect')],
-            'pluginOptions' => [
-                'allowClear' => true
-            ],
-        ]);
-		$data = [
-			 'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 
-			 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii',
-			 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana',
-			 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota',
-			 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire',
-			 'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota',
-			 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island',
-			 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont',
-			 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
-		];
-		echo $form->field($model, 'belongto_id',[
-            'horizontalCssClasses' => [
-                'label' =>'col-md-4',
-                'wrapper' => 'col-md-8',
-            ]
-        ])->widget(Typeahead::classname(), [
-			'options' => ['placeholder' => 'Filter as you type ...'],
-			'defaultSuggestions' => $data,
-			'pluginOptions' => ['highlight'=>true],
-			'dataset' => [
-			  [
-					'local' => $data,
-					'limit' => 10
-			  ]
-		]
-		]);*/
-		echo $form->field($model, 'belongto_id',[
+        echo $form->field($model, 'belongto_id',[
             'horizontalCssClasses' => [
                 'label' =>'col-md-4',
                 'wrapper' => 'col-md-8',
             ],
 				'inputTemplate' => '<div class="input-group">{input}<span class="input-group-btn"><button type="button" class="btn btn-success _belqadd" value="'.Url::to(['qaddbelongto']).'" title="add belong to" data-toggle="tooltip"><span class="glyphicon glyphicon-plus"></span></button></div>',
-        ])->widget(Select2::classname(), [
-            'data' => $belongtolist,
-            'options' => ['placeholder' => Yii::t( 'app', 'PleaseSelect')],
-            'pluginOptions' => [
-                'allowClear' => true
-            ],
-        ]);
+        ])->dropDownList(
+            $belongtolist,
+            ['prompt' => Yii::t( 'app', 'PleaseSelect')]);
+
+//			->widget(Select2::classname(), [
+//            'data' => $mdlstdbel->dropdown,
+//            'options' => ['placeholder' => Yii::t( 'app', 'PleaseSelect')],
+//            'pluginOptions' => [
+//                'allowClear' => true
+//            ],
+//        ]);
 	  ?>
 	  <?php Pjax::end(); ?>
 	  </div>
@@ -168,13 +133,16 @@ jQuery(".dynamicform_wrapper").on("afterDelete", function(e) {
                 'wrapper' => 'col-md-9',
             ],
 				'inputTemplate' => '<div class="input-group">{input}<span class="input-group-btn"><button type="button" class="btn btn-success _invttqadd" value="'.Url::to(['qaddposition']).'" title="add position of belong to" data-toggle="tooltip"><span class="glyphicon glyphicon-plus"></span></button></div>',
-        ])->widget(Select2::classname(), [
-            'data' => $positionlist,
-            'options' => ['placeholder' => Yii::t( 'app', 'PleaseSelect')],
-            'pluginOptions' => [
-                'allowClear' => true
-            ],
-        ]);
+        ])->dropDownList(
+            $positionlist,
+            ['prompt' => Yii::t( 'app', 'PleaseSelect')]);
+//            ->widget(Select2::classname(), [
+//            'data' => $positionlist,
+//            'options' => ['placeholder' => Yii::t( 'app', 'PleaseSelect')],
+//            'pluginOptions' => [
+//                'allowClear' => true
+//            ],
+//        ]);
 	  ?>
 	  <?php Pjax::end(); ?>
 	  </div>

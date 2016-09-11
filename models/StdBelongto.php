@@ -3,6 +3,7 @@
 namespace suPnPsu\borrowMaterial\models;
 
 use Yii;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "std_belongto".
@@ -63,5 +64,9 @@ class StdBelongto extends \yii\db\ActiveRecord
     public function getSaveby0()
     {
         return $this->hasOne(User::className(), ['id' => 'saveby']);
+    }
+
+    public function getDropdown(){
+        return ArrayHelper::map(self::find()->all(), 'id', 'title');
     }
 }

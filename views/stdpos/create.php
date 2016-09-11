@@ -6,7 +6,7 @@ use yii\bootstrap\Html;
 /* @var $this yii\web\View */
 /* @var $model suPnPsu\borrowMaterial\models\StdPosition */
 
-$this->params['breadcrumbs'][] = ['label' => Yii::t('borrowreturn/app', 'Std Positions'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Std Positions'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="std-position-create">
@@ -14,7 +14,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="panel panel-primary">
 		<div class="panel-heading">
 			<span class="panel-title"><?= Html::icon('edit').' '.Html::encode($this->title) ?></span>
-			<?= Html::a( Html::icon('list-alt').' '.Yii::t('borrowreturn/app', 'entry'), ['index'], ['class' => 'btn btn-success panbtn']) ?>
+			<?= Html::a( Html::icon('list-alt').' '.Yii::t('app', 'entry'), ['index'], ['class' => 'btn btn-success panbtn']) ?>
 		</div>
 		<div class="panel-body">
 		 <?= $this->render('_form', [

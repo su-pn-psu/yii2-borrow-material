@@ -43,13 +43,13 @@ class Booking extends \yii\db\ActiveRecord
 	  public $sbmtcheck;
 	  public $isinlist = ['0'=>'insideuniv','1'=>'outsideuniv'];
 	  public $entstat =  [
-                '0' => 'draft',
-                '1' => 'submitbooking',
-                '2' => 'bookingsubmited',
-                '3' => 'itemsent',
-                '4' => 'itemreturned',
-                '5' => 'finished',
-            ];
+            '0' => 'draft',
+            '1' => 'submitbooking',
+            '2' => 'bookingsubmited',
+            '3' => 'itemsent',
+            '4' => 'itemreturned',
+            '5' => 'finished',
+        ];
 	  
     public function rules()
     {

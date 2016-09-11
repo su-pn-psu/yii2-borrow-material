@@ -24,7 +24,7 @@ use kartik\widgets\DatePicker;
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'saveby')->textInput() ?>
+    <?php //= $form->field($model, 'saveby')->textInput() ?>
 
 <?php 		/* adzpire form tips
 		$form->field($model, 'wu_tel', ['enableAjaxValidation' => true])->textInput(['maxlength' => true]);
@@ -46,9 +46,9 @@ use kartik\widgets\DatePicker;
 ]);
 		*/
  ?>     <div class="form-group text-center">
-        <?= Html::submitButton($model->isNewRecord ?  Html::icon('floppy-disk').' '.Yii::t('borrowreturn/app', 'Save') :  Html::icon('floppy-disk').' '.Yii::t('borrowreturn/app', 'Save'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ?  Html::icon('floppy-disk').' '.Yii::t( 'app', 'Save') :  Html::icon('floppy-disk').' '.Yii::t( 'app', 'Save'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
 		<?php if(!$model->isNewRecord){
-		 echo Html::resetButton( Html::icon('refresh').' '.Yii::t('borrowreturn/app', 'Reset') , ['class' => 'btn btn-warning']); 
+		 echo Html::resetButton( Html::icon('refresh').' '.Yii::t( 'app', 'Reset') , ['class' => 'btn btn-warning']);
 		 } ?>
 		 
 	</div>

@@ -38,15 +38,15 @@ $this->params['breadcrumbs'][] = $this->title;
 				],
         ],
 		'pager' => [
-			'firstPageLabel' => Yii::t('borrowreturn/app', '1stPagi'),
-			'lastPageLabel' => Yii::t('borrowreturn/app', 'lastPagi'),
+			'firstPageLabel' => Yii::t('app', '1stPagi'),
+			'lastPageLabel' => Yii::t('app', 'lastPagi'),
 		],
 		'responsive'=>true,
 		'hover'=>true,
 		'toolbar'=> [
 			['content'=>
-				Html::a(Html::icon('plus'), ['create'], ['class'=>'btn btn-success', 'title'=>Yii::t('kpi/app', 'Add Book')]).' '.
-				Html::a(Html::icon('repeat'), ['grid-demo'], ['data-pjax'=>0, 'class'=>'btn btn-default', 'title'=>Yii::t('kpi/app', 'Reset Grid')])
+				Html::a(Html::icon('plus'), ['create'], ['class'=>'btn btn-success', 'title'=>Yii::t('app', 'Add Book')]).' '.
+				Html::a(Html::icon('repeat'), ['grid-demo'], ['data-pjax'=>0, 'class'=>'btn btn-default', 'title'=>Yii::t('app', 'Reset Grid')])
 			],
 			//'{export}',
 			'{toggleData}',
