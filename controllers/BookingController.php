@@ -4,7 +4,8 @@ namespace suPnPsu\borrowMaterial\controllers;
 
 use Yii;
 use suPnPsu\borrowMaterial\models\Booking;
-use suPnPsu\borrowMaterial\models\User;
+//use suPnPsu\borrowMaterial\models\User;
+use suPnPsu\user\models\User;
 use suPnPsu\borrowMaterial\models\StdBelongto;
 use suPnPsu\borrowMaterial\models\Material;
 use suPnPsu\borrowMaterial\models\MaterialSearch;
@@ -170,7 +171,7 @@ if(ArrayHelper::isIn(Yii::$app->user->id, Yii::$app->controller->module->params[
 		 Yii::$app->view->title = Yii::t( 'app', 'Create').' - '.Yii::t( 'app', Yii::$app->controller->module->params['title']);
 		 
 			$model = new Booking();
-			$mdluser = new User();
+			$mdluser = User::findOne(Yii::$app->user->id);
 			$modelsAddress = [new Bookingmaterial];
 			
 			$model->scenario = 'create';
@@ -262,9 +263,9 @@ if(ArrayHelper::isIn(Yii::$app->user->id, Yii::$app->controller->module->params[
      */
     public function actionUpdate($id)
     {
-		 $model = $this->findModel($id);
-		 $mdluser = new User();
-		 $modelsAddress = $model->bookingmaterials;
+        $model = $this->findModel($id);
+        $mdluser = User::findOne(Yii::$app->user->id);
+        $modelsAddress = $model->bookingmaterials;
 		 
 		 Yii::$app->view->title = Yii::t( 'app', 'Update {modelClass}: ', [
     'modelClass' => 'Booking',

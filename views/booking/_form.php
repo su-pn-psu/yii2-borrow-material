@@ -95,9 +95,10 @@ jQuery(".dynamicform_wrapper").on("afterDelete", function(e) {
     <div class="form-group">
         <div class="col-md-10 col-md-offset-2">
     <?php
-        echo $mdluser->attributeLabels()['id'].' <u>'.\Yii::$app->user->id.'</u> ';
-		  echo $mdluser->attributeLabels()['username'].' <u>'.\Yii::$app->user->id.'</u>';
-    ?>
+        echo $mdluser->profile->attributeLabels()['user_id'].' <u>'.$mdluser->profile->user_id.'</u> ';
+  		echo $mdluser->profile->attributeLabels()['firstname'].' <u>'.$mdluser->profile->firstname.'</u> ';
+		echo $mdluser->profile->attributeLabels()['lastname'].' <u>'.$mdluser->profile->lastname.'</u> ';
+	?>
         </div>
     </div>
 	 <div class="form-group">
