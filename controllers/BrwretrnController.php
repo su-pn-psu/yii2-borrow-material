@@ -3,6 +3,7 @@
 namespace suPnPsu\borrowMaterial\controllers;
 
 use Yii;
+use suPnPsu\user\models\User;
 use suPnPsu\borrowMaterial\models\Borrowreturn;
 use suPnPsu\borrowMaterial\models\Booking;
 use suPnPsu\borrowMaterial\models\BorrowreturnSearch;
@@ -100,7 +101,7 @@ class BrwretrnController extends Controller
      */
     public function actionCreate()
     {
-		 Yii::$app->view->title = Yii::t('app', 'Create').' - '.Yii::t('itinfo/app', Yii::$app->controller->module->params['title']);
+		 Yii::$app->view->title = Yii::t('app', 'Create').' - '.Yii::t('app', Yii::$app->controller->module->params['title']);
 		 
         $model = new Borrowreturn();
 
@@ -149,7 +150,7 @@ class BrwretrnController extends Controller
 		 
 		 Yii::$app->view->title = Yii::t('app', 'Update {modelClass}: ', [
     'modelClass' => 'Borrowreturn',
-]) . $model->booking_id.' - '.Yii::t('itinfo/app', Yii::$app->controller->module->params['title']);
+]) . $model->booking_id.' - '.Yii::t('app', Yii::$app->controller->module->params['title']);
 		 
         if ($model->load(Yii::$app->request->post())) {
 			if($model->save()){
@@ -215,24 +216,10 @@ class BrwretrnController extends Controller
         }
     }
 	 
-	 public function actionSubmitedlist()
-    {
-		 
-		 Yii::$app->view->title = Yii::t('app', 'Borrowreturns').' - '.Yii::t('itinfo/app', Yii::$app->controller->module->params['title']);
-		 
-        $searchModel = new BookingsubmitedSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        return $this->render('submitedlist', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
-    }
-	 
 	 public function actionApprovedlist()
     {
 		 
-		 Yii::$app->view->title = Yii::t('app', 'Borrowreturns').' - '.Yii::t('itinfo/app', Yii::$app->controller->module->params['title']);
+		 Yii::$app->view->title = Yii::t('app', 'Borrowreturns').' - '.Yii::t('app', Yii::$app->controller->module->params['title']);
 		 
         $searchModel = new BookingapprovedSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
@@ -242,15 +229,46 @@ class BrwretrnController extends Controller
             'dataProvider' => $dataProvider,
         ]);
     }
-	 
+
+    public function actionSubmitedlist()
+    {
+
+        Yii::$app->view->title = Yii::t('app', 'Borrowreturns').' - '.Yii::t('app', Yii::$app->controller->module->params['title']);
+
+        $searchModel = new BookingsubmitedSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('submitedlist', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    public function actionSentlist()
+    {
+
+        Yii::$app->view->title = Yii::t('app', 'Borrowreturns').' - '.Yii::t('app', Yii::$app->controller->module->params['title']);
+
+        $searchModel = new BookingsentSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('sentlist', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
 	 public function actionSubmitborrow($id)
     {
-		 Yii::$app->view->title = Yii::t('app', 'Create').' - '.Yii::t('itinfo/app', Yii::$app->controller->module->params['title']);
-		 
+		 Yii::$app->view->title = Yii::t('app', 'Create').' - '.Yii::t('app', Yii::$app->controller->module->params['title']);
+
         $model = new Borrowreturn();
-		  
+
+        //$mdluser = User::findOne(Yii::$app->user->id);
+
 		  if (($mdlbooking = Booking::findOne($id)) !== null) {
             $model->booking_id = $mdlbooking->id;
+            $mdluser = User::findOne($mdlbooking->user_id);
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
@@ -287,7 +305,8 @@ class BrwretrnController extends Controller
 
             return $this->render('submitborrow', [
                 'model' => $model,
-					 'mdlbooking' => $mdlbooking,
+                'mdlbooking' => $mdlbooking,
+                'mdluser' => $mdluser,
             ]);
         
 
@@ -295,7 +314,7 @@ class BrwretrnController extends Controller
 	 
 	 public function actionSubmitsend($id)
     {
-		 Yii::$app->view->title = Yii::t('app', 'Create').' - '.Yii::t('itinfo/app', Yii::$app->controller->module->params['title']);
+		 Yii::$app->view->title = Yii::t('app', 'Create').' - '.Yii::t('app', Yii::$app->controller->module->params['title']);
 		 
         $model = $this->findModel($id);
 		  
@@ -338,6 +357,54 @@ class BrwretrnController extends Controller
 					 'mdlbooking' => $mdlbooking,
             ]);
         
+
+    }
+
+    public function actionSubmitreturn($id)
+    {
+        Yii::$app->view->title = Yii::t('app', 'Create').' - '.Yii::t('app', Yii::$app->controller->module->params['title']);
+
+        $model = $this->findModel($id);
+
+        if (($mdlbooking = Booking::findOne($id)) !== null) {
+            $model->booking_id = $mdlbooking->id;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }/**/
+        $model->deliver_staff_id = Yii::$app->user->id;
+        $model->deliver_at = date('Y-m-d H:i');
+        $model->return_staff_id = Yii::$app->user->id;
+        $model->return_at = date('Y-m-d H:i');
+
+        if ($model->load(Yii::$app->request->post())) {
+            if($model->save()){
+
+                $mdlbooking->entry_status = 3;
+                $mdlbooking->save();
+
+                Yii::$app->getSession()->setFlash('addflsh', [
+                    'type' => 'success',
+                    'duration' => 4000,
+                    'icon' => 'glyphicon glyphicon-ok-circle',
+                    'message' => Yii::t('app', 'UrDataCreated'),
+                ]);
+                //return $this->redirect(['view', 'id' => $model->booking_id]);
+                return $this->redirect(['index']);
+            }else{
+                Yii::$app->getSession()->setFlash('addflsh', [
+                    'type' => 'danger',
+                    'duration' => 4000,
+                    'icon' => 'glyphicon glyphicon-remove-circle',
+                    'message' => Yii::t('app', 'UrDataNotCreated'),
+                ]);
+            }
+        }
+
+        return $this->render('submitborrow', [
+            'model' => $model,
+            'mdlbooking' => $mdlbooking,
+        ]);
+
 
     }
 }

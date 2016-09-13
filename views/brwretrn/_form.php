@@ -45,7 +45,7 @@ use kartik\widgets\DatePicker;
 
 <?php }elseif($this->context->action->id == 'returnborrow'){ ?>
 
-	 <?= $form->field($model, 'return_status')->textInput() ?>
+    <?= $form->field($model, 'return_status')->textInput() ?>
     <?= $form->field($model, 'return_loss')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'return_because')->textInput(['maxlength' => true]) ?>
 	 
@@ -59,16 +59,16 @@ use kartik\widgets\DatePicker;
 
     <?php //= $form->field($model, 'deliver_at')->textInput() ?>
 
-    <?= $form->field($model, 'return_staff_id')->textInput() ?>
+    <?php //= $form->field($model, 'return_staff_id')->textInput() ?>
 
-    <?= $form->field($model, 'return_at')->textInput() ?>
+    <?php //= $form->field($model, 'return_at')->textInput() ?>
 
     <?= $form->field($model, 'entry_note')->textarea(['rows' => 6]) ?>
 
 <div class="form-group text-center">
-        <?= Html::submitButton($model->isNewRecord ?  Html::icon('floppy-disk').' '.Yii::t('borrowreturn/app', 'Save') :  Html::icon('floppy-disk').' '.Yii::t('borrowreturn/app', 'Save'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ?  Html::icon('floppy-disk').' '.Yii::t('app', 'Save') :  Html::icon('floppy-disk').' '.Yii::t('app', 'Save'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
 		<?php if(!$model->isNewRecord){
-		 echo Html::resetButton( Html::icon('refresh').' '.Yii::t('borrowreturn/app', 'Reset') , ['class' => 'btn btn-warning']); 
+		 echo Html::resetButton( Html::icon('refresh').' '.Yii::t('app', 'Reset') , ['class' => 'btn btn-warning']);
 		 } ?>
 		 
 	</div>

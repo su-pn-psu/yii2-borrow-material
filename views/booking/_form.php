@@ -111,18 +111,18 @@ jQuery(".dynamicform_wrapper").on("afterDelete", function(e) {
                 'wrapper' => 'col-md-8',
             ],
 				'inputTemplate' => '<div class="input-group">{input}<span class="input-group-btn"><button type="button" class="btn btn-success _belqadd" value="'.Url::to(['qaddbelongto']).'" title="add belong to" data-toggle="tooltip"><span class="glyphicon glyphicon-plus"></span></button></div>',
-        ])->dropDownList(
-            $belongtolist,
-            ['prompt' => Yii::t( 'app', 'PleaseSelect')]);
+        ])->widget(Select2::classname(), [
+            'data' => $belongtolist,
+            'options' => ['placeholder' => Yii::t( 'app', 'PleaseSelect')],
+            'pluginOptions' => [
+                'allowClear' => true
+            ],
+        ]);
 
-//			->widget(Select2::classname(), [
-//            'data' => $mdlstdbel->dropdown,
-//            'options' => ['placeholder' => Yii::t( 'app', 'PleaseSelect')],
-//            'pluginOptions' => [
-//                'allowClear' => true
-//            ],
-//        ]);
-	  ?>
+//            ->dropDownList(
+//            $belongtolist,
+//            ['prompt' => Yii::t( 'app', 'PleaseSelect')]);
+	 ?>
 	  <?php Pjax::end(); ?>
 	  </div>
 	  <div class="col-md-6">
@@ -134,16 +134,17 @@ jQuery(".dynamicform_wrapper").on("afterDelete", function(e) {
                 'wrapper' => 'col-md-9',
             ],
 				'inputTemplate' => '<div class="input-group">{input}<span class="input-group-btn"><button type="button" class="btn btn-success _invttqadd" value="'.Url::to(['qaddposition']).'" title="add position of belong to" data-toggle="tooltip"><span class="glyphicon glyphicon-plus"></span></button></div>',
-        ])->dropDownList(
-            $positionlist,
-            ['prompt' => Yii::t( 'app', 'PleaseSelect')]);
-//            ->widget(Select2::classname(), [
-//            'data' => $positionlist,
-//            'options' => ['placeholder' => Yii::t( 'app', 'PleaseSelect')],
-//            'pluginOptions' => [
-//                'allowClear' => true
-//            ],
-//        ]);
+        ])->widget(Select2::classname(), [
+            'data' => $positionlist,
+            'options' => ['placeholder' => Yii::t( 'app', 'PleaseSelect')],
+            'pluginOptions' => [
+                'allowClear' => true
+            ],
+        ]);
+//            ->dropDownList(
+//            $positionlist,
+//            ['prompt' => Yii::t( 'app', 'PleaseSelect')]);
+
 	  ?>
 	  <?php Pjax::end(); ?>
 	  </div>
@@ -328,7 +329,7 @@ jQuery(".dynamicform_wrapper").on("afterDelete", function(e) {
 	 ?>
 	 <div class="form-group">
         <div class="col-md-10 col-md-offset-2">
-			<h4>ข้าพเจ้าขอรับผิดชอบต่อพัสดุ-ครุภัณฑ์ ที่ขอยืมใช้ หากเกิดชำรุด เสียหายแม้ว่าด้วยกรณีใด ข้าพเจ้ายินดีชดใช้ค่าเสียหายที่เกิดขึ้น ตามระเบียบทุกประการอีกทั้งให้บัตรนักศึกษาเพื่อเป็นหลักฐานยืนยันทุกครั้งที่มายืมใช้อุปกรณ์ และชำระค่าซ่อมบำรุง พัสดุ-ครุภัณฑ์ ตามระเบียบขอฝ่ายพัสดุ องค์การบริหาร องค์การนักศึกษา ปี 2559</h4>
+			<h4><?php echo $model->promisetext; ?></h4>
         </div>
     </div>	 
 
