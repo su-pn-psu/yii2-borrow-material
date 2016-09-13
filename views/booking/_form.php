@@ -356,10 +356,20 @@ jQuery(".dynamicform_wrapper").on("afterDelete", function(e) {
  ?>   
 <div class="form-group text-center">
         <?= Html::submitButton($model->isNewRecord ?  Html::icon('floppy-disk').' '.Yii::t( 'app', 'Save') :  Html::icon('floppy-disk').' '.Yii::t( 'app', 'Save'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
-		  <?php if($model->isNewRecord or $model->entry_status == 0){
-			echo Html::button( Html::icon('play').' '.Yii::t( 'app', 'submitbooking') , ['class' => 'btn btn-danger']);
-
-		 } ?>
+<!--		  --><?php
+			//if($model->isNewRecord or $model->entry_status == 0){
+			//echo Html::button( Html::icon('play').' '.Yii::t( 'app', 'submitbooking') , ['class' => 'btn btn-danger']);
+			//}
+		  ?>
+		<?php if($model->isNewRecord or $model->entry_status == 0) {
+			echo Html::submitButton(Html::icon('play').' '.Yii::t( 'app', 'submitbooking'), [
+				'class' => 'btn btn-danger',
+				'data' => [
+					'confirm' => Yii::t('app', 'you cannot edit after this, are you sure?'),
+					//'method' => 'post',
+				],
+			]);
+		} ?>
 		<?php if(!$model->isNewRecord){
 		 echo Html::resetButton( Html::icon('refresh').' '.Yii::t( 'app', 'Reset') , ['class' => 'btn btn-warning']);
 		 } ?>
