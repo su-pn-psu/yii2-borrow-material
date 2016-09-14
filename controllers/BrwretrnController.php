@@ -272,16 +272,18 @@ class BrwretrnController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
-				$model->confirm_staff_id = Yii::$app->user->id;
-				$model->confirm_at = date('Y-m-d H:i');
-				$model->deliver_staff_id = Yii::$app->user->id;
-				$model->deliver_at = date('Y-m-d H:i');
-				$model->return_staff_id = Yii::$app->user->id;
-				$model->return_at = date('Y-m-d H:i');
+            $model->booking_id = $id;
+            $model->confirm_staff_id = Yii::$app->user->id;
+            $model->confirm_at = date('Y-m-d H:i');
+            $model->deliver_staff_id = Yii::$app->user->id;
+            $model->deliver_at = date('Y-m-d H:i');
+            $model->return_staff_id = Yii::$app->user->id;
+            $model->return_at = date('Y-m-d H:i');
 				
         if ($model->load(Yii::$app->request->post())) {
-			if($model->save()){
-				
+            if($model->confirm_status == 1){ $model->confirm_comment = ""; }
+            if($model->save()){
+
 				$mdlbooking->entry_status = 2;
 				$mdlbooking->save();
 				

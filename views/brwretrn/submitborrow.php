@@ -10,14 +10,7 @@ $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Borrowreturns'), 'ur
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="borrowreturn-create">
-    <?php
-    //echo Yii::getAlias('@suPnPsu');
-    ?>
-<?php
-print_r($mdlbooking->xxx);
-echo Yii::t('rbac-admin', 'Login');
-echo Yii::getAlias('@vendor/su-pn-psu/yii2-borrow-material/messages');
-?>
+
     <div class="panel panel-primary">
 		<div class="panel-heading">
 			<span class="panel-title"><?= Html::icon('edit').' '.Html::encode($this->title) ?></span>

@@ -22,7 +22,7 @@ use kartik\widgets\DatePicker;
             //'enableAjaxValidation' => true,
 			//	'enctype' => 'multipart/form-data'
 			]); ?>
-		<?= $form->field($model, 'booking_id')->textInput() ?>
+		<?php //= $form->field($model, 'booking_id')->textInput() ?>
 		
 <?php if($this->context->action->id == 'submitborrow'){ ?>
 		<?= $form->field($model, 'confirm_status',[

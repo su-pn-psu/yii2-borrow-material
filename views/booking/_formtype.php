@@ -30,7 +30,7 @@ use kartik\widgets\ActiveForm;
     <?php //= $form->field($model, 'saveby')->textInput() ?>
 
     <div class="form-group text-center">
-        <?= Html::submitButton(Html::icon('floppy-disk').' '.Yii::t('inventory/app', 'Save'), ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton(Html::icon('floppy-disk').' '.Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
 
 	</div>
 
@@ -39,7 +39,6 @@ use kartik\widgets\ActiveForm;
     <?php
     $this->registerJs("
 $('form#qaddposform').on('beforeSubmit', function(event){
-    //alert('ddddd');
 
 	var form = $(this);
 	$.post(
@@ -50,7 +49,7 @@ $('form#qaddposform').on('beforeSubmit', function(event){
 			form.trigger('reset');
 			$('#modal').modal('hide');
 			$.pjax.reload({container:'#posipjax'});
-			alert('".Yii::t('kpi/app', 'UrDataCreated')."');
+			alert('".Yii::t('app', 'UrDataCreated')."');
 		}else{
 			alert(result);
 		}

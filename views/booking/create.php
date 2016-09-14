@@ -28,7 +28,6 @@ $this->params['breadcrumbs'][] = $this->title;
 			  'belongtolist' => $belongtolist,
 			  'positionlist' => $positionlist,
 			  'availmatlist' => $availmatlist,
-			  'modelsAddress' => (empty($modelsAddress)) ? [new Bookingmaterial] : $modelsAddress,
 			  'searchMaterial' => $searchMaterial,
 			  'dataProviderMaterial' => $dataProviderMaterial,
 			  'items' => $items,

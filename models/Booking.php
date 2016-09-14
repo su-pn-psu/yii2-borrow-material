@@ -60,7 +60,7 @@ class Booking extends \yii\db\ActiveRecord
         foreach($this->entstat as $key => $value){
             $this->entstat[$key] = Yii::t('app', $value);
         }
-        
+
         foreach($this->isinlist as $key => $value){
             $this->entstat[$key] = Yii::t('app', $value);
         }
