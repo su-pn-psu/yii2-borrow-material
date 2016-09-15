@@ -13,6 +13,7 @@ use suPnPsu\material\models\MaterialSearch;
 
 use suPnPsu\borrowMaterial\models\StdPosition;
 use suPnPsu\borrowMaterial\models\BookingSearch;
+use suPnPsu\borrowMaterial\models\BookingsubmitedSearch;
 use suPnPsu\borrowMaterial\models\Bookingmaterial;
 
 use yii\filters\VerbFilter;
@@ -299,6 +300,7 @@ class BookingController extends Controller
         $mdlbookmats = $model->bookingmaterials;
 
         if(!Yii::$app->request->get('_pjax')){
+
             foreach($mdlbookmats as $key => $value){
                 /**/$selectedMaterial[$value->material_id] = [
                     'id' => $value->material_id,

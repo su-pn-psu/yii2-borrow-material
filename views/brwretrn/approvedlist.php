@@ -44,17 +44,17 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'return_at',
 				[
 					'class' => 'yii\grid\ActionColumn',
-					'headerOptions' => [
-						'width' => '80px',
-					],
+//					'headerOptions' => [
+//						'width' => '200px',
+//					],
 					'template'=>'{submitsend} {submitreturn}',
 					'buttons'=>[
 						'submitsend' => function($url,$model,$key){
-						return $model->entry_status === 2 ? Html::a(Html::icon('fast-forward').' '.'ส่งของ',$url,['class' => 'btn btn-warning']) : false;
+						return $model->entry_status === 2 ? Html::a(Html::icon('fast-forward').' '.'ส่งของ',$url,['class' => 'btn btn-warning']) : /*false*/'ส่งให้แล้ว';
 						},
 						'submitreturn' => function($url,$model,$key){
-						return Html::a(Html::icon('fast-backward').' '.'รับของ',$url,['class' => 'btn btn-primary']);
-						}
+						return $model->entry_status === 3 ? Html::a(Html::icon('fast-backward').' '.'รับของ',$url,['class' => 'btn btn-primary']) : 'รับคืนแล้ว';
+						},
 					]
 					/*'visibleButtons' => [
 						'view' => Yii::$app->user->id == 122,
@@ -67,15 +67,15 @@ $this->params['breadcrumbs'][] = $this->title;
 				],
         ],
 		'pager' => [
-			'firstPageLabel' => Yii::t('borrowreturn/app', '1stPagi'),
-			'lastPageLabel' => Yii::t('borrowreturn/app', 'lastPagi'),
+			'firstPageLabel' => Yii::t('app', '1stPagi'),
+			'lastPageLabel' => Yii::t('app', 'lastPagi'),
 		],
 		'responsive'=>true,
 		'hover'=>true,
 		'toolbar'=> [
 			['content'=>
 				//Html::a(Html::icon('plus'), ['create'], ['class'=>'btn btn-success', 'title'=>Yii::t('kpi/app', 'Add Book')]).' '.
-				Html::a(Html::icon('repeat'), ['grid-demo'], ['data-pjax'=>0, 'class'=>'btn btn-default', 'title'=>Yii::t('kpi/app', 'Reset Grid')])
+				Html::a(Html::icon('repeat'), ['grid-demo'], ['data-pjax'=>0, 'class'=>'btn btn-default', 'title'=>Yii::t('app', 'Reset Grid')])
 			],
 			//'{export}',
 			'{toggleData}',

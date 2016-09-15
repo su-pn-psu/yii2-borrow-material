@@ -296,7 +296,7 @@ jQuery(".dynamicform_wrapper").on("afterDelete", function(e) {
         <div class="col-md-12">
             <?php
             $model->booking_at = date('Y-m-d  H:i');
-            $model->return_at = date('Y-m-d  H:i');
+            $model->return_at = date('Y-m-d  H:i', strtotime('+3 days'));
 
             echo $form->field($model, 'rangedatetime', [
                 'inputTemplate' => '<div class="input-group">{input}<span class="input-group-addon"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></span></div>',
@@ -315,7 +315,7 @@ jQuery(".dynamicform_wrapper").on("afterDelete", function(e) {
                     'timePicker' => true,
                     'timePickerIncrement' => 15,
                     'timePicker24Hour' => true,
-                    'locale' => ['format' => 'Y-m-d H:i']
+                    'locale' => ['format' => 'Y-m-d H:i'],
                 ],
             ]);
             ?>
