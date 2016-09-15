@@ -16,70 +16,71 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <?= GridView::widget([
-		//'id' => 'kv-grid-demo',
-			'dataProvider'=> $dataProvider,
-			'filterModel' => $searchModel,
+        //'id' => 'kv-grid-demo',
+        'dataProvider' => $dataProvider,
+        'filterModel' => $searchModel,
         'columns' => [
             //['class' => 'yii\grid\SerialColumn'],
-				[
-					'attribute' => 'id',
-					'headerOptions' => [
-						'width' => '50px',
-					],
-				],
-				[
-					'attribute' => 'entry_status',
-					'headerOptions' => [
-						'width' => '100px',
-					],
-				],
+            [
+                'attribute' => 'id',
+                'headerOptions' => [
+                    'width' => '50px',
+                ],
+            ],
+            [
+                'attribute' => 'entry_status',
+                'headerOptions' => [
+                    'width' => '100px',
+                ],
+            ],
             'booking_at',
             //'user_id',
             //'belongto_id',
-             //'position_id',
-             'purpose',
-             //'isin_university',
-             //'university_place',
-             'acquire_at',
+            //'position_id',
+            'purpose',
+            //'isin_university',
+            //'university_place',
+            'acquire_at',
             // 'return_at',
-				[
-					'class' => 'yii\grid\ActionColumn',
-					'template'=>'{submitborrow}',
-					'buttons'=>[
-						'submitborrow' => function($url,$model,$key){
-						return Html::a('<i class="glyphicon glyphicon-ok-circle"></i>',$url);
-						}
-					]
-					/*'visibleButtons' => [
-						'view' => Yii::$app->user->id == 122,
-						'update' => Yii::$app->user->id == 19,
-						'delete' => function ($model, $key, $index) {
-										return $model->status === 1 ? false : true;
-									}
-						],
-					'visible' => Yii::$app->user->id == 19,*/
-				],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'template' => '{submitborrow}',
+                'buttons' => [
+                    'submitborrow' => function ($url, $model, $key) {
+                        //return Html::a('<i class="glyphicon glyphicon-ok-circle"></i>',$url);
+                        return Html::a(Html::icon('ok-circle') . ' ' . 'อนุมัติ', $url, ['class' => 'btn btn-warning']);
+                    }
+                ]
+                /*'visibleButtons' => [
+                    'view' => Yii::$app->user->id == 122,
+                    'update' => Yii::$app->user->id == 19,
+                    'delete' => function ($model, $key, $index) {
+                                    return $model->status === 1 ? false : true;
+                                }
+                    ],
+                'visible' => Yii::$app->user->id == 19,*/
+            ],
         ],
-		'pager' => [
-			'firstPageLabel' => Yii::t('borrowreturn/app', '1stPagi'),
-			'lastPageLabel' => Yii::t('borrowreturn/app', 'lastPagi'),
-		],
-		'responsive'=>true,
-		'hover'=>true,
-		'toolbar'=> [
-			['content'=>
-				//Html::a(Html::icon('plus'), ['create'], ['class'=>'btn btn-success', 'title'=>Yii::t('kpi/app', 'Add Book')]).' '.
-				Html::a(Html::icon('repeat'), ['grid-demo'], ['data-pjax'=>0, 'class'=>'btn btn-default', 'title'=>Yii::t('kpi/app', 'Reset Grid')])
-			],
-			//'{export}',
-			'{toggleData}',
-		],
-		'panel'=>[
-			'type'=>GridView::TYPE_INFO,
-			'heading'=> Html::icon('user').' '.Html::encode($this->title),
-		],
+        'pager' => [
+            'firstPageLabel' => Yii::t('app', '1stPagi'),
+            'lastPageLabel' => Yii::t('app', 'lastPagi'),
+        ],
+        'responsive' => true,
+        'hover' => true,
+        'toolbar' => [
+            ['content' =>
+            //Html::a(Html::icon('plus'), ['create'], ['class'=>'btn btn-success', 'title'=>Yii::t('kpi/app', 'Add Book')]).' '.
+                Html::a(Html::icon('repeat'), ['grid-demo'], ['data-pjax' => 0, 'class' => 'btn btn-default', 'title' => Yii::t('app', 'Reset Grid')])
+            ],
+            //'{export}',
+            '{toggleData}',
+        ],
+        'panel' => [
+            'type' => GridView::TYPE_INFO,
+            'heading' => Html::icon('user') . ' ' . Html::encode($this->title),
+        ],
     ]); ?>
-<?php 	 /* adzpire grid tips
+    <?php /* adzpire grid tips
 		[
 				'attribute' => 'id',
 				'headerOptions' => [
@@ -112,5 +113,5 @@ $this->params['breadcrumbs'][] = $this->title;
 			'value' => 'weCr.userPro.nameconcatened'
 		],
 	 */
- ?> 	
+    ?>
 </div>

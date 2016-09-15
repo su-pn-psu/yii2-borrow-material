@@ -3,6 +3,7 @@
 namespace suPnPsu\borrowMaterial\models;
 
 use Yii;
+use suPnPsu\user\models\User;
 
 /**
  * This is the model class for table "borrowreturn".
@@ -43,7 +44,7 @@ class Borrowreturn extends \yii\db\ActiveRecord
 	  
 	  public $approvelist = ['0'=>'ไม่อนุมัติ','1'=>'อนุมัติ'];
 	  public $deleverlist = ['0'=>'ไม่ส่ง','1'=>'ส่ง'];
-	  public $returnlist = ['0'=>'ครบ','1'=>'ไม่ครบ'];
+	  public $returnlist = ['0'=>'ไม่ครบ','1'=>'ครบ'];
 	  
     public function rules()
     {
