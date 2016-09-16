@@ -63,7 +63,7 @@ class StdbelongtoController extends Controller
     public function actionIndex()
     {
 		 
-		 Yii::$app->view->title = Yii::t( 'app', 'Std Belongtos').' - '.Yii::t('app', Yii::$app->controller->module->params['title']);
+		 Yii::$app->view->title = Yii::t( 'borrow-material', 'รายการสังกัดองค์กร').' - '.Yii::t('borrow-material', Yii::$app->controller->module->params['title']);
 		 
         $searchModel = new StdBelongtoSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
@@ -83,7 +83,7 @@ class StdbelongtoController extends Controller
     {
 		 $model = $this->findModel($id);
 		 
-		 Yii::$app->view->title = Yii::t( 'app', 'Detail').' : '.$model->title.' - '.Yii::t( 'app', Yii::$app->controller->module->params['title']);
+		 Yii::$app->view->title = Yii::t( 'borrow-material', 'หน้ารายละเอียด').' : '.$model->title.' - '.Yii::t( 'borrow-material', Yii::$app->controller->module->params['title']);
 		 
         return $this->render('view', [
             'model' => $model,
@@ -97,7 +97,7 @@ class StdbelongtoController extends Controller
      */
     public function actionCreate()
     {
-		 Yii::$app->view->title = Yii::t( 'app', 'Create').' - '.Yii::t( 'app', Yii::$app->controller->module->params['title']);
+		 Yii::$app->view->title = Yii::t( 'borrow-material', 'เพิ่มข้อมูล').' - '.Yii::t( 'borrow-material', Yii::$app->controller->module->params['title']);
 		 
         $model = new StdBelongto();
 
@@ -114,7 +114,7 @@ class StdbelongtoController extends Controller
 				'type' => 'success',
 				'duration' => 4000,
 				'icon' => 'glyphicon glyphicon-ok-circle',
-				'message' => Yii::t( 'app', 'UrDataCreated'),
+				'message' => Yii::t( 'borrow-material', 'ข้อมูลถูกเพิ่มแล้ว'),
 				]);
 			return $this->redirect(['view', 'id' => $model->id]);	
 			}else{
@@ -122,7 +122,7 @@ class StdbelongtoController extends Controller
 				'type' => 'danger',
 				'duration' => 4000,
 				'icon' => 'glyphicon glyphicon-remove-circle',
-				'message' => Yii::t( 'app', 'UrDataNotCreated'),
+				'message' => Yii::t( 'borrow-material', 'เพิ่มข้อมูลไม่ได้'),
 				]);
 			}
             return $this->redirect(['view', 'id' => $model->id]);
@@ -145,9 +145,9 @@ class StdbelongtoController extends Controller
     {
 		 $model = $this->findModel($id);
 		 
-		 Yii::$app->view->title = Yii::t( 'app', 'Update {modelClass}: ', [
+		 Yii::$app->view->title = Yii::t( 'borrow-material', 'ปรับปรุง {modelClass}: ', [
     'modelClass' => 'Std Belongto',
-]) . $model->title.' - '.Yii::t( 'app', Yii::$app->controller->module->params['title']);
+]) . $model->title.' - '.Yii::t( 'borrow-material', Yii::$app->controller->module->params['title']);
 		 
         if ($model->load(Yii::$app->request->post())) {
 			if($model->save()){
@@ -155,7 +155,7 @@ class StdbelongtoController extends Controller
 				'type' => 'success',
 				'duration' => 4000,
 				'icon' => 'glyphicon glyphicon-ok-circle',
-				'message' => Yii::t( 'app', 'UrDataUpdated'),
+				'message' => Yii::t( 'borrow-material', 'ข้อมูลถูกปรับปรุงแล้ว'),
 				]);
 			return $this->redirect(['view', 'id' => $model->id]);	
 			}else{
@@ -163,7 +163,7 @@ class StdbelongtoController extends Controller
 				'type' => 'danger',
 				'duration' => 4000,
 				'icon' => 'glyphicon glyphicon-remove-circle',
-				'message' => Yii::t( 'app', 'UrDataNotUpdated'),
+				'message' => Yii::t( 'borrow-material', 'ปรับปรุงข้อมูลไม่ได้'),
 				]);
 			}
             return $this->redirect(['view', 'id' => $model->id]);
@@ -190,7 +190,7 @@ class StdbelongtoController extends Controller
 			'type' => 'success',
 			'duration' => 4000,
 			'icon' => 'glyphicon glyphicon-ok-circle',
-			'message' => Yii::t( 'app', 'UrDataDeleted'),
+			'message' => Yii::t( 'borrow-material', 'ข้อมูลถูกลบแล้ว'),
 		]);
 		
 

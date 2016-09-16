@@ -34,32 +34,36 @@ class BookmatController extends Controller
         ];
     }
 
-	 public $admincontroller = [20];
+    public $admincontroller = [20];
 
-    public function beforeAction(){
-        foreach($this->admincontroller as $key){
-            array_push(Yii::$app->controller->module->params['adminModule'],$key);
+    public function beforeAction($action)
+    {
+        if (!parent::beforeAction($action)) {
+            return false;
+        }
+        foreach ($this->admincontroller as $key) {
+            array_push(Yii::$app->controller->module->params['adminModule'], $key);
         }
 
         return true;
-		  /* 
-        if(ArrayHelper::isIn(Yii::$app->user->id, Yii::$app->controller->module->params['adminModule'])){
-            //echo 'you are passed';
-        }else{
-            throw new ForbiddenHttpException('You have no right. Must be admin module.');
-        }
-        */
+        /*
+      if(ArrayHelper::isIn(Yii::$app->user->id, Yii::$app->controller->module->params['adminModule'])){
+          //echo 'you are passed';
+      }else{
+          throw new ForbiddenHttpException('You have no right. Must be admin module.');
+      }
+      */
     }
-	 
+
     /**
      * Lists all Bookingmaterial models.
      * @return mixed
      */
     public function actionIndex()
     {
-		 
-		 Yii::$app->view->title = Yii::t('borrowreturn/app', 'Bookingmaterials').' - '.Yii::t('itinfo/app', Yii::$app->controller->module->params['title']);
-		 
+
+        Yii::$app->view->title = Yii::t('borrow-material', 'รายการยืมคืน-พัสดุ') . ' - ' . Yii::t('borrow-material', Yii::$app->controller->module->params['title']);
+
         $searchModel = new BookingmaterialSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -76,10 +80,10 @@ class BookmatController extends Controller
      */
     public function actionView($id)
     {
-		 $model = $this->findModel($id);
-		 
-		 Yii::$app->view->title = Yii::t('borrowreturn/app', 'Detail').' : '.$model->id.' - '.Yii::t('itinfo/app', Yii::$app->controller->module->params['title']);
-		 
+        $model = $this->findModel($id);
+
+        Yii::$app->view->title = Yii::t('borrow-material', 'หน้ารายละเอียด') . ' : ' . $model->id . ' - ' . Yii::t('itinfo/app', Yii::$app->controller->module->params['title']);
+
         return $this->render('view', [
             'model' => $model,
         ]);
@@ -92,40 +96,40 @@ class BookmatController extends Controller
      */
     public function actionCreate()
     {
-		 Yii::$app->view->title = Yii::t('borrowreturn/app', 'Create').' - '.Yii::t('itinfo/app', Yii::$app->controller->module->params['title']);
-		 
+        Yii::$app->view->title = Yii::t('borrow-material', 'เพิ่มข้อมูล') . ' - ' . Yii::t('borrow-material', Yii::$app->controller->module->params['title']);
+
         $model = new Bookingmaterial();
 
-		/* if enable ajax validate
-		if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
-			Yii::$app->response->format = Response::FORMAT_JSON;
-			return ActiveForm::validate($model);
-		}*/
-		
+        /* if enable ajax validate
+        if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return ActiveForm::validate($model);
+        }*/
+
         if ($model->load(Yii::$app->request->post())) {
-			if($model->save()){
-				Yii::$app->getSession()->setFlash('addflsh', [
-				'type' => 'success',
-				'duration' => 4000,
-				'icon' => 'glyphicon glyphicon-ok-circle',
-				'message' => Yii::t('borrowreturn/app', 'UrDataCreated'),
-				]);
-			return $this->redirect(['view', 'id' => $model->id]);	
-			}else{
-				Yii::$app->getSession()->setFlash('addflsh', [
-				'type' => 'danger',
-				'duration' => 4000,
-				'icon' => 'glyphicon glyphicon-remove-circle',
-				'message' => Yii::t('borrowreturn/app', 'UrDataNotCreated'),
-				]);
-			}
+            if ($model->save()) {
+                Yii::$app->getSession()->setFlash('addflsh', [
+                    'type' => 'success',
+                    'duration' => 4000,
+                    'icon' => 'glyphicon glyphicon-ok-circle',
+                    'message' => Yii::t('borrow-material', 'ข้อมูลถูกเพิ่มแล้ว'),
+                ]);
+                return $this->redirect(['view', 'id' => $model->id]);
+            } else {
+                Yii::$app->getSession()->setFlash('addflsh', [
+                    'type' => 'danger',
+                    'duration' => 4000,
+                    'icon' => 'glyphicon glyphicon-remove-circle',
+                    'message' => Yii::t('borrow-material', 'เพิ่มข้อมูลไม่ได้'),
+                ]);
+            }
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
-            return $this->render('create', [
-                'model' => $model,
-            ]);
-        
+        return $this->render('create', [
+            'model' => $model,
+        ]);
+
 
     }
 
@@ -137,36 +141,36 @@ class BookmatController extends Controller
      */
     public function actionUpdate($id)
     {
-		 $model = $this->findModel($id);
-		 
-		 Yii::$app->view->title = Yii::t('borrowreturn/app', 'Update {modelClass}: ', [
-    'modelClass' => 'Bookingmaterial',
-]) . $model->id.' - '.Yii::t('itinfo/app', Yii::$app->controller->module->params['title']);
-		 
-        if ($model->load(Yii::$app->request->post())) {
-			if($model->save()){
-				Yii::$app->getSession()->setFlash('edtflsh', [
-				'type' => 'success',
-				'duration' => 4000,
-				'icon' => 'glyphicon glyphicon-ok-circle',
-				'message' => Yii::t('borrowreturn/app', 'UrDataUpdated'),
-				]);
-			return $this->redirect(['view', 'id' => $model->id]);	
-			}else{
-				Yii::$app->getSession()->setFlash('edtflsh', [
-				'type' => 'danger',
-				'duration' => 4000,
-				'icon' => 'glyphicon glyphicon-remove-circle',
-				'message' => Yii::t('borrowreturn/app', 'UrDataNotUpdated'),
-				]);
-			}
-            return $this->redirect(['view', 'id' => $model->id]);
-        } 
+        $model = $this->findModel($id);
 
-            return $this->render('update', [
-                'model' => $model,
-            ]);
-        
+        Yii::$app->view->title = Yii::t('borrow-material', 'ปรับปรุง {modelClass}: ', [
+                'modelClass' => 'Bookingmaterial',
+            ]) . $model->id . ' - ' . Yii::t('borrow-material', Yii::$app->controller->module->params['title']);
+
+        if ($model->load(Yii::$app->request->post())) {
+            if ($model->save()) {
+                Yii::$app->getSession()->setFlash('edtflsh', [
+                    'type' => 'success',
+                    'duration' => 4000,
+                    'icon' => 'glyphicon glyphicon-ok-circle',
+                    'message' => Yii::t('borrow-material', 'ข้อมูลถูกปรับปรุงแล้ว'),
+                ]);
+                return $this->redirect(['view', 'id' => $model->id]);
+            } else {
+                Yii::$app->getSession()->setFlash('edtflsh', [
+                    'type' => 'danger',
+                    'duration' => 4000,
+                    'icon' => 'glyphicon glyphicon-remove-circle',
+                    'message' => Yii::t('borrow-material', 'ปรับปรุงข้อมูลไม่ได้'),
+                ]);
+            }
+            return $this->redirect(['view', 'id' => $model->id]);
+        }
+
+        return $this->render('update', [
+            'model' => $model,
+        ]);
+
 
     }
 
@@ -179,14 +183,14 @@ class BookmatController extends Controller
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
-		
-		Yii::$app->getSession()->setFlash('edtflsh', [
-			'type' => 'success',
-			'duration' => 4000,
-			'icon' => 'glyphicon glyphicon-ok-circle',
-			'message' => Yii::t('borrowreturn/app', 'UrDataDeleted'),
-		]);
-		
+
+        Yii::$app->getSession()->setFlash('edtflsh', [
+            'type' => 'success',
+            'duration' => 4000,
+            'icon' => 'glyphicon glyphicon-ok-circle',
+            'message' => Yii::t('borrow-material', 'ข้อมูลถูกลบแล้ว'),
+        ]);
+
 
         return $this->redirect(['index']);
     }

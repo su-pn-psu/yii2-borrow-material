@@ -17,6 +17,8 @@ class DefaultController extends Controller
      */
     public function actionIndex()
     {
+        Yii::$app->view->title = Yii::t('borrow-material', 'หน้ารายการ') . ' - ' . Yii::t('borrow-material', Yii::$app->controller->module->params['title']);
+
         $searchModel = new SubmitedcheckSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
