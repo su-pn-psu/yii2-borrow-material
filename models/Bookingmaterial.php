@@ -9,7 +9,7 @@ use Yii;
  *
  * @property integer $id
  * @property integer $booking_id
- * @property integer $material_id
+ * @property string $material_id
  * @property string $return_condition
  *
  * @property Material $material
@@ -32,8 +32,8 @@ class Bookingmaterial extends \yii\db\ActiveRecord
     {
         return [
             [['booking_id', 'material_id'], 'required'],
-            [['booking_id', 'material_id'], 'integer'],
-            [['return_condition'], 'string'],
+            [['booking_id'], 'integer'],
+            [['return_condition', 'material_id'], 'string'],
             [['material_id'], 'exist', 'skipOnError' => true, 'targetClass' => Material::className(), 'targetAttribute' => ['material_id' => 'id']],
             [['booking_id'], 'exist', 'skipOnError' => true, 'targetClass' => Booking::className(), 'targetAttribute' => ['booking_id' => 'id']],
         ];

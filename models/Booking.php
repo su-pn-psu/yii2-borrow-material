@@ -3,6 +3,7 @@
 namespace suPnPsu\borrowMaterial\models;
 
 use Yii;
+use suPnPsu\user\models\User;
 
 /**
  * This is the model class for table "booking".
@@ -39,17 +40,31 @@ class Booking extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
-	  public $rangedatetime;
-	  public $sbmtcheck;
-	  public $isinlist = ['0'=>'insideuniv','1'=>'outsideuniv'];
-	  public $entstat =  [
-            '0' => 'draft',
-            '1' => 'submitbooking',
-            '2' => 'bookingsubmited',
-            '3' => 'itemsent',
-            '4' => 'itemreturned',
-            '5' => 'finished',
+        public $rangedatetime;
+        public $sbmtcheck;
+        public $promisetext = 'ข้าพเจ้าขอรับผิดชอบต่อพัสดุ-ครุภัณฑ์ ที่ขอยืมใช้ หากเกิดชำรุด เสียหายแม้ว่าด้วยกรณีใด ข้าพเจ้ายินดีชดใช้ค่าเสียหายที่เกิดขึ้น ตามระเบียบทุกประการอีกทั้งให้บัตรนักศึกษาเพื่อเป็นหลักฐานยืนยันทุกครั้งที่มายืมใช้อุปกรณ์ และชำระค่าซ่อมบำรุง พัสดุ-ครุภัณฑ์ ตามระเบียบขอฝ่ายพัสดุ องค์การบริหาร องค์การนักศึกษา ปี 2559';
+        public $isinlist = ['0'=>'insideuniv','1'=>'outsideuniv'];
+        public $entstat =  [
+        '0' => 'draft',
+        '1' => 'submitbooking',
+        '2' => 'bookingsubmited',
+        '3' => 'itemsent',
+        '4' => 'itemreturned',
+        '5' => 'finished',
         ];
+
+    public function init()
+    {
+        parent::init();
+
+        foreach($this->entstat as $key => $value){
+            $this->entstat[$key] = Yii::t('app', $value);
+        }
+
+        foreach($this->isinlist as $key => $value){
+            $this->entstat[$key] = Yii::t('app', $value);
+        }
+    }
 	  
     public function rules()
     {
@@ -84,8 +99,8 @@ class Booking extends \yii\db\ActiveRecord
             'university_place' => 'สถานที่ใช้งาน',
             'acquire_at' => 'วันที่-มารับของ',
             'return_at' => 'วันที่-มาคืนของ',
-				'rangedatetime' => 'ขอยืมใช้ - จะมาคืน',
-				'create_at' => 'สร้างวันที่',
+            'rangedatetime' => 'ขอยืมใช้ - จะมาคืน',
+            'create_at' => 'สร้างวันที่',
         ];
     }
 

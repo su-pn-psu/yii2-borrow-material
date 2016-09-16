@@ -15,7 +15,7 @@ use kartik\widgets\ActiveForm;
 <div class="invt-type-form">
 
     <?php $form = ActiveForm::begin([
-			'layout' => 'horizontal', 
+			'layout' => 'horizontal',
 			'id' => 'qaddbelform',
 			'fieldConfig' => [
 				  'horizontalCssClasses' => [
@@ -30,7 +30,7 @@ use kartik\widgets\ActiveForm;
     <?php //= $form->field($model, 'saveby')->textInput() ?>
 
     <div class="form-group text-center">
-        <?= Html::submitButton(Html::icon('floppy-disk').' '.Yii::t('inventory/app', 'Save'), ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton(Html::icon('floppy-disk').' '.Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
 
 	</div>
 
@@ -49,7 +49,7 @@ $('form#qaddbelform').on('beforeSubmit', function(event){
 			form.trigger('reset');
 			$('#modal').modal('hide');
 			$.pjax.reload({container:'#belpjax'});
-			alert('".Yii::t('kpi/app', 'UrDataCreated')."');
+			alert('".Yii::t('app', 'UrDataCreated')."');
 		}else{
 			alert(result);
 		}

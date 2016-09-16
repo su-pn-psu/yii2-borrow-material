@@ -43,8 +43,8 @@ class BookingmaterialSearch extends Bookingmaterial
     public function rules()
     {
         return [
-            [['id', 'booking_id', 'material_id'], 'integer'],
-            [['return_condition'], 'safe'],
+            [['id', 'booking_id'], 'integer'],
+            [['return_condition', 'material_id'], 'safe'],
         ];
     }
 
@@ -86,10 +86,10 @@ class BookingmaterialSearch extends Bookingmaterial
         $query->andFilterWhere([
             'id' => $this->id,
             'booking_id' => $this->booking_id,
-            'material_id' => $this->material_id,
         ]);
 
-        $query->andFilterWhere(['like', 'return_condition', $this->return_condition]);
+        $query->andFilterWhere(['like', 'material_id', $this->material_id])
+            ->andFilterWhere(['like', 'return_condition', $this->return_condition]);
 
         return $dataProvider;
     }

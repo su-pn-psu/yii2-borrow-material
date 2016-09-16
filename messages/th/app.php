@@ -1,5 +1,5 @@
 <?php 
-return [ 
+return [
 	// general
 	'Login' => 'เข้าสู่ระบบ',
 	'Logout' => 'ออกจากระบบ',
@@ -9,7 +9,7 @@ return [
 	'AppInstruction' => 'คำแนะนำการใช้งาน',
 	'footer_problem' => 'พบปัญหาในการใช้งาน ติดต่อ - ',
 	'name' => 'ชื่อ',
-	'lastname' => 'นามสกุล',    
+	'lastname' => 'นามสกุล',
     'detail' => 'รายละเอียด',
 	'Create' => 'สร้างใหม่',
 	'create' => 'สร้าง',
@@ -20,7 +20,7 @@ return [
     'manage' => 'จัดการ',
 	'Update' => 'แก้ไข',
 	'updated!' => 'แก้ไขแล้ว!',
-	'UpdateID' => 'แก้ไขหมายเลข : ',	
+	'UpdateID' => 'แก้ไขหมายเลข : ',
 	'Delete' => 'ลบ',
 	'deleted!' => 'ลบแล้ว!',
 	'download' => 'ดาวน์โหลด',
@@ -28,9 +28,9 @@ return [
 	'view' => 'ดูรายละเอียด',
 	'searchAll' => 'ค้นหาทั้งหมด',
 	'Search' => 'ค้นหา',
-	'show' => 'แสดง',    
+	'show' => 'แสดง',
 	'notshow' => 'ไม่แสดง',
-   	'1stPagi' => 'รายการแรกสุด',    
+   	'1stPagi' => 'รายการแรกสุด',
    	'lastPagi' => 'รายการท้ายสุด',
 	'adminEmail' => 'abdul-aziz.d@psu.ac.th',
 	'adminName' => 'อับดุลอาซิส ดือราแม',
@@ -46,15 +46,13 @@ return [
     'new'=>'ยืมใหม่',
     'data'=>'ข้อมูล',
 	// module
-	'invmodshort' => 'ระบบควบคุมพัสดุ', 
-	'invmod' => 'ระบบจัดการพัสดุ/ครุภัณฑ์ คณะวิทยาการสื่อสาร',
-    'eqbookshort' => 'ขอใช้พัสดุ',
+	'eqbookshort' => 'ขอใช้พัสดุ',
     'roombookshort' => 'ขอใช้ห้อง',
     'tribookshort' => 'ขอใช้จักรยานยนต์สามล้อ',
     'approvingmenu' => 'อนุมัติ/ส่งของ/คืน',
-	 'i have read rule' => 'ฉันได้อ่านระเบียบของพัสดุ <a href="/advanced/backend/web/media/booking/rule.pdf" target="_blank">click</a> แล้ว',
+    'i have read rule' => 'ฉันได้อ่านระเบียบของพัสดุ <a href="/advanced/backend/web/media/booking/rule.pdf" target="_blank">click</a> แล้ว',
 
-    // rc
+    // booking
 	'BookingsSys' => 'ระบบยืม-คืนพัสดุ',
     'draftform' => 'ฟอร์มที่ร่าง',
     'offering' => 'รายการยื่นเสนอ',
@@ -62,5 +60,7 @@ return [
     'borrowed' => 'รายการที่ยืมอยู่',
     'returned' => 'รายการที่คืน',
     'allborrow' => 'รายการแจ้งยืมทั้งหมด',
-	 
+	'insideuniv' => 'ภายในมหาวิทยาลัยฯ',
+	'outsideuniv' => 'ภายนอกมหาวิทยาลัยฯ',
+
 ];
