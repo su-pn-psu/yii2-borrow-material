@@ -2,7 +2,6 @@
 
 namespace suPnPsu\borrowMaterial;
 
-
 /**
  * borrowMaterial module definition class
 =======
@@ -24,7 +23,6 @@ class Module extends \yii\base\Module
     public function init()
     {
         parent::init();
-
 
         if (!isset(Yii::$app->i18n->translations['rbac-admin'])) {
             Yii::$app->i18n->translations['rbac-admin'] = [
