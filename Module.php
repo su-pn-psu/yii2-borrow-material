@@ -1,6 +1,7 @@
 <?php
 
 namespace suPnPsu\borrowMaterial;
+<<<<<<< HEAD
 
 /**
  * borrowMaterial module definition class
@@ -24,6 +25,8 @@ class Module extends \yii\base\Module
     {
         parent::init();
 
+<<<<<<< HEAD
+=======
         if (!isset(Yii::$app->i18n->translations['rbac-admin'])) {
             Yii::$app->i18n->translations['rbac-admin'] = [
                 'class' => 'yii\i18n\PhpMessageSource',
@@ -40,6 +43,7 @@ class Module extends \yii\base\Module
 		$this->layout = 'menu-left';
 		$this->params['ModuleVers'] = '1.0.0';
 		$this->params['title'] = 'stdunion borrow-return app';
+>>>>>>> sis
         // custom initialization code goes here
     }
 }
