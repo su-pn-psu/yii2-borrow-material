@@ -2,7 +2,6 @@
 
 namespace suPnPsu\borrowMaterial\controllers;
 
-<<<<<<< HEAD
 use yii\web\Controller;
 
 /**
@@ -24,10 +23,8 @@ class DefaultController extends Controller
      */
     public function actionIndex()
     {
-<<<<<<< HEAD
         return $this->render('index');
-=======
-        Yii::$app->view->title = Yii::t('borrow-material', '˹����¡��') . ' - ' . Yii::t('borrow-material', Yii::$app->controller->module->params['title']);
+        Yii::$app->view->title = Yii::t('borrow-material', 'ระบบยืมคืนพัสดุ') . ' - ' . Yii::t('borrow-material', Yii::$app->controller->module->params['title']);
 
         $searchModel = new SubmitedcheckSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
@@ -36,6 +33,5 @@ class DefaultController extends Controller
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
->>>>>>> sis
     }
 }
