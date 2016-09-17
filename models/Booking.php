@@ -58,11 +58,11 @@ class Booking extends \yii\db\ActiveRecord
         parent::init();
 
         foreach($this->entstat as $key => $value){
-            $this->entstat[$key] = Yii::t('app', $value);
+            $this->entstat[$key] = Yii::t('borrow-material', $value);
         }
 
         foreach($this->isinlist as $key => $value){
-            $this->entstat[$key] = Yii::t('app', $value);
+            $this->entstat[$key] = Yii::t('borrow-material', $value);
         }
     }
 	  
@@ -79,7 +79,19 @@ class Booking extends \yii\db\ActiveRecord
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
             [['belongto_id'], 'exist', 'skipOnError' => true, 'targetClass' => StdBelongto::className(), 'targetAttribute' => ['belongto_id' => 'id']],
             [['position_id'], 'exist', 'skipOnError' => true, 'targetClass' => StdPosition::className(), 'targetAttribute' => ['position_id' => 'id']],
+            //[['booking_at','acquire_at'], /*'date', 'format' => 'php:Y m d H:i'*/],
+            [['booking_at', 'acquire_at', 'rangedatetime'],'validateDates'],
+//            ['fromDate', 'date', 'timestampAttribute' => 'fromDate'],
+//            ['toDate', 'date', 'timestampAttribute' => 'toDate'],
+//            ['fromDate', 'compare', 'compareAttribute' => 'toDate', 'operator' => '<', 'enableClientValidation' => false],
         ];
+    }
+    public function validateDates(){
+        //if(strtotime($this->acquire_at) <= strtotime($this->booking_at->modify('+3 day'))){
+        if(strtotime($this->acquire_at) <= strtotime($this->booking_at)){
+            //$this->addError('booking_at','Please give correct Start and End dates');
+            $this->addError('acquire_at','Please give correct Start and End dates');
+        }
     }
 
     /**

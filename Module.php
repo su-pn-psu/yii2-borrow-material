@@ -1,7 +1,7 @@
 <?php
 
 namespace suPnPsu\borrowMaterial;
-
+use Yii;
 /**
  * borrowMaterial module definition class
 =======
@@ -24,13 +24,13 @@ class Module extends \yii\base\Module
     {
         parent::init();
 
-        if (!isset(Yii::$app->i18n->translations['rbac-admin'])) {
-            Yii::$app->i18n->translations['rbac-admin'] = [
+        if (!isset(Yii::$app->i18n->translations['borrow-material'])) {
+            Yii::$app->i18n->translations['borrow-material'] = [
                 'class' => 'yii\i18n\PhpMessageSource',
                 'sourceLanguage' => 'en',
                 'basePath' => '@suPnPsu/borrowMaterial/messages'
             ];
-        }
+        }/**/
 
 
 		Yii::$app->formatter->locale = 'th_TH';
@@ -39,7 +39,7 @@ class Module extends \yii\base\Module
 		$this->params['adminModule'] = [5,18];
 		$this->layout = 'menu-left';
 		$this->params['ModuleVers'] = '1.0.0';
-		$this->params['title'] = 'stdunion borrow-return app';
+		$this->params['title'] = 'โปรแกรมยืมคืนพัสดุ/ครุภัณฑ์';
         // custom initialization code goes here
     }
 }

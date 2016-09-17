@@ -30,7 +30,7 @@ use kartik\widgets\ActiveForm;
     <?php //= $form->field($model, 'saveby')->textInput() ?>
 
     <div class="form-group text-center">
-        <?= Html::submitButton(Html::icon('floppy-disk').' '.Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton(Html::icon('floppy-disk').' '.Yii::t('borrow-material', 'บันทึก'), ['class' => 'btn btn-success']) ?>
 
 	</div>
 
@@ -49,7 +49,7 @@ $('form#qaddbelform').on('beforeSubmit', function(event){
 			form.trigger('reset');
 			$('#modal').modal('hide');
 			$.pjax.reload({container:'#belpjax'});
-			alert('".Yii::t('app', 'UrDataCreated')."');
+			alert('".Yii::t('borrow-material', 'เพิ่มข้อมูลเรียบร้อย')."');
 		}else{
 			alert(result);
 		}
