@@ -137,7 +137,7 @@ class BookingController extends Controller
     public function actionIndex()
     {
 
-        Yii::$app->view->title = Yii::t('borrow-material', 'ÃÒÂ¡ÒÃ¨Í§') . ' - ' . Yii::t('borrow-material', Yii::$app->controller->module->params['title']);
+        Yii::$app->view->title = Yii::t('borrow-material', 'à¸£à¸²à¸¢à¸à¸²à¸£à¸ˆà¸­à¸‡') . ' - ' . Yii::t('borrow-material', Yii::$app->controller->module->params['title']);
 
         $searchModel = new BookingSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
@@ -157,7 +157,7 @@ class BookingController extends Controller
     {
         $model = $this->findModel($id);
 
-        Yii::$app->view->title = Yii::t('borrow-material', 'Ë¹éÒÃÒÂÅÐàÍÕÂ´') . ' : ' . $model->id . ' - ' . Yii::t('borrow-material', Yii::$app->controller->module->params['title']);
+        Yii::$app->view->title = Yii::t('borrow-material', 'à¸”à¸¹à¸£à¸²à¸¢à¸¥à¸°à¹€à¸­à¸µà¸¢à¸”') . ' : ' . $model->id . ' - ' . Yii::t('borrow-material', Yii::$app->controller->module->params['title']);
 
         return $this->render('view', [
             'model' => $model,
@@ -171,7 +171,7 @@ class BookingController extends Controller
      */
     public function actionCreate()
     {
-        Yii::$app->view->title = Yii::t('borrow-material', 'à¾ÔèÁ¢éÍÁÙÅ') . ' - ' . Yii::t('borrow-material', Yii::$app->controller->module->params['title']);
+        Yii::$app->view->title = Yii::t('borrow-material', 'à¹€à¸žà¸´à¹ˆà¸¡à¸à¸²à¸£à¸ˆà¸­à¸‡') . ' - ' . Yii::t('borrow-material', Yii::$app->controller->module->params['title']);
 
         $model = new Booking();
         $mdluser = User::findOne(Yii::$app->user->id);
@@ -183,11 +183,12 @@ class BookingController extends Controller
         isset($data['sng']) ? $model->entry_status = 1 : $model->entry_status = 0;
 
 
-        /* if enable ajax validate
+        /* if enable ajax validate*/
+
         if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
             Yii::$app->response->format = Response::FORMAT_JSON;
             return ActiveForm::validate($model);
-        }*/
+        }
 
         if ($model->load(Yii::$app->request->post())) {
 
@@ -209,7 +210,7 @@ class BookingController extends Controller
                     'type' => 'success',
                     'duration' => 4000,
                     'icon' => 'glyphicon glyphicon-ok-circle',
-                    'message' => Yii::t('borrow-material', '¢éÍÁÙÅ¶Ù¡à¾ÔèÁáÅéÇ'),
+                    'message' => Yii::t('borrow-material', 'à¹€à¸žà¸´à¹ˆà¸¡à¹€à¸£à¸µà¸¢à¸šà¸£à¹‰à¸­à¸¢'),
                 ]);
                 return $this->redirect(['view', 'id' => $model->id]);
             } else {
@@ -217,7 +218,7 @@ class BookingController extends Controller
                     'type' => 'danger',
                     'duration' => 4000,
                     'icon' => 'glyphicon glyphicon-remove-circle',
-                    'message' => Yii::t('borrow-material', 'à¾ÔèÁ¢éÍÁÙÅäÁèä´é'),
+                    'message' => Yii::t('borrow-material', 'à¹€à¸žà¸´à¹ˆà¸¡à¹„à¸¡à¹ˆà¸ªà¸³à¹€à¸£à¹‡à¸ˆ'),
                 ]);
             }
         }
@@ -316,7 +317,7 @@ class BookingController extends Controller
         }
 
 
-        Yii::$app->view->title = Yii::t('borrow-material', '»ÃÑº»ÃØ§ {modelClass}: ', [
+        Yii::$app->view->title = Yii::t('borrow-material', 'à¸›à¸£à¸±à¸šà¸›à¸£à¸¸à¸‡à¸‚à¹‰à¸­à¸¡à¸¹à¸¥ {modelClass}: ', [
                 'modelClass' => 'Booking',
             ]) . $model->id . ' - ' . Yii::t('borrow-material', Yii::$app->controller->module->params['title']);
 
@@ -326,7 +327,7 @@ class BookingController extends Controller
                     'type' => 'success',
                     'duration' => 4000,
                     'icon' => 'glyphicon glyphicon-ok-circle',
-                    'message' => Yii::t('borrow-material', '¢éÍÁÙÅ¶Ù¡»ÃÑº»ÃØ§áÅéÇ'),
+                    'message' => Yii::t('borrow-material', 'à¸›à¸£à¸±à¸šà¸›à¸£à¸¸à¸‡à¸‚à¹‰à¸­à¸¡à¸¹à¸¥à¹€à¸£à¸µà¸¢à¸šà¸£à¹‰à¸­à¸¢'),
                 ]);
                 return $this->redirect(['view', 'id' => $model->id]);
             } else {
@@ -334,7 +335,7 @@ class BookingController extends Controller
                     'type' => 'danger',
                     'duration' => 4000,
                     'icon' => 'glyphicon glyphicon-remove-circle',
-                    'message' => Yii::t('borrow-material', '»ÃÑº»ÃØ§¢éÍÁÙÅäÁèä´é'),
+                    'message' => Yii::t('borrow-material', 'à¸›à¸£à¸±à¸šà¸›à¸£à¸¸à¸‡à¸‚à¹‰à¸­à¸¡à¸¹à¸¥à¹„à¸¡à¹ˆà¸ªà¸³à¹€à¸£à¹‡à¸ˆ'),
                 ]);
             }
             return $this->redirect(['view', 'id' => $model->id]);
@@ -373,7 +374,7 @@ class BookingController extends Controller
             'type' => 'success',
             'duration' => 4000,
             'icon' => 'glyphicon glyphicon-ok-circle',
-            'message' => Yii::t('borrow-material', '¢éÍÁÙÅ¶Ù¡ÅºáÅéÇ'),
+            'message' => Yii::t('borrow-material', 'à¸¥à¸šà¸‚à¹‰à¸­à¸¡à¸¸à¸¥à¹€à¸£à¸µà¸¢à¸šà¸£à¹‰à¸­à¸¢'),
         ]);
 
 

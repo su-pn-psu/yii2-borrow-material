@@ -10,6 +10,10 @@ use suPnPsu\borrowMaterial\models\BorrowreturnSearch;
 use suPnPsu\borrowMaterial\models\BookingsubmitedSearch;
 use suPnPsu\borrowMaterial\models\BookingapprovedSearch;
 use suPnPsu\borrowMaterial\models\BookingsentSearch;
+use suPnPsu\borrowMaterial\models\Bookingmaterial;
+
+use suPnPsu\material\models\Material;
+
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -68,7 +72,7 @@ class BrwretrnController extends Controller
     public function actionIndex()
     {
 
-        Yii::$app->view->title = Yii::t('borrow-material', '��¡������׹') . ' - ' . Yii::t('borrow-material', Yii::$app->controller->module->params['title']);
+        Yii::$app->view->title = Yii::t('borrow-material', 'รายการอนุมัติ') . ' - ' . Yii::t('borrow-material', Yii::$app->controller->module->params['title']);
 
         $searchModel = new BorrowreturnSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
@@ -88,7 +92,7 @@ class BrwretrnController extends Controller
     {
         $model = $this->findModel($id);
 
-        Yii::$app->view->title = Yii::t('borrow-material', '˹����������´') . ' : ' . $model->booking_id . ' - ' . Yii::t('borrow-material', Yii::$app->controller->module->params['title']);
+        Yii::$app->view->title = Yii::t('borrow-material', 'ดูรายละเอียด') . ' : ' . $model->booking_id . ' - ' . Yii::t('borrow-material', Yii::$app->controller->module->params['title']);
 
         return $this->render('view', [
             'model' => $model,
@@ -102,7 +106,7 @@ class BrwretrnController extends Controller
      */
     public function actionCreate()
     {
-        Yii::$app->view->title = Yii::t('borrow-material', '����������') . ' - ' . Yii::t('borrow-material', Yii::$app->controller->module->params['title']);
+        Yii::$app->view->title = Yii::t('borrow-material', 'เพิ่มการอนุมัติ') . ' - ' . Yii::t('borrow-material', Yii::$app->controller->module->params['title']);
 
         $model = new Borrowreturn();
 
@@ -118,7 +122,7 @@ class BrwretrnController extends Controller
                     'type' => 'success',
                     'duration' => 4000,
                     'icon' => 'glyphicon glyphicon-ok-circle',
-                    'message' => Yii::t('borrow-material', '�����Ŷ١��������'),
+                    'message' => Yii::t('borrow-material', 'เพิ่มข้อมูลเรียบร้อย'),
                 ]);
                 return $this->redirect(['view', 'id' => $model->booking_id]);
             } else {
@@ -126,7 +130,7 @@ class BrwretrnController extends Controller
                     'type' => 'danger',
                     'duration' => 4000,
                     'icon' => 'glyphicon glyphicon-remove-circle',
-                    'message' => Yii::t('borrow-material', '���������������'),
+                    'message' => Yii::t('borrow-material', 'เพิ่มข้อมูลไม่สำเร็จ'),
                 ]);
             }
             return $this->redirect(['view', 'id' => $model->booking_id]);
@@ -149,7 +153,7 @@ class BrwretrnController extends Controller
     {
         $model = $this->findModel($id);
 
-        Yii::$app->view->title = Yii::t('borrow-material', '��Ѻ��ا {modelClass}: ', [
+        Yii::$app->view->title = Yii::t('borrow-material', 'ปรับปรุงข้อมูล {modelClass}: ', [
                 'modelClass' => 'Borrowreturn',
             ]) . $model->booking_id . ' - ' . Yii::t('borrow-material', Yii::$app->controller->module->params['title']);
 
@@ -159,7 +163,7 @@ class BrwretrnController extends Controller
                     'type' => 'success',
                     'duration' => 4000,
                     'icon' => 'glyphicon glyphicon-ok-circle',
-                    'message' => Yii::t('borrow-material', '�����Ŷ١��Ѻ��ا����'),
+                    'message' => Yii::t('borrow-material', 'ปรับปรุงข้อมูลเรียบร้อย'),
                 ]);
                 return $this->redirect(['view', 'id' => $model->booking_id]);
             } else {
@@ -167,7 +171,7 @@ class BrwretrnController extends Controller
                     'type' => 'danger',
                     'duration' => 4000,
                     'icon' => 'glyphicon glyphicon-remove-circle',
-                    'message' => Yii::t('borrow-material', '��Ѻ��ا�����������'),
+                    'message' => Yii::t('borrow-material', 'ปรับปรุงข้อมูลไม่สำเร็จ'),
                 ]);
             }
             return $this->redirect(['view', 'id' => $model->booking_id]);
@@ -194,7 +198,7 @@ class BrwretrnController extends Controller
             'type' => 'success',
             'duration' => 4000,
             'icon' => 'glyphicon glyphicon-ok-circle',
-            'message' => Yii::t('borrow-material', '�����Ŷ١ź����'),
+            'message' => Yii::t('borrow-material', 'ลบข้อมูลเรียบร้อย'),
         ]);
 
 
@@ -220,7 +224,7 @@ class BrwretrnController extends Controller
     public function actionApprovedlist()
     {
 
-        Yii::$app->view->title = Yii::t('borrow-material', '��¡�÷��͹��ѵ�����') . ' - ' . Yii::t('borrow-material', Yii::$app->controller->module->params['title']);
+        Yii::$app->view->title = Yii::t('borrow-material', 'รายการที่อนุมัติแล้ว') . ' - ' . Yii::t('borrow-material', Yii::$app->controller->module->params['title']);
 
         $searchModel = new BookingapprovedSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
@@ -234,7 +238,7 @@ class BrwretrnController extends Controller
     public function actionSubmitedlist()
     {
 
-        Yii::$app->view->title = Yii::t('borrow-material', '��¡�÷����蹨ͧ') . ' - ' . Yii::t('borrow-material', Yii::$app->controller->module->params['title']);
+        Yii::$app->view->title = Yii::t('borrow-material', 'รายการที่ยื่นจอง') . ' - ' . Yii::t('borrow-material', Yii::$app->controller->module->params['title']);
 
         $searchModel = new BookingsubmitedSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
@@ -248,7 +252,7 @@ class BrwretrnController extends Controller
     public function actionSentlist()
     {
 
-        Yii::$app->view->title = Yii::t('borrow-material', '��¡�÷���觢ͧ����') . ' - ' . Yii::t('borrow-material', Yii::$app->controller->module->params['title']);
+        Yii::$app->view->title = Yii::t('borrow-material', 'รายการที่ส่งมอบแล้ว') . ' - ' . Yii::t('borrow-material', Yii::$app->controller->module->params['title']);
 
         $searchModel = new BookingsentSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
@@ -261,7 +265,7 @@ class BrwretrnController extends Controller
 
     public function actionSubmitborrow($id)
     {
-        Yii::$app->view->title = Yii::t('borrow-material', '͹��ѵԡ�����') . ' - ' . Yii::t('borrow-material', Yii::$app->controller->module->params['title']);
+        Yii::$app->view->title = Yii::t('borrow-material', 'อนุมัติการยืม') . ' - ' . Yii::t('borrow-material', Yii::$app->controller->module->params['title']);
 
         $model = new Borrowreturn();
 
@@ -287,23 +291,33 @@ class BrwretrnController extends Controller
             }
             if ($model->save()) {
 
+                //  change material available
+                $bookmat = Bookingmaterial::findAll([ 'booking_id' => $id, ]);
+                foreach ($bookmat as $key => $value) {
+                    $material = Material::findOne($value->material_id);
+                    $material->available = 0;
+                    $material->save();
+                }/**/
                 $mdlbooking->entry_status = 2;
-                $mdlbooking->save();
+                if($mdlbooking->save(false)){
+                    Yii::$app->getSession()->setFlash('addflsh', [
+                        'type' => 'success',
+                        'duration' => 4000,
+                        'icon' => 'glyphicon glyphicon-ok-circle',
+                        'message' => Yii::t('borrow-material', 'อนุมัติเรียบร้อย'),
+                    ]);
+                    return $this->redirect(['submitedlist']);
+                }else{
+                    print_r($mdlbooking->getError());
+                    exit;
+                }
 
-                Yii::$app->getSession()->setFlash('addflsh', [
-                    'type' => 'success',
-                    'duration' => 4000,
-                    'icon' => 'glyphicon glyphicon-ok-circle',
-                    'message' => Yii::t('borrow-material', '͹��ѵ�����'),
-                ]);
-                //return $this->redirect(['view', 'id' => $model->booking_id]);
-                return $this->redirect(['submitedlist']);
             } else {
                 Yii::$app->getSession()->setFlash('addflsh', [
                     'type' => 'danger',
                     'duration' => 4000,
                     'icon' => 'glyphicon glyphicon-remove-circle',
-                    'message' => Yii::t('borrow-material', '͹��ѵ������'),
+                    'message' => Yii::t('borrow-material', 'อนุมัติไม่สำเร็จ'),
                 ]);
             }
         }
@@ -319,7 +333,7 @@ class BrwretrnController extends Controller
 
     public function actionSubmitsend($id)
     {
-        Yii::$app->view->title = Yii::t('borrow-material', '�׹�ѹ������ͺ') . ' - ' . Yii::t('borrow-material', Yii::$app->controller->module->params['title']);
+        Yii::$app->view->title = Yii::t('borrow-material', 'ส่งมอบพัสดุ') . ' - ' . Yii::t('borrow-material', Yii::$app->controller->module->params['title']);
 
         $model = $this->findModel($id);
 
@@ -344,7 +358,7 @@ class BrwretrnController extends Controller
                     'type' => 'success',
                     'duration' => 4000,
                     'icon' => 'glyphicon glyphicon-ok-circle',
-                    'message' => Yii::t('borrow-material', '���ͺ����'),
+                    'message' => Yii::t('borrow-material', 'ส่งมอบเรียบร้อย'),
                 ]);
                 //return $this->redirect(['view', 'id' => $model->booking_id]);
                 return $this->redirect(['approvedlist']);
@@ -353,7 +367,7 @@ class BrwretrnController extends Controller
                     'type' => 'danger',
                     'duration' => 4000,
                     'icon' => 'glyphicon glyphicon-remove-circle',
-                    'message' => Yii::t('borrow-material', '���ͺ�����'),
+                    'message' => Yii::t('borrow-material', 'ส่งมอบไม่สำเร็จ'),
                 ]);
             }
         }
@@ -367,7 +381,7 @@ class BrwretrnController extends Controller
 
     public function actionSubmitreturn($id)
     {
-        Yii::$app->view->title = Yii::t('borrow-material', '�׹�ѹ����Ѻ�׹') . ' - ' . Yii::t('borrow-material', Yii::$app->controller->module->params['title']);
+        Yii::$app->view->title = Yii::t('borrow-material', 'รับคืนพัสดุ') . ' - ' . Yii::t('borrow-material', Yii::$app->controller->module->params['title']);
 
         $model = $this->findModel($id);
 
@@ -384,6 +398,13 @@ class BrwretrnController extends Controller
         if ($model->load(Yii::$app->request->post())) {
             if ($model->save()) {
 
+                $bookmat = Bookingmaterial::findAll([ 'booking_id' => $id, ]);
+                foreach ($bookmat as $key => $value) {
+                    $material = Material::findOne($value->material_id);
+                    $material->available = 1;
+                    $material->save();
+                }
+
                 $mdlbooking->entry_status = 4;
                 $mdlbooking->save();
 
@@ -391,7 +412,7 @@ class BrwretrnController extends Controller
                     'type' => 'success',
                     'duration' => 4000,
                     'icon' => 'glyphicon glyphicon-ok-circle',
-                    'message' => Yii::t('borrow-material', '�Ѻ�׹����'),
+                    'message' => Yii::t('borrow-material', 'รับคืนเรียบร้อย'),
                 ]);
                 //return $this->redirect(['view', 'id' => $model->booking_id]);
                 return $this->redirect(['approvedlist']);
@@ -400,7 +421,7 @@ class BrwretrnController extends Controller
                     'type' => 'danger',
                     'duration' => 4000,
                     'icon' => 'glyphicon glyphicon-remove-circle',
-                    'message' => Yii::t('borrow-material', '�Ѻ�׹�����'),
+                    'message' => Yii::t('borrow-material', 'รับคืนไม่สำเร็จ'),
                 ]);
             }
         }
