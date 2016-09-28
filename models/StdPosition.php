@@ -64,4 +64,8 @@ class StdPosition extends \yii\db\ActiveRecord
     {
         return $this->hasOne(User::className(), ['id' => 'saveby']);
     }
+    
+    public static function getList(){
+        return \yii\helpers\ArrayHelper::map(self::find()->all(),'id','title');
+    }
 }

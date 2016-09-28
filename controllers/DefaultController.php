@@ -33,4 +33,41 @@ class DefaultController extends Controller
             'dataProvider' => $dataProvider,
         ]);
     }
+    
+    
+    public function actionQaddposition()
+    {
+        $model = new StdPosition();
+        $model->saveby = Yii::$app->user->id;
+        if ($model->load(Yii::$app->request->post())) {
+            if ($model->save()) {
+                echo 1;
+            } else {
+                echo 0;
+            }
+
+        } else {
+            return $this->renderAjax('_formtype', [
+                'model' => $model,
+            ]);
+        }
+    }
+
+    public function actionQaddbelongto()
+    {
+        $model = new StdBelongto();
+        $model->saveby = Yii::$app->user->id;
+        if ($model->load(Yii::$app->request->post())) {
+            if ($model->save()) {
+                echo 1;
+            } else {
+                echo 0;
+            }
+
+        } else {
+            return $this->renderAjax('_formbel', [
+                'model' => $model,
+            ]);
+        }
+    }
 }

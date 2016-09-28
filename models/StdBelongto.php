@@ -69,4 +69,8 @@ class StdBelongto extends \yii\db\ActiveRecord
     public function getDropdown(){
         return ArrayHelper::map(self::find()->all(), 'id', 'title');
     }
+    
+    public static function getList(){
+        return \yii\helpers\ArrayHelper::map(self::find()->all(),'id','title');
+    }
 }
