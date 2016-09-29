@@ -43,8 +43,8 @@ class Module extends \yii\base\Module
         }/**/
 
 
-		Yii::$app->formatter->locale = 'th_TH';
-		Yii::$app->formatter->calendar = \IntlDateFormatter::TRADITIONAL;
+		//Yii::$app->formatter->locale = 'th_TH';
+		//Yii::$app->formatter->calendar = \IntlDateFormatter::TRADITIONAL;
                               
         
 		$this->params['adminModule'] = [5,18];

@@ -4,6 +4,8 @@ namespace suPnPsu\borrowMaterial\controllers;
 use Yii;
 use yii\web\Controller;
 use suPnPsu\borrowMaterial\models\SubmitedcheckSearch;
+use suPnPsu\borrowMaterial\models\StdPosition;
+use suPnPsu\borrowMaterial\models\StdBelongto;
 /**
  * Default controller for the `borrowMaterial` module
 =======
