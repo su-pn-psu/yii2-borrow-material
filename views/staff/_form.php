@@ -28,10 +28,11 @@ use kartik\widgets\DatePicker;
     <?php if ($this->context->action->id == 'submitborrow') { ?>
         <?= $form->field($model, 'confirm_status', [
             'horizontalCssClasses' => [
-                'label' => 'col-md-4',
+                'label' => 'col-md-3',
                 'wrapper' => 'col-md-8',
+                'hint' => 'col-md-12 col-md-offset-3',
             ]
-        ])->inline()->radioList($model->approvelist) ?>
+        ])->inline()->radioList($model->approvelist)->hint($unavial == 1 ? '<code>โปรดระวัง มีรายการที่สถานะการยืมไม่พร้อมอยู่</code>' : false) ?>
         <?php //= $form->field($model, 'confirm_status')->textInput() ?>
         <?= $form->field($model, 'confirm_comment')->textInput(['maxlength' => true]) ?>
 
@@ -56,18 +57,6 @@ use kartik\widgets\DatePicker;
         <?= $form->field($model, 'return_because')->textInput(['maxlength' => true]) ?>
 
     <?php } ?>
-
-    <?php //= $form->field($model, 'confirm_staff_id')->textInput() ?>
-
-    <?php //= $form->field($model, 'confirm_at')->textInput() ?>
-
-    <?php //= $form->field($model, 'deliver_staff_id')->textInput() ?>
-
-    <?php //= $form->field($model, 'deliver_at')->textInput() ?>
-
-    <?php //= $form->field($model, 'return_staff_id')->textInput() ?>
-
-    <?php //= $form->field($model, 'return_at')->textInput() ?>
 
     <?= $form->field($model, 'entry_note')->textarea(['rows' => 6]) ?>
 

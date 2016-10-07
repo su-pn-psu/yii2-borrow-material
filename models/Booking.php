@@ -46,7 +46,6 @@ class Booking extends \yii\db\ActiveRecord
         public $promisetext = 'ข้าพเจ้าขอรับผิดชอบต่อพัสดุ-ครุภัณฑ์ ที่ขอยืมใช้ หากเกิดชำรุด เสียหายแม้ว่าด้วยกรณีใด ข้าพเจ้ายินดีชดใช้ค่าเสียหายที่เกิดขึ้น ตามระเบียบทุกประการอีกทั้งให้บัตรนักศึกษาเพื่อเป็นหลักฐานยืนยันทุกครั้งที่มายืมใช้อุปกรณ์ และชำระค่าซ่อมบำรุง พัสดุ-ครุภัณฑ์ ตามระเบียบขอฝ่ายพัสดุ องค์การบริหาร องค์การนักศึกษา ปี 2559';
 
 
-<<<<<<< HEAD
 //    public function init()
 //    {
 //        parent::init();
@@ -60,17 +59,6 @@ class Booking extends \yii\db\ActiveRecord
 //        }
 //    }
 
-=======
-        foreach($this->entstat as $key => $value){
-            $this->entstat[$key] = Yii::t('borrow-material', $value);
-        }
-
-        foreach($this->isinlist as $key => $value){
-            $this->entstat[$key] = Yii::t('borrow-material', $value);
-        }
-    }
-	  
->>>>>>> origin/master
     public function rules()
     {
         return [
@@ -93,11 +81,7 @@ class Booking extends \yii\db\ActiveRecord
     }
     public function validateDates(){
         //if(strtotime($this->acquire_at) <= strtotime($this->booking_at->modify('+3 day'))){
-<<<<<<< HEAD
         if(strtotime($this->acquire_at) < strtotime($this->booking_at)){
-=======
-        if(strtotime($this->acquire_at) <= strtotime($this->booking_at)){
->>>>>>> origin/master
             //$this->addError('booking_at','Please give correct Start and End dates');
             $this->addError('acquire_at','Please give correct Start and End dates');
         }

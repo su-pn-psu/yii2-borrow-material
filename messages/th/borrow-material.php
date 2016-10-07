@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?php 
 return [
 	// general
@@ -63,70 +62,4 @@ return [
     'allborrow' => 'รายการแจ้งยืมทั้งหมด',
 	'insideuniv' => 'ภายในมหาวิทยาลัยฯ',
 	'outsideuniv' => 'ภายนอกมหาวิทยาลัยฯ',
-=======
-<?php 
-return [
-	// general
-	'Login' => 'เข้าสู่ระบบ',
-	'Logout' => 'ออกจากระบบ',
-	'Signup' => 'สมัครสมาชิก',
-	'contact' => 'ติดต่อเรา',
-	'about' => 'เกี่ยวกับเรา',
-	'AppInstruction' => 'คำแนะนำการใช้งาน',
-	'footer_problem' => 'พบปัญหาในการใช้งาน ติดต่อ - ',
-	'name' => 'ชื่อ',
-	'lastname' => 'นามสกุล',
-    'detail' => 'รายละเอียด',
-	'Create' => 'สร้างใหม่',
-	'create' => 'สร้าง',
-	'created!' => 'สร้างแล้ว!',
-	'save' => 'บันทึก',
-	'Reset' => 'ตั้งค่าใหม่',
-	'Manage' => 'จัดการ',
-    'manage' => 'จัดการ',
-	'Update' => 'แก้ไข',
-	'updated!' => 'แก้ไขแล้ว!',
-	'UpdateID' => 'แก้ไขหมายเลข : ',
-	'Delete' => 'ลบ',
-	'deleted!' => 'ลบแล้ว!',
-	'download' => 'ดาวน์โหลด',
-	'delete_sure?' => 'คุณแน่ใจว่าต้องการลบใช่หรือไม่',
-	'view' => 'ดูรายละเอียด',
-	'searchAll' => 'ค้นหาทั้งหมด',
-	'Search' => 'ค้นหา',
-	'show' => 'แสดง',
-	'notshow' => 'ไม่แสดง',
-   	'1stPagi' => 'รายการแรกสุด',
-   	'lastPagi' => 'รายการท้ายสุด',
-	'adminEmail' => 'abdul-aziz.d@psu.ac.th',
-	'adminName' => 'อับดุลอาซิส ดือราแม',
-	'adminfooterIntercom' => 'โทรศัพท์ภายใน : 2618',
-	'indexmain' => 'หน้าแรก',
-	'print' => 'พิมพ์',
-	'attachment' => 'ไฟล์แนบ',
-	'no_file_upload' => 'ไม่มีไฟล์แนบ',
-	'responsive_web' => 'ใช้งานได้กับทุกขนาดหน้าจอ',
-	'save&go'=>'เซฟและบันทึกต่อ',
-	'Are you sure you want to delete this item?'=>'คุณแน่ใจว่าต้องการลบ?',
-	'intro'=>'คู่มือการใช้งาน',
-    'new'=>'ยืมใหม่',
-    'data'=>'ข้อมูลทั้งหมด',
-	// module
-	'eqbookshort' => 'ขอใช้พัสดุ',
-    'roombookshort' => 'ขอใช้ห้อง',
-    'tribookshort' => 'ขอใช้จักรยานยนต์สามล้อ',
-    'approvingmenu' => 'อนุมัติ/ส่งของ/คืน',
-    'i have read rule' => 'ฉันได้อ่านระเบียบของพัสดุ <a href="/advanced/backend/web/media/booking/rule.pdf" target="_blank">click</a> แล้ว',
-
-    // booking
-	'BookingsSys' => 'ระบบยืม-คืนพัสดุ',
-    'draftform' => 'ฟอร์มที่ร่าง',
-    'offering' => 'รายการยื่นเสนอ',
-    'approved' => 'ผลการพิจารณา',
-    'borrowed' => 'รายการที่ยืมอยู่',
-    'returned' => 'รายการที่คืน',
-    'allborrow' => 'รายการแจ้งยืมทั้งหมด',
-	'insideuniv' => 'ภายในมหาวิทยาลัยฯ',
-	'outsideuniv' => 'ภายนอกมหาวิทยาลัยฯ',
->>>>>>> origin/master
 ];

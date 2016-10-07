@@ -35,20 +35,11 @@ use suPnPsu\borrowMaterial\models\Booking;
                 //'filter'=> Booking::getEntrystat(),
                 'value' => function($model, $key, $index, $column){
                     if($model->entry_status == 4 ){
-<<<<<<< HEAD
                         if($model->return_at < date('Y-m-d H:i')){
-=======
-                        if($model->return_at < Time()){
->>>>>>> origin/master
                             return '<span class="label label-danger">เกินเวลาขอยืม</span>';
                         }else{
                             return '<span class="label label-warning">ยังไม่คืน</span>';
                         }
-<<<<<<< HEAD
-=======
-                        }elseif($model->entry_status == 6){
-                        return '<span class="label label-success">คืนแล้ว</span>';
->>>>>>> origin/master
                     }
                 },
                 'format'=>'html',
@@ -56,7 +47,6 @@ use suPnPsu\borrowMaterial\models\Booking;
                     'width' => '80px',
                 ],
             ],
-<<<<<<< HEAD
             [
                 'class' => 'yii\grid\ActionColumn',
                 'template' => '{viewbooking}',
@@ -74,23 +64,13 @@ use suPnPsu\borrowMaterial\models\Booking;
         'pager' => [
             'firstPageLabel' => Yii::t( 'app', 'หน้าแรกสุด'),
             'lastPageLabel' => Yii::t( 'app', 'หน้าท้ายสุด'),
-=======
-        ],
-        'pager' => [
-            'firstPageLabel' => Yii::t( 'app', '1stPagi'),
-            'lastPageLabel' => Yii::t( 'app', 'lastPagi'),
->>>>>>> origin/master
         ],
         'responsive'=>true,
         'hover'=>true,
         'toolbar'=> false,
         'panel'=>[
             'type'=>GridView::TYPE_INFO,
-<<<<<<< HEAD
             'heading'=> Html::icon('import').' '.Html::encode('รายการที่ไม่ส่ง'),
-=======
-            'heading'=> Html::icon('cloud-upload').' '.Html::encode('รายการที่ไม่ส่ง'),
->>>>>>> origin/master
         ],
     ]); ?>
 </div>

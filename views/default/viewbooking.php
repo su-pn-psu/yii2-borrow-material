@@ -14,7 +14,6 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="panel panel-success">
 	<div class="panel-heading">
 		<span class="panel-title"><?= Html::icon('eye').' '.Html::encode($this->title) ?></span>
-<<<<<<< HEAD
 		<?php
 		if($mdlbooking->entry_status < 2){
 			echo Html::a( Html::icon('fire').' '.Yii::t('borrow-material', 'ลบ'), ['delete', 'id' => $mdlbooking->id], [
@@ -27,16 +26,6 @@ $this->params['breadcrumbs'][] = $this->title;
 			echo Html::a( Html::icon('pencil').' '.Yii::t('borrow-material', 'ปรับปรุงข้อมูล'), ['update', 'id' => $mdlbooking->id], ['class' => 'btn btn-primary panbtn']);
 		}
 		 ?>
-=======
-		<?= Html::a( Html::icon('fire').' '.Yii::t('borrow-material', 'ลบ'), ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger panbtn',
-            'data' => [
-                'confirm' => Yii::t('borrow-material', 'คุณแน่ใจว่าต้องการลบรายการนี้?'),
-                'method' => 'post',
-            ],
-        ]) ?>
-		<?= Html::a( Html::icon('pencil').' '.Yii::t('borrow-material', 'Update'), ['ปรับปรุงข้อมูล', 'id' => $model->id], ['class' => 'btn btn-primary panbtn']) ?>
->>>>>>> origin/master
 	</div>
 	<div class="panel-body">
 		<div class="row">
@@ -58,7 +47,6 @@ $this->params['breadcrumbs'][] = $this->title;
 				</p></div>
 		</div>
 		<div class="row">
-<<<<<<< HEAD
 			<div class="col-md-10 col-md-offset-2">
 					<?php
 //					echo $mdluser->profile->attributeLabels()['user_id'].' <u>'.$mdlbooking->user->profile->user_id.'</u> ';
@@ -81,15 +69,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
 				</p>
 			</div>
-=======
-			<div class="col-md-10 col-md-offset-2"><p>
-					<?php
-					echo $mdluser->profile->attributeLabels()['user_id'].' <u>'.$mdlbooking->user->profile->user_id.'</u> ';
-					echo $mdluser->profile->attributeLabels()['firstname'].' <u>'.$mdlbooking->user->profile->firstname.'</u> ';
-					echo $mdluser->profile->attributeLabels()['lastname'].' <u>'.$mdlbooking->user->profile->lastname.'</u> ';
-					?>
-				</p></div>
->>>>>>> origin/master
 		</div>
 		<div class="row">
 			<div class="col-md-11 col-md-offset-1"><p>
@@ -140,7 +119,6 @@ $this->params['breadcrumbs'][] = $this->title;
 					<?php echo $mdlbooking->promisetext; ?>
 				</p></div>
 		</div>
-<<<<<<< HEAD
 		<div class="row">
 			<div class="col-md-4 col-md-offset-2 text-center">
 				<p style="padding-top:50px;"></p>
@@ -190,8 +168,6 @@ $this->params['breadcrumbs'][] = $this->title;
             }
             ?>
         </div>
-=======
->>>>>>> origin/master
 	</div>
 </div>
 </div>

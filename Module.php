@@ -23,11 +23,7 @@ class Module extends \yii\base\Module
      * You can config site-end on config main moudule.
      * /frontend/ or /backend/
      */
-<<<<<<< HEAD
     //public $siteend = '/frontend/';
-=======
-    public $siteend = '/frontend/';
->>>>>>> origin/master
 
     /**
      * @inheritdoc
@@ -36,11 +32,7 @@ class Module extends \yii\base\Module
     {
         parent::init();
         
-<<<<<<< HEAD
         //$this->setViewPath($this->getViewPath().$this->siteend);  
-=======
-        $this->setViewPath($this->getViewPath().$this->siteend);  
->>>>>>> origin/master
 
         if (!isset(Yii::$app->i18n->translations['borrow-material'])) {
             Yii::$app->i18n->translations['borrow-material'] = [
@@ -51,13 +43,8 @@ class Module extends \yii\base\Module
         }/**/
 
 
-<<<<<<< HEAD
 		Yii::$app->formatter->locale = 'th_TH';
 		Yii::$app->formatter->calendar = \IntlDateFormatter::TRADITIONAL;
-=======
-		//Yii::$app->formatter->locale = 'th_TH';
-		//Yii::$app->formatter->calendar = \IntlDateFormatter::TRADITIONAL;
->>>>>>> origin/master
                               
         
 		$this->params['adminModule'] = [5,18];

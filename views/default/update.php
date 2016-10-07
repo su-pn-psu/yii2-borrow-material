@@ -14,7 +14,6 @@ $this->params['breadcrumbs'][] = Yii::t('borrow-material', 'ปรับปร�
     <div class="panel panel-warning">
         <div class="panel-heading">
             <span class="panel-title"><?= Html::icon('edit') . ' ' . Html::encode($this->title) ?></span>
-<<<<<<< HEAD
             <?
             if($mdlbooking->entry_status < 2) {
                 echo Html::a(Html::icon('fire') . ' ' . Yii::t('borrow-material', 'ลบ'), ['delete', 'id' => $model->id], [
@@ -27,16 +26,6 @@ $this->params['breadcrumbs'][] = Yii::t('borrow-material', 'ปรับปร�
                 echo Html::a(Html::icon('pencil') . ' ' . Yii::t('borrow-material', 'เพิ่มการจอง'), ['create'], ['class' => 'btn btn-info panbtn']);
             }
             ?>
-=======
-            <?= Html::a(Html::icon('fire') . ' ' . Yii::t('borrow-material', 'ลบ'), ['delete', 'id' => $model->id], [
-                'class' => 'btn btn-danger panbtn',
-                'data' => [
-                    'confirm' => Yii::t('borrow-material', 'คุณแน่ใจว่าต้องการลบรายการนี้?'),
-                    'method' => 'post',
-                ],
-            ]) ?>
-            <?= Html::a(Html::icon('pencil') . ' ' . Yii::t('borrow-material', 'เพิ่มการจอง'), ['create'], ['class' => 'btn btn-info panbtn']) ?>
->>>>>>> origin/master
         </div>
         <?php
         $session = Yii::$app->session;
