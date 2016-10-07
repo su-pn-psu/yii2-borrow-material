@@ -18,11 +18,10 @@ $this->params['breadcrumbs'][] = $this->title;
 		</div>
 		<div class="panel-body">
         <?= $this->render('_bookingdetail', [
-            'mdluser' => $mdluser,
             'mdlbooking' => $mdlbooking,
         ]) ?>
             <div class="row">
-                <div class="col-md-4 col-md-offset-2">
+                <div class="col-md-4 col-md-offset-2 text-center">
                     <p style="padding-top:50px;"></p>
                     <p>ลงชื่อ ................... ผู้ขอยืม</p>
                     <?php
@@ -31,12 +30,12 @@ $this->params['breadcrumbs'][] = $this->title;
                     echo 'วันที่ '.Yii::$app->formatter->asDate($mdlbooking->create_at, 'long');
                     ?>
                 </div>
-                <div class="col-md-4 col-md-offset-2">
+                <div class="col-md-4 col-md-offset-2 text-center">
 
                     <?php
                     if($this->context->action->id == 'submitborrow') {
                         echo '<p style="padding-top:40px;"></p><p>ลงชื่อ ................... ผู้อนุญาต</p>';
-                        echo '<p>'.$mdlbooking->user->profile->firstname.' '.$mdlbooking->user->profile->lastname.'</p>';
+                        echo '<p> ................... </p>';
                         echo '<p>'.$mdlbooking->attributeLabels()['position_id'].' ....................... </p>';
                         echo 'วันที่ ....................... ';
                     }elseif($this->context->action->id == 'submitsend' || $this->context->action->id == 'submitreturn'){
@@ -53,7 +52,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
                 <?php
                 if($this->context->action->id == 'submitreturn'){
-                    echo '<div class="col-md-7 col-md-offset-5"><p>';
+                    echo '<div class="col-md-7 col-md-offset-5 text-center"><p>';
                     echo $model->deliver_status==1 ? '&#x2611; ส่ง ' : '&#x2610; ส่ง ';
                     echo $model->deliver_status==0 ? ' &#x2611;  ไม่ส่ง' : ' &#x2610; ไม่ส่ง';
                     echo '<p> ผู้ส่ง ' . $model->confirmStaff->profile->firstname . ' ' . $model->confirmStaff->profile->lastname.'</p>' ;
@@ -62,9 +61,32 @@ $this->params['breadcrumbs'][] = $this->title;
                 ?>
 
             </div>
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped table-hover bg-info">
+                    <thead>
+                        <tr>
+                            <td width="150px">ID</td>
+                            <td>ชื่อ</td>
+                            <th>ยี่ห้อ/รายละเอียด</th>
+                            <?php echo ($this->context->action->id == 'submitsend' || $this->context->action->id == 'submitreturn') ? false : '<td width="150px">สถานะการยืม</td>'; ?>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                            foreach($mdlbooking->bookingmaterials as $key => $value){ ?>
+                                <tr>
+                                    <td><?php echo Html::encode($value->material_id); ?></td>
+                                    <td><?php echo Html::encode($value->material->title); ?></td>
+                                    <td><?php echo Html::encode($value->material->brand); ?></td>
+                                    <?php echo ($this->context->action->id == 'submitsend' || $this->context->action->id == 'submitreturn') ? false : '<td>'.$value->material->availableLabel.'</td>'; ?>
+                                </tr>
+                        <?  $value->material->available ==0 ? $unavial = 1 : NULL; } ?>
+                    </tbody>
+                </table>
+            </div>
 		 <?= $this->render('_form', [
 			  'model' => $model,
-			  //'mdlbooking' => $mdlbooking,
+			  'unavial' => $unavial,
 		 ]) ?>
 		</div>
 	</div>

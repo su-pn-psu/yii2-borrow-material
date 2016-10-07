@@ -28,12 +28,19 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],
             ],
             [
+<<<<<<< HEAD
                 'attribute' => 'user_id',
                 'value' => 'user.profile.fullname',
             ],
             [
                 'attribute' => 'belongto_id',
                 'value' => 'belongto.title',
+=======
+                'attribute' => 'entry_status',
+                'headerOptions' => [
+                    'width' => '100px',
+                ],
+>>>>>>> origin/master
             ],
             'booking_at',
             //'user_id',
@@ -42,12 +49,16 @@ $this->params['breadcrumbs'][] = $this->title;
             'purpose',
             //'isin_university',
             //'university_place',
+<<<<<<< HEAD
             [
                 'attribute' => 'acquire_at',
                 'headerOptions' => [
                     'width' => '100px',
                 ],
             ],
+=======
+            'acquire_at',
+>>>>>>> origin/master
             // 'return_at',
             [
                 'class' => 'yii\grid\ActionColumn',
@@ -69,8 +80,13 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ],
         'pager' => [
+<<<<<<< HEAD
             'firstPageLabel' => Yii::t('app', 'หน้าแรกสุด'),
             'lastPageLabel' => Yii::t('app', 'หน้าท้ายสุด'),
+=======
+            'firstPageLabel' => Yii::t('app', '1stPagi'),
+            'lastPageLabel' => Yii::t('app', 'lastPagi'),
+>>>>>>> origin/master
         ],
         'responsive' => true,
         'hover' => true,
@@ -84,7 +100,11 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
         'panel' => [
             'type' => GridView::TYPE_INFO,
+<<<<<<< HEAD
             'heading' => Html::icon('check') . ' ' . Html::encode($this->title),
+=======
+            'heading' => Html::icon('user') . ' ' . Html::encode($this->title),
+>>>>>>> origin/master
         ],
     ]); ?>
     <?php /* adzpire grid tips

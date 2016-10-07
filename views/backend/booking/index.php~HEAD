@@ -55,15 +55,15 @@ $this->params['breadcrumbs'][] = $this->title;
 				],
         ],
 		'pager' => [
-			'firstPageLabel' => Yii::t( 'app', '1stPagi'),
-			'lastPageLabel' => Yii::t( 'app', 'lastPagi'),
+			'firstPageLabel' => Yii::t( 'borrow-material', 'หน้าแรกสุด'),
+			'lastPageLabel' => Yii::t( 'borrow-material', 'หน้าท้ายสุด'),
 		],
 		'responsive'=>true,
 		'hover'=>true,
 		'toolbar'=> [
 			['content'=>
-				Html::a(Html::icon('plus'), ['create'], ['class'=>'btn btn-success', 'title'=>Yii::t('app', 'Add Book')]).' '.
-				Html::a(Html::icon('repeat'), ['grid-demo'], ['data-pjax'=>0, 'class'=>'btn btn-default', 'title'=>Yii::t('app', 'Reset Grid')])
+				Html::a(Html::icon('plus'), ['create'], ['class'=>'btn btn-success', 'title'=>Yii::t('borrow-material', 'เพิ่มการจอง')]).' '.
+				Html::a(Html::icon('repeat'), ['grid-demo'], ['data-pjax'=>0, 'class'=>'btn btn-default', 'title'=>Yii::t('borrow-material', 'รีเฟรชรายการ')])
 			],
 			//'{export}',
 			'{toggleData}',

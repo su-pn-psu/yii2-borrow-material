@@ -26,6 +26,12 @@ $this->params['breadcrumbs'][] = $this->title;
 			  'mdluser' => $mdluser,
 			  'belongtolist' => $belongtolist,
 			  'positionlist' => $positionlist,
+<<<<<<< HEAD
+=======
+			  'availmatlist' => $availmatlist,
+			  'searchMaterial' => $searchMaterial,
+			  'dataProviderMaterial' => $dataProviderMaterial,
+>>>>>>> origin/master
 			  'items' => $items,
 		 ]) ?>
 		</div>

@@ -58,10 +58,14 @@ jQuery(".dynamicform_wrapper").on("afterDelete", function(e) {
         //'validateOnChange' => true,
         //'enableAjaxValidation' => true,
         //	'enctype' => 'multipart/form-data'
+<<<<<<< HEAD
     ]);
     $session = Yii::$app->session;
     $crform = $session->get('create-form');
     ?>
+=======
+    ]); ?>
+>>>>>>> origin/master
 
     <?php //= $form->field($model, 'entry_status')->textInput() ?>
     <div class="col-md-1 col-md-offset-1">
@@ -98,6 +102,7 @@ jQuery(".dynamicform_wrapper").on("afterDelete", function(e) {
     </div>
     <div class="form-group">
         <div class="col-md-10 col-md-offset-2">
+<<<<<<< HEAD
             <p>
                 ข้าพเจ้า
                 <u><?= $mdluser->profile->fullname; ?></u>
@@ -112,13 +117,22 @@ jQuery(".dynamicform_wrapper").on("afterDelete", function(e) {
                 <u><?= $mdluser->profile->resultInfo->factory; ?></u>
 
             </p>
+=======
+            <?php
+            echo $mdluser->profile->attributeLabels()['user_id'] . ' <u>' . $mdluser->profile->user_id . '</u> ';
+            echo $mdluser->profile->attributeLabels()['fullname'] . ' <u>' . $mdluser->profile->fullname . '</u> ';
+            ?>
+>>>>>>> origin/master
         </div>
     </div>
     <div class="form-group">
         <div class="col-md-6">
             <?php Pjax::begin(['id' => 'belpjax']); ?>
             <?php
+<<<<<<< HEAD
             //$model->belongto_id = isset($crform['Booking']['belongto_id']) ? $crform['Booking']['belongto_id'] : false;
+=======
+>>>>>>> origin/master
             echo $form->field($model, 'belongto_id', [
                 'horizontalCssClasses' => [
                     'label' => 'col-md-4',
@@ -142,7 +156,10 @@ jQuery(".dynamicform_wrapper").on("afterDelete", function(e) {
         <div class="col-md-6">
             <?php Pjax::begin(['id' => 'posipjax']); ?>
             <?php
+<<<<<<< HEAD
             //$model->position_id = isset($crform['Booking']['position_id']) ? $crform['Booking']['position_id'] : false;
+=======
+>>>>>>> origin/master
             echo $form->field($model, 'position_id', [
                 'horizontalCssClasses' => [
                     'label' => 'col-md-3',
@@ -166,27 +183,39 @@ jQuery(".dynamicform_wrapper").on("afterDelete", function(e) {
     </div>
     <div class="form-group">
         <div class="col-md-12">
+<<<<<<< HEAD
             <?php
             if ($model->isNewRecord) {
                 $model->purpose = isset($crform['Booking']['purpose']) ? $crform['Booking']['purpose'] : false;
             }
             echo $form->field($model, 'purpose', [
+=======
+            <?= $form->field($model, 'purpose', [
+>>>>>>> origin/master
                 'horizontalCssClasses' => [
                     'label' => 'col-md-2',
                     'wrapper' => 'col-md-10',
                 ]
+<<<<<<< HEAD
             ])->textInput([
                 'maxlength' => true,
                 ]) ?>
+=======
+            ])->textInput(['maxlength' => true]) ?>
+>>>>>>> origin/master
         </div>
     </div>
     <div class="form-group">
         <div class="col-md-5">
+<<<<<<< HEAD
             <?php
             if ($model->isNewRecord) {
                 $model->isin_university = isset($crform['Booking']['isin_university']) ? $crform['Booking']['isin_university'] : false;
             }
             echo $form->field($model, 'isin_university', [
+=======
+            <?= $form->field($model, 'isin_university', [
+>>>>>>> origin/master
                 'horizontalCssClasses' => [
                     'label' => 'col-md-4',
                     'wrapper' => 'col-md-8',
@@ -194,18 +223,26 @@ jQuery(".dynamicform_wrapper").on("afterDelete", function(e) {
             ])->inline()->radioList($model->getEntryisinUni()) ?>
         </div>
         <div class="col-md-7">
+<<<<<<< HEAD
             <?php
             if ($model->isNewRecord) {
                 $model->university_place = isset($crform['Booking']['university_place']) ? $crform['Booking']['university_place'] : false;
             }
             echo $form->field($model, 'university_place', [
+=======
+            <?= $form->field($model, 'university_place', [
+>>>>>>> origin/master
                 'horizontalCssClasses' => [
                     'label' => 'col-md-3',
                     'wrapper' => 'col-md-9',
                 ]
+<<<<<<< HEAD
             ])->textInput([
                 'maxlength' => true,
             ]) ?>
+=======
+            ])->textInput(['maxlength' => true]) ?>
+>>>>>>> origin/master
         </div>
     </div>
     <div class="padding-xxs">
@@ -215,6 +252,7 @@ jQuery(".dynamicform_wrapper").on("afterDelete", function(e) {
     <div class="form-group">
         <div class="col-md-12">
             <?php
+<<<<<<< HEAD
 
             //isset($crform['Booking']['university_place']) ? $crform['Booking']['university_place'] : false,
             if ($model->isNewRecord) {
@@ -236,6 +274,15 @@ jQuery(".dynamicform_wrapper").on("afterDelete", function(e) {
 
             echo $form->field($model, 'rangedatetime', [
                 //'enableAjaxValidation' => true,
+=======
+            $model->booking_at = date('Y-m-d  H:i');
+            $model->acquire_at = date('Y-m-d  H:i', strtotime('+3 days'));
+            $model->return_at = date('Y-m-d  H:i', strtotime('+3 days'));
+            $model->return_at = date('Y-m-d  H:i', strtotime('+3 days'));
+
+            echo $form->field($model, 'rangedatetime', [
+                'enableAjaxValidation' => true,
+>>>>>>> origin/master
                 'inputTemplate' => '<div class="input-group">{input}<span class="input-group-addon"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></span></div>',
                 'horizontalCssClasses' => [
                     'label' => 'col-md-2',
@@ -250,12 +297,16 @@ jQuery(".dynamicform_wrapper").on("afterDelete", function(e) {
                 'endAttribute' => 'return_at',
                 'pluginOptions' => [
                     'timePicker' => true,
+<<<<<<< HEAD
                     //'startDate' => date('Y-m-d', strtotime("+3 day")),
                     'minDate' => date('Y-m-d', strtotime("+3 day")),
+=======
+>>>>>>> origin/master
                     'timePickerIncrement' => 15,
                     'timePicker24Hour' => true,
                     'locale' => ['format' => 'Y-m-d H:i'],
                 ],
+<<<<<<< HEAD
                 'pluginEvents' => [
                     "apply.daterangepicker" => 'function() {
 
@@ -267,24 +318,38 @@ jQuery(".dynamicform_wrapper").on("afterDelete", function(e) {
                         $("#aqdate").datetimepicker("setStartDate", res[0]);
                     }',
                 ],
+=======
+>>>>>>> origin/master
             ]);
             ?>
         </div>
     </div>
     <?php
     echo $form->field($model, 'acquire_at', [
+<<<<<<< HEAD
         //'enableAjaxValidation' => true,
+=======
+        'enableAjaxValidation' => true,
+>>>>>>> origin/master
         'horizontalCssClasses' => [
             'label' => 'col-md-2',
             'wrapper' => 'col-md-10',
         ]
     ])->widget(DateTimePicker::classname(), [
+<<<<<<< HEAD
         'options' => ['id' => 'aqdate','placeholder' => 'Enter event time ...'],
         'type' => DateTimePicker::TYPE_COMPONENT_PREPEND,
         'pluginOptions' => [
             'autoclose' => true,
             'locale' => ['format' => 'Y-m-d H:i'],
             'startDate' => date('Y-m-d', strtotime("+3 day")),
+=======
+        'options' => ['placeholder' => 'Enter event time ...'],
+        'type' => DateTimePicker::TYPE_COMPONENT_APPEND,
+        'pluginOptions' => [
+            'autoclose' => true,
+            'locale' => ['format' => 'Y-m-d H:i'],
+>>>>>>> origin/master
         ]
     ]);
     ?>
@@ -310,7 +375,11 @@ jQuery(".dynamicform_wrapper").on("afterDelete", function(e) {
         //}
         ?>
         <?php if ($model->isNewRecord or $model->entry_status == 0) {
+<<<<<<< HEAD
             echo Html::submitButton(Html::icon('play') . ' ' . Yii::t('borrow-material', 'ยื่นส่งการจอง'), [
+=======
+            echo Html::submitButton(Html::icon('play') . ' ' . Yii::t('borrow-material', 'ยื่นส่งการจองทันที'), [
+>>>>>>> origin/master
                 'class' => 'btn btn-danger',
                 'name'=>'sng',
                 'data' => [
@@ -320,7 +389,11 @@ jQuery(".dynamicform_wrapper").on("afterDelete", function(e) {
             ]);
         } ?>
         <?php if (!$model->isNewRecord) {
+<<<<<<< HEAD
             echo Html::a(Html::icon('refresh') . ' ' . Yii::t('borrow-material', 'ยกเลิก'), ['index'], ['class' => 'btn btn-warning']);
+=======
+            echo Html::resetButton(Html::icon('refresh') . ' ' . Yii::t('borrow-material', 'รีเซ็ต'), ['class' => 'btn btn-warning']);
+>>>>>>> origin/master
         } ?>
 
     </div>
@@ -356,9 +429,14 @@ jQuery(".dynamicform_wrapper").on("afterDelete", function(e) {
         </table>
         <div class="form-group text-center">
             <?php
+<<<<<<< HEAD
             echo Html::a( Html::icon('tags').' '.Yii::t( 'app', 'กลับไปเลือกพัสดุ'),['selectmat'], ['class' => 'btn btn-primary _gencreatesession', 'data'=>['act'=> 'test']]);
             ?>
             <?php //echo $crform['Booking']['belongto_id']; ?>
+=======
+            echo Html::a( Html::icon('tags').' '.Yii::t( 'app', 'กลับไปเลือกพัสดุ'),'selectmat', ['class' => 'btn btn-primary']);
+            ?>
+>>>>>>> origin/master
         </div>
     </div>
 
@@ -407,6 +485,7 @@ $js['ajax-select-material'] = "
 		});
 	});
 
+<<<<<<< HEAD
     $('._gencreatesession').on('click', function(event){
 
         var form = $('form');
@@ -421,6 +500,9 @@ $js['ajax-select-material'] = "
         //return false;
     });
     //$('#booking-belongto_id').val(2).trigger('change');
+=======
+
+>>>>>>> origin/master
 //$(document).on('pjax:send', function() {
 //    $('#modalcontent').val('processing request...');
 //    $('#modal').modal('show');
@@ -435,6 +517,7 @@ $(document).on('pjax:timeout', function(event) {
   event.preventDefault();
 });
 ";
+<<<<<<< HEAD
 if(isset($crform['Booking']['belongto_id'])){
     $js['set-bel'] = "
         $('#booking-belongto_id').val(".$crform['Booking']['belongto_id'].").trigger('change');
@@ -445,6 +528,8 @@ if(isset($crform['Booking']['position_id'])){
         $('#booking-position_id').val(".$crform['Booking']['position_id'].").trigger('change');
     ";
 }
+=======
+>>>>>>> origin/master
 ?>
 
 <?php

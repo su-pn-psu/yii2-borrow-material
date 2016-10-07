@@ -4,7 +4,6 @@ use yii\bootstrap\Html;
 use yii\bootstrap\ActiveForm;
 use yii\bootstrap\Modal;
 
-//use kartik\grid\GridView;
 use kartik\widgets\Select2;
 use kartik\widgets\DateTimePicker;
 use kartik\daterange\DateRangePicker;
@@ -63,7 +62,7 @@ jQuery(".dynamicform_wrapper").on("afterDelete", function(e) {
     <?php //= $form->field($model, 'entry_status')->textInput() ?>
     <div class="col-md-1 col-md-offset-1">
         <?php
-        echo Html::img('/uploads/images/PSU.png', ['width' => '75px']);
+        echo Html::img(Yii::getAlias('@web/uploads/images/PSU.png'), ['width' => '75px']);
         ?>
     </div>
     <div class="col-md-8 text-center">
@@ -96,10 +95,25 @@ jQuery(".dynamicform_wrapper").on("afterDelete", function(e) {
     <div class="form-group">
         <div class="col-md-10 col-md-offset-2">
             <?php
-            echo $mdluser->profile->attributeLabels()['user_id'] . ' <u>' . $mdluser->profile->user_id . '</u> ';
-            echo $mdluser->profile->attributeLabels()['firstname'] . ' <u>' . $mdluser->profile->firstname . '</u> ';
-            echo $mdluser->profile->attributeLabels()['lastname'] . ' <u>' . $mdluser->profile->lastname . '</u> ';
+//            echo $mdluser->profile->attributeLabels()['user_id'] . ' <u>' . $mdluser->profile->user_id . '</u> ';
+//            echo $mdluser->profile->attributeLabels()['firstname'] . ' <u>' . $mdluser->profile->firstname . '</u> ';
+//            echo $mdluser->profile->attributeLabels()['lastname'] . ' <u>' . $mdluser->profile->lastname . '</u> ';
             ?>
+            <p>
+
+                ข้าพเจ้า
+                <u><?= $mdluser->profile->fullname; ?></u>
+
+                รหัสศึกษา
+                <u><?= $mdluser->username; ?></u>
+
+                สาขาวิชา
+                <u><?= $mdluser->profile->resultInfo->major; ?></u>
+
+                คณะ
+                <u><?= $mdluser->profile->resultInfo->factory; ?></u>
+
+            </p>
         </div>
     </div>
     <div class="form-group">
@@ -167,7 +181,7 @@ jQuery(".dynamicform_wrapper").on("afterDelete", function(e) {
                     'label' => 'col-md-4',
                     'wrapper' => 'col-md-8',
                 ]
-            ])->inline()->radioList($model->getEntryisinUni()) ?>
+            ])->inline()->radioList($model->isinlist) ?>
         </div>
         <div class="col-md-7">
             <?= $form->field($model, 'university_place', [
@@ -246,83 +260,13 @@ jQuery(".dynamicform_wrapper").on("afterDelete", function(e) {
     <?php DynamicFormWidget::end();*/ ?>
     <?php Pjax::begin(['id' => 'itempjax']); ?>
     <div class="material-items">
-        <?php echo $this->render('_searchmaterial', ['model' => $searchMaterial]); ?>
+
         <?php
         echo ListView::widget([
             'dataProvider' => $dataProviderMaterial,
-            //'layout' => "{pager}\n{items}\n{summary}",
+            'layout' => "{pager}\n{items}\n{summary}",
             'itemView' => '_material_list_item',
         ]);
-
-//        echo GridView::widget([
-//            //'id' => 'kv-grid-demo',
-//            'dataProvider'=> $dataProviderMaterial,
-//            'filterModel' => $searchMaterial,
-//            'columns' => [
-//                //['class' => 'yii\grid\SerialColumn'],
-//                [
-//                    'class'=>'kartik\grid\ExpandRowColumn',
-//                    'width'=>'50px',
-//                    'value'=>function ($model, $key, $index, $column) {
-//                        return GridView::ROW_COLLAPSED;
-//                        //return GridView::ROW_EXPANDED;
-//                    },
-//                    'detail'=>function ($model, $key, $index, $column) {
-//                        return Yii::$app->controller->renderPartial('_matinfo', ['model'=>$model]);
-//                    },
-//                    'headerOptions'=>['class'=>'kartik-sheet-style'],
-//                    'expandOneOnly'=>true
-//                ],
-//                [
-//                    'attribute' => 'id',
-//                    'headerOptions' => [
-//                        'width' => '120px',
-//                    ],
-//                ],
-//                [
-//                    'attribute' => 'title',
-//                ],
-//                'brand',
-//                [
-//                    'class' => 'yii\grid\ActionColumn',
-//                    'template'=>'{choose}',
-//                    'buttons'=>[
-//                        'choose' => function($url,$model,$key){
-//                            //return Html::a('<i class="glyphicon glyphicon-ok-circle"></i>choose',$url);
-//                            $session = Yii::$app->session;
-//                            $selectedItem = ($session->get('selected-material') == null) ? [] : $session->get('selected-material');
-//
-//                            if (array_key_exists($model->id, $selectedItem)) {
-//                                return Html::button('เลือกแล้ว',[ 'class' => 'btn btn-default disabled',]);
-//                            } else {
-//                                return Html::a(
-//                                    'เลือก',
-//                                    ['ajax-select-material'],
-//                                    [
-//                                        'class' => 'btn btn-primary btn-add-item',
-//                                        'role' => 'button',
-//                                        'data-item_id' => $model->id,
-//                                        //'disabled' => $disableButton
-//                                    ]
-//                                );
-//                            }
-//                        }
-//                    ]
-//                ],
-//            ],
-//            'pager' => [
-//                'firstPageLabel' => Yii::t( 'borrow-material', 'หน้าแรกสุด'),
-//                'lastPageLabel' => Yii::t( 'borrow-material', 'หน้าท้ายสุด'),
-//            ],
-//            'responsive'=>true,
-//            'hover'=>true,
-//            'toolbar'=> false,
-//            'pjax' => true,
-//            'panel'=>[
-//                'type'=>GridView::TYPE_INFO,
-//                'heading'=> Html::icon('search').' เลือกพัสดุ ',
-//            ],
-//        ]);
         ?>
 
     </div>
@@ -505,36 +449,13 @@ $js['ajax-select-material'] = "
 		});
 	});
 
-//$('.btn-add-item').on('click', function(event){
-//    event.preventDefault();//alert('iopipi');
-//    $.ajax({
-//        url: $(this).attr('href'),
-//        data:{'id': $(this).data('item_id')},
-//        dataType: 'json',
-//        success: function(data){
-//            if(data.status == 2){
-//                //alert('already choose');
-//            }else if(data.status == 1){
-//                //location.reload();
-//                $.pjax.reload({container:'#itempjax'});
-//            }
-//        }
-//    });
-//});
-
 $(document).on('pjax:send', function() {
     $('#modalcontent').val('processing request...');
     $('#modal').modal('show');
-});
+})
 $(document).on('pjax:complete', function() {
     $('#modal').modal('hide');
-});
-$(document).on('pjax:error', function() {
-    event.preventDefault();
-});
-$(document).on('pjax:timeout', function(event) {
-  event.preventDefault();
-});
+})
 ";
 ?>
 

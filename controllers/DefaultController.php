@@ -1,6 +1,7 @@
 <?php
 
 namespace suPnPsu\borrowMaterial\controllers;
+<<<<<<< HEAD
 
 use Yii;
 
@@ -32,6 +33,13 @@ use yii\bootstrap\Html;
 use yii\bootstrap\ActiveForm;
 
 use yii\helpers\ArrayHelper;
+=======
+use Yii;
+use yii\web\Controller;
+use suPnPsu\borrowMaterial\models\SubmitedcheckSearch;
+use suPnPsu\borrowMaterial\models\StdPosition;
+use suPnPsu\borrowMaterial\models\StdBelongto;
+>>>>>>> origin/master
 /**
  * Default controller for the `borrowMaterial` module
 =======
@@ -72,7 +80,11 @@ class DefaultController extends Controller
 
     public function actionIndex()
     {
+<<<<<<< HEAD
         Yii::$app->view->title = Yii::t('borrow-material', 'รายการผ่านอนุมัติ-ยังไม่คืน') . ' - ' . Yii::t('borrow-material', Yii::$app->controller->module->params['title']);
+=======
+        Yii::$app->view->title = Yii::t('borrow-material', 'รายการยืมคืน') . ' - ' . Yii::t('borrow-material', Yii::$app->controller->module->params['title']);
+>>>>>>> origin/master
 
         $searchModel = new SentcheckSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
@@ -83,6 +95,7 @@ class DefaultController extends Controller
             'dataProvider' => $dataProvider,
         ]);
     }
+<<<<<<< HEAD
 
     public function actionDraft()
     {
@@ -404,6 +417,10 @@ class DefaultController extends Controller
         unset($session['selected-material']);
     }
 
+=======
+    
+    
+>>>>>>> origin/master
     public function actionQaddposition()
     {
         $model = new StdPosition();
@@ -439,6 +456,7 @@ class DefaultController extends Controller
             ]);
         }
     }
+<<<<<<< HEAD
 
     public function actionQmatinfo($id)
     {
@@ -514,4 +532,6 @@ class DefaultController extends Controller
         //unset($session['create-form']);
     }
 
+=======
+>>>>>>> origin/master
 }
