@@ -74,7 +74,10 @@ class SubmitedcheckSearch extends Booking
             'query' => $query,
         ]);
 
-		  $query->andWhere(['between','entry_status', 1, 3]);
+        $query->joinWith(['borrowreturn']);
+
+        $query->andWhere(['between','entry_status', 1, 2]);
+        $query->orWhere(['entry_status' => 3,'borrowreturn.deliver_at' => null]);
 
         $this->load($params);
 

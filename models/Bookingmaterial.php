@@ -3,7 +3,7 @@
 namespace suPnPsu\borrowMaterial\models;
 
 use Yii;
-
+use suPnPsu\material\models\Material;
 /**
  * This is the model class for table "bookingmaterial".
  *

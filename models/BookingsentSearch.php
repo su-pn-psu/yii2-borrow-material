@@ -73,8 +73,9 @@ class BookingsentSearch extends Booking
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
-		  $query->andWhere(['>=','entry_status',3]);
-		  
+		  //$query->andWhere(['>=','entry_status',3]);
+		  $query->andWhere(['entry_status'=>4]);
+
         $this->load($params);
 
         if (!$this->validate()) {

@@ -1,25 +1,14 @@
-<<<<<<< HEAD
-<div class="borrowMaterial-default-index">
-    <h1><?= $this->context->action->uniqueId ?></h1>
-    <p>
-        This is the view content for action "<?= $this->context->action->id ?>".
-        The action belongs to the controller "<?= get_class($this->context) ?>"
-        in the "<?= $this->context->module->id ?>" module.
-    </p>
-    <p>
-        You may customize this page by editing the following file:<br>
-        <code><?= __FILE__ ?></code>
-=======
-<?php use yii\bootstrap\Html;
+<?php
+use yii\bootstrap\Html;
 //use kartik\widgets\DatePicker;
 
 use kartik\grid\GridView;
+use suPnPsu\borrowMaterial\models\Booking;
 ?>
 <div class="borrowreturn-default-index">
-    <h1>รายการยืมอยู่</h1>
-    <?= GridView::widget([
+    <?php echo GridView::widget([
         //'id' => 'kv-grid-demo',
-        'dataProvider'=> $dataProvider,
+        'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
             //['class' => 'yii\grid\SerialColumn'],
@@ -29,13 +18,7 @@ use kartik\grid\GridView;
                     'width' => '50px',
                 ],
             ],
-            [
-                'attribute' => 'entry_status',
-                'headerOptions' => [
-                    'width' => '100px',
-                ],
-            ],
-            'booking_at',
+            //'booking_at',
             //'user_id',
             //'belongto_id',
             //'position_id',
@@ -43,54 +26,40 @@ use kartik\grid\GridView;
             //'isin_university',
             //'university_place',
             'acquire_at',
-            // 'return_at',
+            'return_at',
             [
-                'class' => 'yii\grid\ActionColumn',
-                'template'=>'{apprvres}',
-                'buttons'=>[
-                    'apprvres' => function($url,$model,$key){
-                        if($model->entry_status >= 2 ){
-                            if($model->borrowreturn->confirm_status === 1){
-                                if($model->entry_status === 3 && $model->borrowreturn->deliver_status === 1){
-                                    return 'ส่งของแล้ว';
-                                }elseif($model->entry_status === 3 && $model->borrowreturn->deliver_status === 0){
-                                    return 'ไม่รับของ';
-                                }
-                                return 'อนุมัติแล้ว รอส่งของ';
-                            }else{
-                                return 'ไม่อนุมัติ เพราะ '.$model->borrowreturn->confirm_comment;
-                            }
+                'attribute' => 'entry_status',
+                //'value' => 'statusLabel',
+                //'filter'=> Booking::getEntrystat(),
+                'value' => function($model, $key, $index, $column){
+                    if($model->entry_status == 2 ){
+                        return '<span class="label label-warning">รอส่งมอบของ</span>';
+                    }elseif($model->entry_status == 4 ){
+                        if($model->return_at < date('Y-m-d H:i')){
+                            return '<span class="label label-danger">เกินเวลาขอยืม</span>';
                         }else{
-                            return 'กำลังพิจารณา';
+                            return '<span class="label label-warning">ยังไม่คืน</span>';
                         }
                     }
-                ]
+                },
+                'filter'=> ['2' => 'ผ่านการอนุมัติ', '4' => 'ยังไม่คืน'],
+
+                'format'=>'html',
+                'headerOptions' => [
+                    'width' => '80px',
+                ],
             ],
         ],
         'pager' => [
-            'firstPageLabel' => Yii::t( 'app', '1stPagi'),
-            'lastPageLabel' => Yii::t( 'app', 'lastPagi'),
+            'firstPageLabel' => Yii::t( 'app', 'หน้าแรกสุด'),
+            'lastPageLabel' => Yii::t( 'app', 'หน้าท้ายสุด'),
         ],
         'responsive'=>true,
         'hover'=>true,
-        'toolbar'=> [
-            ['content'=>
-                //Html::a(Html::icon('plus'), ['create'], ['class'=>'btn btn-success', 'title'=>Yii::t('app', 'Add Book')]).' '.
-                Html::a(Html::icon('repeat'), ['grid-demo'], ['data-pjax'=>0, 'class'=>'btn btn-default', 'title'=>Yii::t('app', 'Reset Grid')])
-            ],
-            //'{export}',
-            '{toggleData}',
-        ],
+        'toolbar'=> false,
         'panel'=>[
             'type'=>GridView::TYPE_INFO,
-            'heading'=> Html::icon('user').' '.Html::encode('ขั้นตอนพิจารณา-พัสดุ/ครุภัณฑ์'),
+            'heading'=> Html::icon('export').' '.Html::encode('รายการอนุมัติแล้ว-ยังไม่คืน์'),
         ],
     ]); ?>
-    <p>
-        รายการห้อง
-    </p>
-    <p>
-        รายการรถจักรยานยนต์สามล้อ
->>>>>>> sis
-    </p>
 </div>

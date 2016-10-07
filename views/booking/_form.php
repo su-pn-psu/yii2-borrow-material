@@ -95,10 +95,25 @@ jQuery(".dynamicform_wrapper").on("afterDelete", function(e) {
     <div class="form-group">
         <div class="col-md-10 col-md-offset-2">
             <?php
-            echo $mdluser->profile->attributeLabels()['user_id'] . ' <u>' . $mdluser->profile->user_id . '</u> ';
-            echo $mdluser->profile->attributeLabels()['firstname'] . ' <u>' . $mdluser->profile->firstname . '</u> ';
-            echo $mdluser->profile->attributeLabels()['lastname'] . ' <u>' . $mdluser->profile->lastname . '</u> ';
+//            echo $mdluser->profile->attributeLabels()['user_id'] . ' <u>' . $mdluser->profile->user_id . '</u> ';
+//            echo $mdluser->profile->attributeLabels()['firstname'] . ' <u>' . $mdluser->profile->firstname . '</u> ';
+//            echo $mdluser->profile->attributeLabels()['lastname'] . ' <u>' . $mdluser->profile->lastname . '</u> ';
             ?>
+            <p>
+
+                ข้าพเจ้า
+                <u><?= $mdluser->profile->fullname; ?></u>
+
+                รหัสศึกษา
+                <u><?= $mdluser->username; ?></u>
+
+                สาขาวิชา
+                <u><?= $mdluser->profile->resultInfo->major; ?></u>
+
+                คณะ
+                <u><?= $mdluser->profile->resultInfo->factory; ?></u>
+
+            </p>
         </div>
     </div>
     <div class="form-group">
@@ -113,7 +128,7 @@ jQuery(".dynamicform_wrapper").on("afterDelete", function(e) {
                 'inputTemplate' => '<div class="input-group">{input}<span class="input-group-btn"><button type="button" class="btn btn-success _belqadd" value="' . Url::to(['qaddbelongto']) . '" title="add belong to" data-toggle="tooltip"><span class="glyphicon glyphicon-plus"></span></button></div>',
             ])->widget(Select2::classname(), [
                 'data' => $belongtolist,
-                'options' => ['placeholder' => Yii::t('app', 'PleaseSelect')],
+                'options' => ['placeholder' => Yii::t('borrow-material', 'กรุณาเลือก...')],
                 'pluginOptions' => [
                     'allowClear' => true
                 ],
@@ -136,7 +151,7 @@ jQuery(".dynamicform_wrapper").on("afterDelete", function(e) {
                 'inputTemplate' => '<div class="input-group">{input}<span class="input-group-btn"><button type="button" class="btn btn-success _invttqadd" value="' . Url::to(['qaddposition']) . '" title="add position of belong to" data-toggle="tooltip"><span class="glyphicon glyphicon-plus"></span></button></div>',
             ])->widget(Select2::classname(), [
                 'data' => $positionlist,
-                'options' => ['placeholder' => Yii::t('app', 'PleaseSelect')],
+                'options' => ['placeholder' => Yii::t('borrow-material', 'กรุณาเลือก...')],
                 'pluginOptions' => [
                     'allowClear' => true
                 ],
@@ -243,7 +258,6 @@ jQuery(".dynamicform_wrapper").on("afterDelete", function(e) {
 		
     </div>
     <?php DynamicFormWidget::end();*/ ?>
-    <div id='LoadingMSG'>Loading...</div>
     <?php Pjax::begin(['id' => 'itempjax']); ?>
     <div class="material-items">
 
@@ -286,7 +300,7 @@ jQuery(".dynamicform_wrapper").on("afterDelete", function(e) {
 
     </div>
     <?php Pjax::end(); ?>
-    <a href="<?= Url::to(['ajax-clear-selected-material']); ?>" class="btn btn-danger btn-clear-item">Clear items</a>
+    <a href="<?= Url::to(['ajax-clear-selected-material']); ?>" class="btn btn-danger btn-clear-item">เคลียร์ข้อมูลที่เลือก</a>
 
 
     <div class="padding-xxs">
@@ -296,9 +310,11 @@ jQuery(".dynamicform_wrapper").on("afterDelete", function(e) {
         <div class="col-md-12">
             <?php
             $model->booking_at = date('Y-m-d  H:i');
+            $model->acquire_at = date('Y-m-d  H:i', strtotime('+3 days'));
             $model->return_at = date('Y-m-d  H:i', strtotime('+3 days'));
 
             echo $form->field($model, 'rangedatetime', [
+                'enableAjaxValidation' => true,
                 'inputTemplate' => '<div class="input-group">{input}<span class="input-group-addon"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></span></div>',
                 'horizontalCssClasses' => [
                     'label' => 'col-md-2',
@@ -323,6 +339,7 @@ jQuery(".dynamicform_wrapper").on("afterDelete", function(e) {
     </div>
     <?php
     echo $form->field($model, 'acquire_at', [
+        'enableAjaxValidation' => true,
         'horizontalCssClasses' => [
             'label' => 'col-md-2',
             'wrapper' => 'col-md-10',
@@ -331,7 +348,8 @@ jQuery(".dynamicform_wrapper").on("afterDelete", function(e) {
         'options' => ['placeholder' => 'Enter event time ...'],
         'type' => DateTimePicker::TYPE_COMPONENT_APPEND,
         'pluginOptions' => [
-            'autoclose' => true
+            'autoclose' => true,
+            'locale' => ['format' => 'Y-m-d H:i'],
         ]
     ]);
     ?>
@@ -341,7 +359,7 @@ jQuery(".dynamicform_wrapper").on("afterDelete", function(e) {
         </div>
     </div>
 
-    <?= $form->field($model, 'sbmtcheck')->checkbox(['label' => Yii::t('app', 'i have read rule')]) ?>
+    <?= $form->field($model, 'sbmtcheck')->checkbox(['label' => Yii::t('borrow-material', 'ฉันได้อ่านระเบียบของพัสดุ <a href="/advanced/backend/web/media/booking/rule.pdf" target="_blank">click</a> แล้ว')]) ?>
 
     <?php /* adzpire form tips
 		$form->field($model, 'wu_tel', ['enableAjaxValidation' => true])->textInput(['maxlength' => true]);
@@ -364,24 +382,24 @@ jQuery(".dynamicform_wrapper").on("afterDelete", function(e) {
 		*/
     ?>
     <div class="form-group text-center">
-        <?= Html::submitButton($model->isNewRecord ? Html::icon('floppy-disk') . ' ' . Yii::t('app', 'Save') : Html::icon('floppy-disk') . ' ' . Yii::t('app', 'Save'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? Html::icon('floppy-disk') . ' ' . Yii::t('borrow-material', 'บันทึก') : Html::icon('floppy-disk') . ' ' . Yii::t('borrow-material', 'บันทึก'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
         <!--		  --><?php
         //if($model->isNewRecord or $model->entry_status == 0){
         //echo Html::button( Html::icon('play').' '.Yii::t( 'app', 'submitbooking') , ['class' => 'btn btn-danger']);
         //}
         ?>
         <?php if ($model->isNewRecord or $model->entry_status == 0) {
-            echo Html::submitButton(Html::icon('play') . ' ' . Yii::t('app', 'submitbooking'), [
+            echo Html::submitButton(Html::icon('play') . ' ' . Yii::t('borrow-material', 'ยื่นส่งการจองทันที'), [
                 'class' => 'btn btn-danger',
                 'name'=>'sng',
                 'data' => [
-                    'confirm' => Yii::t('app', 'you cannot edit after this, are you sure?'),
+                    'confirm' => Yii::t('borrow-material', 'คุณไม่สามารถแก้ไขแบบฟอร์มนี้ได้อีกหลังการอนุนัติ, คุณแน่ใจหรือไม่?'),
                     //'method' => 'post',
                 ],
             ]);
         } ?>
         <?php if (!$model->isNewRecord) {
-            echo Html::resetButton(Html::icon('refresh') . ' ' . Yii::t('app', 'Reset'), ['class' => 'btn btn-warning']);
+            echo Html::resetButton(Html::icon('refresh') . ' ' . Yii::t('borrow-material', 'รีเซ็ต'), ['class' => 'btn btn-warning']);
         } ?>
 
     </div>

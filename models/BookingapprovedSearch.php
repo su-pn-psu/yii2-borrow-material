@@ -73,7 +73,7 @@ class BookingapprovedSearch extends Booking
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
-		  $query->andWhere(['>=','entry_status',2]);
+		  $query->andWhere(['entry_status'=>2]);
 		  
         $this->load($params);
 

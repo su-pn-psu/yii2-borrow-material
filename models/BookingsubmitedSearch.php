@@ -10,49 +10,46 @@ use suPnPsu\borrowMaterial\models\Booking;
 /**
  * BookingSearch represents the model behind the search form about `suPnPsu\borrowMaterial\models\Booking`.
  */
-class BookingsubmitedSearch extends Booking
-{
+class BookingsubmitedSearch extends Booking {
+
     /**
      * @inheritdoc
      */
-	  
-	 /* adzpire gridview relation sort-filter
-		public $weu;
-		public $wecr;
-	 
-		add rule
-		[['weu', 'wecr'], 'safe'],
+    /* adzpire gridview relation sort-filter
+      public $weu;
+      public $wecr;
 
-		in function search()  //weU = wasterecycle_user userPro = user_profile
-		$query->joinWith(['weU', 'weCr.userPro']); // weCr.userPro - 2layer relation
-		$dataProvider->sort->attributes['weu'] = [
-			'asc' => ['wasterecycle_user.wu_name' => SORT_ASC],
-			'desc' => ['wasterecycle_user.wu_name' => SORT_DESC],
-		];
-		$dataProvider->sort->attributes['wecr'] = [
-			'asc' => ['user_profile.firstname' => SORT_ASC],
-			'desc' => ['user_profile.firstname' => SORT_DESC],
-		];
-		//add grid filter condition ->orFilterWhere for search wu_name or wu_lastname
-		->andFilterWhere(['like', 'wasterecycle_user.wu_name', $this->weu])
-		->orFilterWhere(['like', 'wasterecycle_user.wu_lastname', $this->weu])
-		->andFilterWhere(['like', 'user_profile.firstname', $this->wecr])
-		->orFilterWhere(['like', 'user_profile.lastname', $this->wecr]);
-        
-	 */
-    public function rules()
-    {
+      add rule
+      [['weu', 'wecr'], 'safe'],
+
+      in function search()  //weU = wasterecycle_user userPro = user_profile
+      $query->joinWith(['weU', 'weCr.userPro']); // weCr.userPro - 2layer relation
+      $dataProvider->sort->attributes['weu'] = [
+      'asc' => ['wasterecycle_user.wu_name' => SORT_ASC],
+      'desc' => ['wasterecycle_user.wu_name' => SORT_DESC],
+      ];
+      $dataProvider->sort->attributes['wecr'] = [
+      'asc' => ['user_profile.firstname' => SORT_ASC],
+      'desc' => ['user_profile.firstname' => SORT_DESC],
+      ];
+      //add grid filter condition ->orFilterWhere for search wu_name or wu_lastname
+      ->andFilterWhere(['like', 'wasterecycle_user.wu_name', $this->weu])
+      ->orFilterWhere(['like', 'wasterecycle_user.wu_lastname', $this->weu])
+      ->andFilterWhere(['like', 'user_profile.firstname', $this->wecr])
+      ->orFilterWhere(['like', 'user_profile.lastname', $this->wecr]);
+
+     */
+    public function rules() {
         return [
-            [['id', 'entry_status', 'user_id', 'belongto_id', 'position_id', 'isin_university'], 'integer'],
-            [['booking_at', 'purpose', 'university_place', 'acquire_at', 'return_at'], 'safe'],
+                [['id', 'entry_status', 'user_id', 'belongto_id', 'position_id', 'isin_university'], 'integer'],
+                [['booking_at', 'purpose', 'university_place', 'acquire_at', 'return_at'], 'safe'],
         ];
     }
 
     /**
      * @inheritdoc
      */
-    public function scenarios()
-    {
+    public function scenarios() {
         // bypass scenarios() implementation in the parent class
         return Model::scenarios();
     }
@@ -64,8 +61,7 @@ class BookingsubmitedSearch extends Booking
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
-    {
+    public function search($params) {
         $query = Booking::find();
 
         // add conditions that should always apply here
@@ -74,8 +70,8 @@ class BookingsubmitedSearch extends Booking
             'query' => $query,
         ]);
 
-		  $query->andWhere(['entry_status'=>1]);
-		  
+        $query->where(['entry_status' => 1]);
+
         $this->load($params);
 
         if (!$this->validate()) {
@@ -98,8 +94,9 @@ class BookingsubmitedSearch extends Booking
         ]);
 
         $query->andFilterWhere(['like', 'purpose', $this->purpose])
-            ->andFilterWhere(['like', 'university_place', $this->university_place]);
+                ->andFilterWhere(['like', 'university_place', $this->university_place]);
 
         return $dataProvider;
     }
+
 }

@@ -63,7 +63,7 @@ class StdbelongtoController extends Controller
     public function actionIndex()
     {
 		 
-		 Yii::$app->view->title = Yii::t( 'borrow-material', 'ÃÒÂ¡ÒÃÊÑ§¡Ñ´Í§¤ì¡Ã').' - '.Yii::t('borrow-material', Yii::$app->controller->module->params['title']);
+		 Yii::$app->view->title = Yii::t( 'borrow-material', 'à¸£à¸²à¸¢à¸à¸²à¸£à¸ªà¸±à¸‡à¸à¸±à¸”/à¸­à¸‡à¸„à¹Œà¸à¸£').' - '.Yii::t('borrow-material', Yii::$app->controller->module->params['title']);
 		 
         $searchModel = new StdBelongtoSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
@@ -83,7 +83,7 @@ class StdbelongtoController extends Controller
     {
 		 $model = $this->findModel($id);
 		 
-		 Yii::$app->view->title = Yii::t( 'borrow-material', 'Ë¹éÒÃÒÂÅÐàÍÕÂ´').' : '.$model->title.' - '.Yii::t( 'borrow-material', Yii::$app->controller->module->params['title']);
+		 Yii::$app->view->title = Yii::t( 'borrow-material', 'à¸”à¸¹à¸£à¸²à¸¢à¸¥à¸°à¹€à¸­à¸µà¸¢à¸”').' : '.$model->title.' - '.Yii::t( 'borrow-material', Yii::$app->controller->module->params['title']);
 		 
         return $this->render('view', [
             'model' => $model,
@@ -97,7 +97,7 @@ class StdbelongtoController extends Controller
      */
     public function actionCreate()
     {
-		 Yii::$app->view->title = Yii::t( 'borrow-material', 'à¾ÔèÁ¢éÍÁÙÅ').' - '.Yii::t( 'borrow-material', Yii::$app->controller->module->params['title']);
+		 Yii::$app->view->title = Yii::t( 'borrow-material', 'à¹€à¸žà¸´à¹ˆà¸¡à¸ªà¸±à¸‡à¸à¸±à¸”/à¸­à¸‡à¸„à¹Œà¸à¸£').' - '.Yii::t( 'borrow-material', Yii::$app->controller->module->params['title']);
 		 
         $model = new StdBelongto();
 
@@ -114,7 +114,7 @@ class StdbelongtoController extends Controller
 				'type' => 'success',
 				'duration' => 4000,
 				'icon' => 'glyphicon glyphicon-ok-circle',
-				'message' => Yii::t( 'borrow-material', '¢éÍÁÙÅ¶Ù¡à¾ÔèÁáÅéÇ'),
+				'message' => Yii::t( 'borrow-material', 'à¹€à¸žà¸´à¹ˆà¸¡à¸‚à¹‰à¸­à¸¡à¸¹à¸¥à¹€à¸£à¸µà¸¢à¸šà¸£à¹‰à¸­à¸¢'),
 				]);
 			return $this->redirect(['view', 'id' => $model->id]);	
 			}else{
@@ -122,7 +122,7 @@ class StdbelongtoController extends Controller
 				'type' => 'danger',
 				'duration' => 4000,
 				'icon' => 'glyphicon glyphicon-remove-circle',
-				'message' => Yii::t( 'borrow-material', 'à¾ÔèÁ¢éÍÁÙÅäÁèä´é'),
+				'message' => Yii::t( 'borrow-material', 'à¹€à¸žà¸´à¹ˆà¸¡à¸‚à¹‰à¸­à¸¡à¸¹à¸¥à¹„à¸¡à¹ˆà¸ªà¸³à¹€à¸£à¹‡à¸ˆ'),
 				]);
 			}
             return $this->redirect(['view', 'id' => $model->id]);
@@ -145,7 +145,7 @@ class StdbelongtoController extends Controller
     {
 		 $model = $this->findModel($id);
 		 
-		 Yii::$app->view->title = Yii::t( 'borrow-material', '»ÃÑº»ÃØ§ {modelClass}: ', [
+		 Yii::$app->view->title = Yii::t( 'borrow-material', 'à¸›à¸£à¸±à¸šà¸›à¸£à¸¸à¸‡à¸‚à¹‰à¸­à¸¡à¸¹à¸¥ {modelClass}: ', [
     'modelClass' => 'Std Belongto',
 ]) . $model->title.' - '.Yii::t( 'borrow-material', Yii::$app->controller->module->params['title']);
 		 
@@ -155,7 +155,7 @@ class StdbelongtoController extends Controller
 				'type' => 'success',
 				'duration' => 4000,
 				'icon' => 'glyphicon glyphicon-ok-circle',
-				'message' => Yii::t( 'borrow-material', '¢éÍÁÙÅ¶Ù¡»ÃÑº»ÃØ§áÅéÇ'),
+				'message' => Yii::t( 'borrow-material', 'à¸›à¸£à¸±à¸šà¸›à¸£à¸¸à¸‡à¸‚à¹‰à¸­à¸¡à¸¹à¸¥à¹€à¸£à¸µà¸¢à¸šà¸£à¹‰à¸­à¸¢'),
 				]);
 			return $this->redirect(['view', 'id' => $model->id]);	
 			}else{
@@ -163,7 +163,7 @@ class StdbelongtoController extends Controller
 				'type' => 'danger',
 				'duration' => 4000,
 				'icon' => 'glyphicon glyphicon-remove-circle',
-				'message' => Yii::t( 'borrow-material', '»ÃÑº»ÃØ§¢éÍÁÙÅäÁèä´é'),
+				'message' => Yii::t( 'borrow-material', 'à¸›à¸£à¸±à¸šà¸›à¸£à¸¸à¸‡à¸‚à¹‰à¸­à¸¡à¸¹à¸¥à¹„à¸¡à¹ˆà¸ªà¸³à¹€à¸£à¹‡à¸ˆ'),
 				]);
 			}
             return $this->redirect(['view', 'id' => $model->id]);
@@ -190,7 +190,7 @@ class StdbelongtoController extends Controller
 			'type' => 'success',
 			'duration' => 4000,
 			'icon' => 'glyphicon glyphicon-ok-circle',
-			'message' => Yii::t( 'borrow-material', '¢éÍÁÙÅ¶Ù¡ÅºáÅéÇ'),
+			'message' => Yii::t( 'borrow-material', 'à¸¥à¸šà¸‚à¹‰à¸­à¸¡à¸¹à¸¥à¹€à¸£à¸µà¸¢à¸šà¸£à¹‰à¸­à¸¢'),
 		]);
 		
 

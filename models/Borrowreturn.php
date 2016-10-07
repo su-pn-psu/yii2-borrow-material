@@ -49,10 +49,11 @@ class Borrowreturn extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['booking_id', 'confirm_status', 'confirm_staff_id', 'confirm_at', 'deliver_staff_id', 'deliver_at', 'return_staff_id', 'return_at'], 'required'],
+            [['booking_id', 'confirm_status', 'confirm_staff_id', 'confirm_at', 'deliver_staff_id', 'return_staff_id'], 'required'],
 				[['booking_id', 'confirm_status', 'confirm_staff_id', 'deliver_status', 'deliver_staff_id', 'return_status', 'return_staff_id'], 'integer'],
             [['confirm_at', 'deliver_at', 'return_at'], 'safe'],
             [['entry_note'], 'string'],
+            [['confirm_status', 'deliver_status', 'return_status'], 'in', 'range' => [0, 1]],
             [['confirm_comment', 'return_loss', 'return_because'], 'string', 'max' => 255],
             [['booking_id'], 'exist', 'skipOnError' => true, 'targetClass' => Booking::className(), 'targetAttribute' => ['booking_id' => 'id']],
             [['confirm_staff_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['confirm_staff_id' => 'id']],

@@ -1,6 +1,8 @@
 <?php
+
 use yii\bootstrap\Html;
 use mdm\admin\components\Helper;
+use yii\helpers\Url;
 ?>
 <?php foreach (Yii::$app->session->getAllFlashes() as $message):; ?>
     <?php
@@ -20,73 +22,54 @@ use mdm\admin\components\Helper;
         ]
     ]);
     ?>
-<?php endforeach; ?>
-<?php $this->beginContent('@app/views/layouts/main.php') ?>
+<?php endforeach;
+$module = $this->context->module->id;
 
-    <div class="row">
-        <div class="col-md-3 hidden-print">
+$this->beginContent('@app/views/layouts/main.php'); ?>
 
-            <?= Html::a(Html::icon('tag').' '.Yii::t( 'app', 'data'), ['/borrow-material/allitems'], ['class' => 'btn btn-success btn-block margin-bottom']) ?>
-            <?= Html::a(Html::icon('scissors').' '.Yii::t( 'app', 'eqbookshort'), ['/borrow-material/booking'], ['class' => 'btn btn-primary btn-block']) ?>
-            <?= Html::a(Html::icon('map-marker').' '.Yii::t( 'app', 'roombookshort'), ['#'], ['class' => 'btn btn-primary btn-block']) ?>
-            <?= Html::a(Html::icon('transfer').' '.Yii::t( 'app', 'tribookshort'), ['#'], ['class' => 'btn btn-primary btn-block margin-bottom']) ?>
+<div class="row">
+    <div class="col-md-3 hidden-print">
 
-            <div class="box box-solid">
-                <div class="box-header with-border">
-                    <h3 class="box-title">
-                        <?php /* =BaseStringHelper::truncate($this->title,20); */ ?>
-                        ระบบยืม-คืนพัสดุครุภัณฑ์
-                    </h3>
 
+        <?php if (Yii::$app->user->can('user')): ?>
+            <div class="panel panel-default sidebar-menu">
+
+                <div class="panel-heading">
+                    <h3 class="panel-title">ระบบยืม-คืนพัสดุครุภัณฑ์</h3>
+                    
                 </div>
-                <div class="box-body no-padding">
+
+                <div class="panel-body">  
+                    <p><a href="<?=Url::to(["/{$module}/default/selectmat"])?>" class="btn btn-success btn-block"><i class="fa fa-plus"></i> ขอยืมพัสดุ</a></p>
 
                     <?php
+                    $menuItems = [
+                            [
+                            'label' => Html::icon('cloud-upload') . ' ' . Yii::t('borrow-material', 'แบบฟอร์มที่ยังไม่ยื่น'),
+                            'url' => ['/borrow-material/default/draft'],
+                        ],
+                            [
+                            'label' => Html::icon('inbox') . ' ' . Yii::t('app', 'รออนุมัติ'),
+                            'url' => ['/borrow-material/default/submited'],
+                        ],
+                            [
+                            'label' => Html::icon('export') . ' ' . Yii::t('app', 'ยังไม่มารับ'),
+                            'url' => ['/borrow-material/default/approved'],
+                        ],
+                            [
+                            'label' => Html::icon('import') . ' ' . Yii::t('app', 'ยังไม่ส่งคืน'),
+                            'url' => ['/borrow-material/default/returned'],
+                        ],
+                            [
+                            'label' => Html::icon('duplicate') . ' ' . Yii::t('app', 'ข้อมูลทั้งหมด'),
+                            'url' => ['/borrow-material/default/all'],
+                        //'linkOptions' => [...],
+                        ],
+                    ];
 
-
-
-
-
-$menuItems = [
-    [
-        'label' => Html::icon('file').' '.Yii::t( 'app', 'draftform'),
-        'url' => ['site/index'],
-    ],
-    [
-        'label' => Html::icon('inbox').' '.Yii::t( 'app', 'offering'),
-        'url' => ['site/index'],
-    ],
-    [
-        'label' => Html::icon('saved').' '.Yii::t( 'app', 'approve'),
-        'url' => ['site/index'],
-    ],
-    [
-        'label' => Html::icon('export').' '.Yii::t( 'app', 'borrowed'),
-        'url' => ['site/index'],
-    ],
-    [
-        'label' => Html::icon('import').' '.Yii::t( 'app', 'returned'),
-        'url' => ['site/index'],
-    ],
-    [
-        'label' => Html::icon('duplicate').' '.Yii::t( 'app', 'allborrow'),
-        'url' => ['site/index'],
-        //'linkOptions' => [...],
-    ],
-    [
-        'label' => 'Logout (' . \Yii::$app->user->identity->username . ')',
-        'url' => ['/user/logout'],
-        'linkOptions' => ['data-method' => 'post']
-    ],
-    ['label' => 'App', 'items' => [
-        ['label' => 'New Sales', 'url' => ['/sales/pos']],
-        ['label' => 'New Purchase', 'url' => ['/purchase/create']],
-        ['label' => 'GR', 'url' => ['/movement/create', 'type' => 'receive']],
-        ['label' => 'GI', 'url' => ['/movement/create', 'type' => 'issue']],
-    ]]
-];
-
-$menuItems = Helper::filter($menuItems);
+                    $menuItems = Helper::filter($menuItems);
+                    $menuItems = suPnPsu\borrowMaterial\components\FrontendNavigate::genCount($menuItems);
+                    
                     //$nav = new Navigate();
                     echo dmstr\widgets\Menu::widget([
                         'options' => ['class' => 'nav nav-pills nav-stacked'],
@@ -95,24 +78,28 @@ $menuItems = Helper::filter($menuItems);
                         'items' => $menuItems,
                     ])
                     ?>
-
                 </div>
-                <!-- /.box-body -->
             </div>
 
 
-        </div>
-        <!-- /.col -->
 
-
-        <div class="col-md-9">
-            <?= $content ?>
-            <!-- /. box -->
-        </div>
-        <!-- /.col -->
-
+        <?php endif; ?>
 
     </div>
+    <!-- /.col -->
+
+
+    <div class="col-md-9">
+        <?php
+        $this->registerCss(".panbtn { float: right; margin: -5px 5px 0px 0px; }");
+        ?>
+        <?= $content ?>
+        <!-- /. box -->
+    </div>
+    <!-- /.col -->
+
+
+</div>
 
 
 <?php $this->endContent(); ?>
