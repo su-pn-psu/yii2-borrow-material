@@ -3,12 +3,10 @@
 namespace suPnPsu\borrowMaterial\controllers;
 
 use Yii;
-
 use suPnPsu\user\models\User;
-
 use suPnPsu\material\models\Material;
 use suPnPsu\material\models\MaterialSearchAvailable;
-
+use suPnPsu\material\models\MaterialListSearch;
 use suPnPsu\borrowMaterial\models\SubmitedcheckSearch;
 use suPnPsu\borrowMaterial\models\Booking;
 use suPnPsu\borrowMaterial\models\StdBelongto;
@@ -20,31 +18,28 @@ use suPnPsu\borrowMaterial\models\ReturnedcheckSearch;
 use suPnPsu\borrowMaterial\models\DraftSearch;
 use suPnPsu\borrowMaterial\models\SentcheckSearch;
 use suPnPsu\borrowMaterial\models\Bookingmaterial;
-
 use yii\filters\VerbFilter;
-
 use yii\web\Response;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-
 use yii\bootstrap\Nav;
 use yii\bootstrap\Html;
 use yii\bootstrap\ActiveForm;
-
 use yii\helpers\ArrayHelper;
+
 /**
  * Default controller for the `borrowMaterial` module
-=======
-use Yii;
-use yii\web\Controller;
-use suPnPsu\borrowMaterial\models\SubmitedcheckSearch;
+  =======
+  use Yii;
+  use yii\web\Controller;
+  use suPnPsu\borrowMaterial\models\SubmitedcheckSearch;
 
-/**
+  /**
  * Default controller for the `borrowreturn` module
->>>>>>> sis
+  >>>>>>> sis
  */
-class DefaultController extends Controller
-{
+class DefaultController extends Controller {
+
     /**
      * Renders the index view for the module
      * @return string
@@ -52,8 +47,7 @@ class DefaultController extends Controller
     public $belongtolist;
     public $positionlist;
 
-    public function beforeAction($action)
-    {
+    public function beforeAction($action) {
         if (!parent::beforeAction($action)) {
             return false;
         }
@@ -70,91 +64,84 @@ class DefaultController extends Controller
         return true;
     }
 
-    public function actionIndex()
-    {
-        Yii::$app->view->title = Yii::t('borrow-material', 'รายการผ่านอนุมัติ-ยังไม่คืน') . ' - ' . Yii::t('borrow-material', Yii::$app->controller->module->params['title']);
+    public function actionIndex() {
+        //Yii::$app->view->title = Yii::t('borrow-material', 'รายการผ่านอนุมัติ-ยังไม่คืน') . ' - ' . Yii::t('borrow-material', Yii::$app->controller->module->params['title']);
 
         $searchModel = new SentcheckSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $dataProvider->query->andWhere(['user_id'=> Yii::$app->user->id]);
+        $dataProvider->query->andWhere(['user_id' => Yii::$app->user->id]);
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+                    'searchModel' => $searchModel,
+                    'dataProvider' => $dataProvider,
         ]);
     }
 
-    public function actionDraft()
-    {
+    public function actionDraft() {
         Yii::$app->view->title = Yii::t('borrow-material', 'รายการที่ร่าง') . ' - ' . Yii::t('borrow-material', Yii::$app->controller->module->params['title']);
 
         $searchModel = new DraftSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $dataProvider->query->andWhere(['user_id'=> Yii::$app->user->id]);
+        $dataProvider->query->andWhere(['user_id' => Yii::$app->user->id]);
 
         return $this->render('draft', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+                    'searchModel' => $searchModel,
+                    'dataProvider' => $dataProvider,
         ]);
     }
 
-    public function actionSubmited()
-    {
+    public function actionSubmited() {
         Yii::$app->view->title = Yii::t('borrow-material', 'รายการรออนุมัติ') . ' - ' . Yii::t('borrow-material', Yii::$app->controller->module->params['title']);
 
         $searchModel = new SubmitedcheckSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $dataProvider->query->andWhere(['user_id'=> Yii::$app->user->id]);
+        $dataProvider->query->andWhere(['user_id' => Yii::$app->user->id]);
         return $this->render('submited', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+                    'searchModel' => $searchModel,
+                    'dataProvider' => $dataProvider,
         ]);
     }
 
-    public function actionApproved()
-    {
+    public function actionApproved() {
         Yii::$app->view->title = Yii::t('borrow-material', 'รายการที่ยังไม่มารับ') . ' - ' . Yii::t('borrow-material', Yii::$app->controller->module->params['title']);
 
         $searchModel = new SentcheckSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $dataProvider->query->andWhere(['user_id'=> Yii::$app->user->id]);
+        $dataProvider->query->andWhere(['user_id' => Yii::$app->user->id]);
         return $this->render('approved', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+                    'searchModel' => $searchModel,
+                    'dataProvider' => $dataProvider,
         ]);
     }
 
-    public function actionReturned()
-    {
+    public function actionReturned() {
         Yii::$app->view->title = Yii::t('borrow-material', 'รายการที่ยังไม่คืน') . ' - ' . Yii::t('borrow-material', Yii::$app->controller->module->params['title']);
 
         $searchModel = new ReturnedcheckSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $dataProvider->query->andWhere(['user_id'=> Yii::$app->user->id]);
+        $dataProvider->query->andWhere(['user_id' => Yii::$app->user->id]);
 
         return $this->render('returned', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+                    'searchModel' => $searchModel,
+                    'dataProvider' => $dataProvider,
         ]);
     }
 
-    public function actionAll()
-    {
+    public function actionAll() {
         Yii::$app->view->title = Yii::t('borrow-material', 'ประวัติรายการทั้งหมด') . ' - ' . Yii::t('borrow-material', Yii::$app->controller->module->params['title']);
 
         $searchModel = new BookingSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $dataProvider->query->andWhere(['user_id'=> Yii::$app->user->id]);
+        $dataProvider->query->andWhere(['user_id' => Yii::$app->user->id]);
 
         return $this->render('allbooking', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+                    'searchModel' => $searchModel,
+                    'dataProvider' => $dataProvider,
         ]);
     }
 
-    public function actionCreate()
-    {
-        Yii::$app->view->title = Yii::t('borrow-material', 'เพิ่มการจอง') . ' - ' . Yii::t('borrow-material', Yii::$app->controller->module->params['title']);
+    public function actionCreate() {
+        //Yii::$app->view->title = Yii::t('borrow-material', 'เพิ่มการจอง') . ' - ' . Yii::t('borrow-material', Yii::$app->controller->module->params['title']);
 
         $model = new Booking();
         $mdluser = User::findOne(Yii::$app->user->id);
@@ -166,7 +153,7 @@ class DefaultController extends Controller
         $session = Yii::$app->session;
         unset($session['update-form']);
 
-        /* if enable ajax validate*/
+        /* if enable ajax validate */
 
         if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
             Yii::$app->response->format = Response::FORMAT_JSON;
@@ -181,12 +168,12 @@ class DefaultController extends Controller
                 $session = Yii::$app->session;
                 $items = $session->get('selected-material');
 
-                if($this->checkmatavail()){
-                    foreach($items as $key => $value ){
+                if ($this->checkmatavail()) {
+                    foreach ($items as $key => $value) {
                         $mdlbookmat = new Bookingmaterial();
                         $mdlbookmat->booking_id = $model->id;
                         $mdlbookmat->material_id = $value['id'];
-                        if(!$mdlbookmat->save()){
+                        if (!$mdlbookmat->save()) {
                             throw new ServerErrorHttpException('Server operation error.');
                         }
                     }
@@ -212,15 +199,14 @@ class DefaultController extends Controller
         }
 
         return $this->render('create', [
-            'model' => $model,
-            'mdluser' => $mdluser,
-            'belongtolist' => $this->belongtolist,
-            'positionlist' => $this->positionlist,
+                    'model' => $model,
+                    'mdluser' => $mdluser,
+                    'belongtolist' => $this->belongtolist,
+                    'positionlist' => $this->positionlist,
         ]);
     }
 
-    public function actionUpdate($id)
-    {
+    public function actionUpdate($id) {
         $model = $this->findModelbooking($id);
         $mdluser = User::findOne(Yii::$app->user->id);
 
@@ -238,13 +224,12 @@ class DefaultController extends Controller
         $session->set('update-form', $id);
         unset($session['create-form']);
         //$selectedMaterial = [];
-
         //$selectedMaterial = ($session->get('selected-material') == null) ? [] : $session->get('selected-material');
 
-        if(($session->get('selected-material') == null)){
+        if (($session->get('selected-material') == null)) {
             $mdlbookmats = $model->bookingmaterials;
 
-            foreach($mdlbookmats as $key => $value){
+            foreach ($mdlbookmats as $key => $value) {
                 $selectedMaterial[$value->material_id] = [
                     'id' => $value->material_id,
                     'title' => $value->material->title,
@@ -256,26 +241,26 @@ class DefaultController extends Controller
                 //}
             }
             $session->set('selected-material', $selectedMaterial);
-        }else{
+        } else {
             $items = $session->get('selected-material');
         }
 
 
         Yii::$app->view->title = Yii::t('borrow-material', 'ปรับปรุงข้อมูล {modelClass}: ', [
-                'modelClass' => 'Booking',
-            ]) . $model->id . ' - ' . Yii::t('borrow-material', Yii::$app->controller->module->params['title']);
+                    'modelClass' => 'Booking',
+                ]) . $model->id . ' - ' . Yii::t('borrow-material', Yii::$app->controller->module->params['title']);
 
         if ($model->load(Yii::$app->request->post())) {
             isset(Yii::$app->request->post()['sng']) ? $model->entry_status = 1 : $model->entry_status = 0;
             if ($model->save()) {
 
-                if($this->checkmatavail()){
+                if ($this->checkmatavail()) {
                     Bookingmaterial::deleteAll(['booking_id' => $model->id]);
-                    foreach($items as $key => $value ){
+                    foreach ($items as $key => $value) {
                         $mdlbookmat = new Bookingmaterial();
                         $mdlbookmat->booking_id = $model->id;
                         $mdlbookmat->material_id = $value['id'];
-                        if(!$mdlbookmat->save()){
+                        if (!$mdlbookmat->save()) {
                             throw new ServerErrorHttpException('Server operation error.');
                         }
                     }
@@ -309,63 +294,56 @@ class DefaultController extends Controller
         $dataProviderMaterial = $searchMaterial->search(Yii::$app->request->queryParams);
 
         return $this->render('update', [
-            'model' => $model,
-            'mdluser' => $mdluser,
-            'belongtolist' => $this->belongtolist,
-            'positionlist' => $this->positionlist,
-            'availmatlist' => $availmatlist,
-            'searchMaterial' => $searchMaterial,
-            'dataProviderMaterial' => $dataProviderMaterial,
+                    'model' => $model,
+                    'mdluser' => $mdluser,
+                    'belongtolist' => $this->belongtolist,
+                    'positionlist' => $this->positionlist,
+                    'availmatlist' => $availmatlist,
+                    'searchMaterial' => $searchMaterial,
+                    'dataProviderMaterial' => $dataProviderMaterial,
         ]);
-
-
     }
 
-    protected function findModelbooking($id)
-    {
+    protected function findModelbooking($id) {
         //if (($model = Booking::findOne($id)) !== null) {
-        if (($model = Booking::findOne($id)) !== null && $model->user_id == Yii::$app->user->id ) {
+        if (($model = Booking::findOne($id)) !== null && $model->user_id == Yii::$app->user->id) {
             return $model;
         } else {
             throw new NotFoundHttpException('ไม่พบหน้าที่ท่านหา หรือท่านไม่มีสิทธิเข้าถึง');
         }
     }
 
-    protected function findModelborrow($id)
-    {
+    protected function findModelborrow($id) {
         //if (($model = Booking::findOne($id)) !== null) {
-        if (($model = Borrowreturn::findOne($id)) !== null && $model->booking->user_id == Yii::$app->user->id ) {
+        if (($model = Borrowreturn::findOne($id)) !== null && $model->booking->user_id == Yii::$app->user->id) {
             return $model;
         } else {
             throw new NotFoundHttpException('ไม่พบหน้าที่ท่านหา หรือท่านไม่มีสิทธิเข้าถึง');
         }
     }
 
-    public function actionViewbooking($id)
-    {
+    public function actionViewbooking($id) {
         $mdlbooking = $this->findModelbooking($id);
         Yii::$app->view->title = Yii::t('borrow-material', 'ดูรายละเอียด') . ' : ' . $mdlbooking->id . ' - ' . Yii::t('borrow-material', Yii::$app->controller->module->params['title']);
 
         return $this->render('viewbooking', [
-            'mdlbooking' => $mdlbooking,
+                    'mdlbooking' => $mdlbooking,
         ]);
     }
 
-    public function actionSelectmat()
-    {
+    public function actionSelectmat() {
         $searchMaterial = new MaterialAvailableSearch();
         $dataProviderMaterial = $searchMaterial->search(Yii::$app->request->queryParams);
 
         $this->checkmatavail();
 
         return $this->render('selectmat', [
-            'searchMaterial' => $searchMaterial,
-            'dataProviderMaterial' => $dataProviderMaterial,
+                    'searchMaterial' => $searchMaterial,
+                    'dataProviderMaterial' => $dataProviderMaterial,
         ]);
     }
 
-    public function actionAjaxSelectMaterial($id)
-    {
+    public function actionAjaxSelectMaterial($id) {
         $session = Yii::$app->session;
         $selectedMaterial = ($session->get('selected-material') == null) ? [] : $session->get('selected-material');
         if (!array_key_exists($id, $selectedMaterial)) {
@@ -389,8 +367,7 @@ class DefaultController extends Controller
         echo \yii\helpers\Json::encode($result);
     }
 
-    public function actionAjaxClearSelectedMaterial($id = NULL)
-    {
+    public function actionAjaxClearSelectedMaterial($id = NULL) {
 //        $session = Yii::$app->session;
 //        $selectedMaterial = ($session->get('selected-material') == null) ? [] : $session->get('selected-material');
 //        if (isset($id) && $id != '') {
@@ -404,8 +381,7 @@ class DefaultController extends Controller
         unset($session['selected-material']);
     }
 
-    public function actionQaddposition()
-    {
+    public function actionQaddposition() {
         $model = new StdPosition();
         $model->saveby = Yii::$app->user->id;
         if ($model->load(Yii::$app->request->post())) {
@@ -414,16 +390,14 @@ class DefaultController extends Controller
             } else {
                 echo 0;
             }
-
         } else {
             return $this->renderAjax('_formtype', [
-                'model' => $model,
+                        'model' => $model,
             ]);
         }
     }
 
-    public function actionQaddbelongto()
-    {
+    public function actionQaddbelongto() {
         $model = new StdBelongto();
         $model->saveby = Yii::$app->user->id;
         if ($model->load(Yii::$app->request->post())) {
@@ -432,24 +406,21 @@ class DefaultController extends Controller
             } else {
                 echo 0;
             }
-
         } else {
             return $this->renderAjax('_formbel', [
-                'model' => $model,
+                        'model' => $model,
             ]);
         }
     }
 
-    public function actionQmatinfo($id)
-    {
+    public function actionQmatinfo($id) {
         $model = Material::findOne($id);
         return $this->renderAjax('_matinfo', [
-            'model' => $model,
+                    'model' => $model,
         ]);
     }
 
-    public function actionDisapproved($id)
-    {
+    public function actionDisapproved($id) {
         $model = $this->findModelborrow($id);
 
 //        if ($model->load(Yii::$app->request->post())) {
@@ -473,22 +444,20 @@ class DefaultController extends Controller
             } else {
                 print_r($model->getErrors());
             }
-
         } else {
             return $this->renderAjax('_disapprove', [
-                'model' => $model,
+                        'model' => $model,
             ]);
         }
     }
 
-    public function checkmatavail()
-    {
+    public function checkmatavail() {
         $session = Yii::$app->session;
         $items = ($session->get('selected-material') == null) ? [] : $session->get('selected-material');
 
-        foreach($items as $key => $value ){
+        foreach ($items as $key => $value) {
             //$mat = Material::findOne(['id' => $value['id']])->availcheck;
-            if(!Material::findOne(['id' => $value['id']])->availcheck){
+            if (!Material::findOne(['id' => $value['id']])->availcheck) {
                 Yii::$app->getSession()->setFlash('error', [
                     'type' => 'danger',
                     'duration' => 4000,
@@ -502,16 +471,82 @@ class DefaultController extends Controller
         return true;
     }
 
-    public function actionCreateemp(){
+    public function actionCreateemp() {
         $tmpcreate = Yii::$app->request->post();
         //print_r($tmpcreate['Booking']);
         $session = Yii::$app->session;
         $crform = ($session->get('create-form') == null) ? [] : $session->get('create-form');
-        foreach($tmpcreate as $key => $value){
+        foreach ($tmpcreate as $key => $value) {
             $crform[$key] = $value;
         }
         $session->set('create-form', $crform);
         //unset($session['create-form']);
+    }
+
+    ###############################
+
+    public function actionMaterialList() {
+        $searchModel = new MaterialListSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider->pagination->pageSize = 6;
+
+
+        //$this->view->title = 'รายการห้องทั้งหมด';
+        return $this->renderPartial('material-list', [
+                    //'model' => $model,
+                    'searchModel' => $searchModel,
+                    'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    public function actionCheckMaterial($start = NULL, $end = NULL) {
+
+        //echo date("Y-m-d H:i:s");
+        $date_start = date('Y-m-d', $start);
+        //$time_start = date('Y-m-d', $start);
+        //echo "<br/>" ; 
+        $model = Booking::find()
+                ->select(['id', 'booking_at', 'return_at'])
+//                ->where([
+//                    'booking_at' => $date_start,
+//                        //'time_start'=>$time_start,
+//                ])
+                //->andWhere(['s'])
+                ->all();
+        $act_use = [];
+        foreach ($model as $act) {
+            $act_start = Yii::$app->formatter->asTimestamp($act->booking_at);
+            $act_end = Yii::$app->formatter->asTimestamp($act->return_at);
+            $intime = false;
+            //echo ' '.date('Y-m-d',$act_start).'='. ' '.date('Y-m-d',$start)." ";
+            //echo ' '.date('Y-m-d',$act_end).'='. ' '.date('Y-m-d',$end);
+            
+            if ($start >= $act_start && $start <= $act_end) {
+                 
+                $intime = 1;
+            }
+            
+            if ($end >= $act_start && $end <= $act_end) {
+//            echo ' '.date('Y-m-d',$end).'>='. ' '.date('Y-m-d',$act_start)." ";
+//            echo ' '.date('Y-m-d',$end).'<='. ' '.date('Y-m-d',$act_end);
+                $intime = 2;
+            }
+            
+            if ($start < $act_start && $act_end < $end) {
+                $intime = 3;
+            }
+            
+            
+            //echo '|'.$intime."<br/>";
+
+            if ($intime) {
+                foreach ($act->bookingmaterials as $bm) {
+                    $act_use[$bm->material_id] = ['material_id' => $bm->material_id];
+                }
+            }
+        }
+
+        return json_encode($act_use);
     }
 
 }

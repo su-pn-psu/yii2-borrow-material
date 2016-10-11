@@ -34,20 +34,20 @@ class Module extends \yii\base\Module
         
         //$this->setViewPath($this->getViewPath().$this->siteend);  
 
-        if (!isset(Yii::$app->i18n->translations['borrow-material'])) {
-            Yii::$app->i18n->translations['borrow-material'] = [
-                'class' => 'yii\i18n\PhpMessageSource',
-                'sourceLanguage' => 'en',
-                'basePath' => '@suPnPsu/borrowMaterial/messages'
-            ];
-        }/**/
+//        if (!isset(Yii::$app->i18n->translations['borrow-material'])) {
+//            Yii::$app->i18n->translations['borrow-material'] = [
+//                'class' => 'yii\i18n\PhpMessageSource',
+//                'sourceLanguage' => 'en',
+//                'basePath' => '@suPnPsu/borrowMaterial/messages'
+//            ];
+//        }
 
 
-		Yii::$app->formatter->locale = 'th_TH';
-		Yii::$app->formatter->calendar = \IntlDateFormatter::TRADITIONAL;
-                              
-        
-		$this->params['adminModule'] = [5,18];
+//		Yii::$app->formatter->locale = 'th_TH';
+//		Yii::$app->formatter->calendar = \IntlDateFormatter::TRADITIONAL;
+//                              
+//        
+//		$this->params['adminModule'] = [5,18];
 		//$this->layout = 'menu-left';
 		$this->params['ModuleVers'] = '1.0.0';
 		$this->params['title'] = 'โปรแกรมยืมคืนพัสดุ/ครุภัณฑ์';

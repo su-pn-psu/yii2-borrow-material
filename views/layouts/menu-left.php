@@ -40,7 +40,7 @@ $this->beginContent('@app/views/layouts/main.php'); ?>
                 </div>
 
                 <div class="panel-body">  
-                    <p><a href="<?=Url::to(["/{$module}/default/selectmat"])?>" class="btn btn-success btn-block"><i class="fa fa-plus"></i> ขอยืมพัสดุ</a></p>
+                    <p><a href="<?=Url::to(["/{$module}/default/create"])?>" class="btn btn-success btn-block"><i class="fa fa-plus"></i> ขอยืมพัสดุ</a></p>
 
                     <?php
                     $menuItems = [

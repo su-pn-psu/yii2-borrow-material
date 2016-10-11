@@ -4,6 +4,10 @@ use yii\bootstrap\Html;
 
 use kartik\grid\GridView;
 use suPnPsu\borrowMaterial\models\Booking;
+
+
+$this->title = Yii::t('app', 'รายการยืมพัสดุ');
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="borrowreturn-default-index">
     <?php echo GridView::widget([
